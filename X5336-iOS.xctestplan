@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "C9B56FA9-DEE3-44AC-A0D3-BEBAA501A145",
+      "name" : "Configuration 1",
+      "options" : {
+        "threadSanitizerEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:X5336.xcodeproj",
+        "identifier" : "1A506E6925EAB9E400E51CE2",
+        "name" : "Tests iOS"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:X5336.xcodeproj",
+        "identifier" : "1ACA102725EACA93009BDC78",
+        "name" : "X5336CommonTests"
+      }
+    }
+  ],
+  "version" : 1
+}

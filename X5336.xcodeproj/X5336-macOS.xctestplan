@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "AB330881-6C83-4972-BAA0-53AA791D6E00",
+      "name" : "Configuration 1",
+      "options" : {
+        "threadSanitizerEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:X5336.xcodeproj",
+        "identifier" : "1A506E7425EAB9E400E51CE2",
+        "name" : "Tests macOS"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:X5336.xcodeproj",
+        "identifier" : "1ACA102725EACA93009BDC78",
+        "name" : "X5336CommonTests"
+      }
+    }
+  ],
+  "version" : 1
+}
