@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var document: X5336Document
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TextEditor(text: $document.text)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(document: .constant(X5336Document()))
     }
 }

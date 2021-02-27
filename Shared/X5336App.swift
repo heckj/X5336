@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct X5336App: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        DocumentGroup(newDocument: X5336Document()) { file in
+            ContentView(document: file.$document)
         }
     }
 }
