@@ -31,8 +31,8 @@ struct X5336Document: FileDocument {
         }
         text = string
     }
-    
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+
+    func fileWrapper(configuration _: WriteConfiguration) throws -> FileWrapper {
         let data = text.data(using: .utf8)!
         return .init(regularFileWithContents: data)
     }

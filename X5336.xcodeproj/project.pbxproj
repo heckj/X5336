@@ -221,6 +221,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A506E8925EAB9E400E51CE2 /* Build configuration list for PBXNativeTarget "X5336 (macOS)" */;
 			buildPhases = (
+				1A34B79425EACF9D00459784 /* Run Script (swiftformat) */,
 				1A506E5E25EAB9E400E51CE2 /* Sources */,
 				1A506E5F25EAB9E400E51CE2 /* Frameworks */,
 				1A506E6025EAB9E400E51CE2 /* Resources */,
@@ -274,6 +275,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1ACA102F25EACA93009BDC78 /* Build configuration list for PBXNativeTarget "X5336CommonTests" */;
 			buildPhases = (
+				1A34B78925EACE8200459784 /* Run Script (swiftformat) */,
 				1ACA102425EACA93009BDC78 /* Sources */,
 				1ACA102525EACA93009BDC78 /* Frameworks */,
 				1ACA102625EACA93009BDC78 /* Resources */,
@@ -376,6 +378,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A34B78925EACE8200459784 /* Run Script (swiftformat) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (swiftformat)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\nSDKROOT=macosx\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
+		};
+		1A34B79425EACF9D00459784 /* Run Script (swiftformat) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (swiftformat)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\nSDKROOT=macosx\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A506E5625EAB9E400E51CE2 /* Sources */ = {
