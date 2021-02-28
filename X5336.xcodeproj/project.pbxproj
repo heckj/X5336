@@ -62,7 +62,7 @@
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-Unit.xctestplan"; sourceTree = "<group>"; };
-		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = "X5336-macOS.xctestplan"; path = "X5336.xcodeproj/X5336-macOS.xctestplan"; sourceTree = "<group>"; };
+		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
 		1ACA102825EACA93009BDC78 /* X5336CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = X5336CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336CommonTests.swift; sourceTree = "<group>"; };
@@ -119,9 +119,6 @@
 		1A506E4C25EAB9E300E51CE2 = {
 			isa = PBXGroup;
 			children = (
-				1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */,
-				1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */,
-				1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */,
 				1A21EA2F25EABC4E00672BD3 /* README.md */,
 				1A21EA3025EABC6F00672BD3 /* notes */,
 				1A506E5125EAB9E300E51CE2 /* Shared */,
@@ -179,6 +176,7 @@
 		1A506E6D25EAB9E400E51CE2 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */,
 				1A506E6E25EAB9E400E51CE2 /* Tests_iOS.swift */,
 				1A506E7025EAB9E400E51CE2 /* Info.plist */,
 			);
@@ -188,6 +186,7 @@
 		1A506E7825EAB9E400E51CE2 /* Tests macOS */ = {
 			isa = PBXGroup;
 			children = (
+				1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */,
 				1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */,
 				1A506E7B25EAB9E400E51CE2 /* Info.plist */,
 			);
@@ -197,6 +196,7 @@
 		1ACA102925EACA93009BDC78 /* X5336CommonTests */ = {
 			isa = PBXGroup;
 			children = (
+				1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */,
 				1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */,
 				1ACA102C25EACA93009BDC78 /* Info.plist */,
 			);
@@ -227,7 +227,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A506E8925EAB9E400E51CE2 /* Build configuration list for PBXNativeTarget "X5336 (macOS)" */;
 			buildPhases = (
-				1A34B79425EACF9D00459784 /* Run Script (swiftformat) */,
 				1A506E5E25EAB9E400E51CE2 /* Sources */,
 				1A506E5F25EAB9E400E51CE2 /* Frameworks */,
 				1A506E6025EAB9E400E51CE2 /* Resources */,
@@ -387,24 +386,6 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		1A34B78925EACE8200459784 /* Run Script (swiftformat) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script (swiftformat)";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd BuildTools\nSDKROOT=macosx\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
-		};
-		1A34B79425EACF9D00459784 /* Run Script (swiftformat) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

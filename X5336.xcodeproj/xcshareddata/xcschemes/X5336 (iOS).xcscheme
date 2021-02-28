@@ -43,11 +43,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:X5336-Unit.xctestplan"
+            reference = "container:X5336CommonTests/X5336-Unit.xctestplan"
             default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:X5336-iOS.xctestplan">
+            reference = "container:Tests iOS/X5336-iOS.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
