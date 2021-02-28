@@ -1,29 +1,52 @@
 
 import Foundation
 
-public enum LindenmayerDirection: Equatable {
-    case right
-    case left
+// Loosely based on the patterned language at
+// [Algorithmic Botany](http://algorithmicbotany.org/papers/abop/abop-ch1.pdf)
+
+public enum LindenmayerTurn {
+    case right // "_"
+    case left // "+"
 }
 
-public enum LindenmayerRule: Equatable, CustomStringConvertible {
-    case move
-    case draw
-    case turn(LindenmayerDirection, Double)
-    case storeState
-    case restoreState
+public enum LindenmayerRoll {
+    case left // "\"
+    case right // "/"
+}
+
+public enum LindenmayerBend {
+    case up // "^"
+    case down // "&"
+}
+
+public enum LindenmayerRule: CustomStringConvertible {
+    case move(Double = 1.0) // "f"
+    case draw(Double = 1.0) // "F"
+    case turn(LindenmayerTurn, Double)
+    case bend(LindenmayerBend, Double)
+    case roll(LindenmayerRoll, Double)
+    case storeState // "["
+    case restoreState // "]"
     case ignore
 
     public var description: String {
         switch self {
-        case .move:
-            return "Move"
-        case .draw:
-            return "Draw"
+        case let .move(distance):
+            return "Move \(distance)"
+        case let .draw(distance):
+            return "Draw \(distance)"
         case let .turn(.right, angle):
-            return "Turn right by \(angle)°"
+            return "- Turn right by \(angle)°"
         case let .turn(.left, angle):
-            return "Turn left by \(angle)°"
+            return "+ Turn left by \(angle)°"
+        case let .bend(.up, angle):
+            return "^ Bend up by \(angle)"
+        case let .bend(.down, angle):
+            return "& Bend down by \(angle)"
+        case let .roll(.left, angle):
+            return "\\ Roll left by \(angle)"
+        case let .roll(.right, angle):
+            return "/ Roll right by \(angle)"
         case .storeState:
             return "["
         case .restoreState:
@@ -31,26 +54,6 @@ public enum LindenmayerRule: Equatable, CustomStringConvertible {
         case .ignore:
             return ""
         }
-    }
-}
-
-public func == (a: LindenmayerDirection, b: LindenmayerDirection) -> Bool {
-    switch (a, b) {
-    case (.right, .right), (.left, .left):
-        return true
-    default:
-        return false
-    }
-}
-
-public func == (a: LindenmayerRule, b: LindenmayerRule) -> Bool {
-    switch (a, b) {
-    case (.move, .move), (.draw, .draw), (.ignore, .ignore), (.storeState, .storeState), (.restoreState, .restoreState):
-        return true
-    case let (.turn(ad, aa), .turn(bd, ba)) where ad == bd && aa == ba:
-        return true
-    default:
-        return false
     }
 }
 
@@ -97,7 +100,7 @@ public struct Lindenmayer {
 
         var result = [LindenmayerRule]()
         for character in state {
-            if let rule = variables[String(character)], rule != .ignore {
+            if let rule = variables[String(character)], String(describing:rule) != "" {
                 result.append(rule)
             }
         }

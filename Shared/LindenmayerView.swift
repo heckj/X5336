@@ -47,6 +47,10 @@ open class LindenmayerConstructor {
                 currentState = calculateState(currentState, angle: angle, direction: direction)
             case .ignore:
                 break
+            case .bend(_, _):
+                break
+            case .roll(_, _):
+                break
             }
         }
 
@@ -88,7 +92,7 @@ open class LindenmayerConstructor {
         return State(state.angle, CGPoint(x: x, y: y))
     }
 
-    fileprivate func calculateState(_ state: State, angle: Double, direction: LindenmayerDirection) -> State {
+    fileprivate func calculateState(_ state: State, angle: Double, direction: LindenmayerTurn) -> State {
         if direction == .left {
             return State(state.angle - angle, state.position)
         }
@@ -150,7 +154,7 @@ open class LindenmayerConstructor {
             return State(state.angle, CGPoint(x: x, y: y))
         }
 
-        fileprivate func calculateState(_ state: State, angle: Double, direction: LindenmayerDirection) -> State {
+        fileprivate func calculateState(_ state: State, angle: Double, direction: LindenmayerTurn) -> State {
             if direction == .left {
                 return State(state.angle - angle, state.position)
             }
