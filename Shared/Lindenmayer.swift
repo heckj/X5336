@@ -4,7 +4,7 @@ import Foundation
 // Loosely based on the patterned language at
 // [Algorithmic Botany](http://algorithmicbotany.org/papers/abop/abop-ch1.pdf)
 
-public enum LindenmayerTurn: Character {
+public enum LindenmayerTurn: String {
     case right = "_"
     case left = "+"
 }
@@ -41,19 +41,19 @@ extension LindenmayerTurn: Codable {
         
         switch self {
         case .left:
-            try container.encode(String(LindenmayerTurn.left.rawValue), forKey: .raw)
+            try container.encode(LindenmayerTurn.left.rawValue, forKey: .raw)
         case .right:
-            try container.encode(String(LindenmayerTurn.right.rawValue), forKey: .raw)
+            try container.encode(LindenmayerTurn.right.rawValue, forKey: .raw)
         }
     }
 }
 
-public enum LindenmayerRoll: Character {
+public enum LindenmayerRoll: String {
     case left = "\\"
     case right = "/"
 }
 
-public enum LindenmayerBend: Character {
+public enum LindenmayerBend: String {
     case up = "^"
     case down = "&"
 }
