@@ -4,27 +4,66 @@ import Foundation
 // Loosely based on the patterned language at
 // [Algorithmic Botany](http://algorithmicbotany.org/papers/abop/abop-ch1.pdf)
 
-public enum LindenmayerTurn {
-    case right // "_"
-    case left // "+"
+public enum LindenmayerTurn: Character {
+    case right = "_"
+    case left = "+"
 }
 
-public enum LindenmayerRoll {
-    case left // "\"
-    case right // "/"
+extension LindenmayerTurn: Codable {
+    // making the enumeration codable, with assistance from the article at
+    // https://blog.untitledkingdom.com/codable-enums-in-swift-3ab3dacf30ce
+    // https://jackmorris.xyz/2020/making-enums-codable/
+    // https://lostmoa.com/blog/CodableConformanceForSwiftEnumsWithMultipleAssociatedValuesOfDifferentTypes/
+
+    enum TurnCodingKey: CodingKey {
+        case raw
+    }
+    
+    enum CodingError: Error {
+        case unknownValue
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: TurnCodingKey.self)
+        let rawValue = try container.decode(String.self, forKey: .raw)
+        switch rawValue {
+        case String(LindenmayerTurn.left.rawValue):
+            self = .left
+        case String(LindenmayerTurn.right.rawValue):
+            self = .right
+        default:
+            throw CodingError.unknownValue
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TurnCodingKey.self)
+        
+        switch self {
+        case .left:
+            try container.encode(String(LindenmayerTurn.left.rawValue), forKey: .raw)
+        case .right:
+            try container.encode(String(LindenmayerTurn.right.rawValue), forKey: .raw)
+        }
+    }
 }
 
-public enum LindenmayerBend {
-    case up // "^"
-    case down // "&"
+public enum LindenmayerRoll: Character {
+    case left = "\\"
+    case right = "/"
+}
+
+public enum LindenmayerBend: Character {
+    case up = "^"
+    case down = "&"
 }
 
 public enum LindenmayerRule: CustomStringConvertible {
     case move(Double = 1.0) // "f"
     case draw(Double = 1.0) // "F"
-    case turn(LindenmayerTurn, Double)
-    case bend(LindenmayerBend, Double)
-    case roll(LindenmayerRoll, Double)
+    case turn(LindenmayerTurn, Double = 90)
+    case bend(LindenmayerBend, Double = 30)
+    case roll(LindenmayerRoll, Double = 30)
     case storeState // "["
     case restoreState // "]"
     case ignore
