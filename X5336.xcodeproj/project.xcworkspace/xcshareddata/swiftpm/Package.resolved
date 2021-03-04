@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Squall",
+        "repositoryURL": "https://github.com/heckj/Squall",
+        "state": {
+          "branch": null,
+          "revision": "89660b5c0b751098533aa834421cfd9306a30aed",
+          "version": "1.3.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
