@@ -62,6 +62,7 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A5CFFA0262B3F0000E03F96 /* Lsys-grammar.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Lsys-grammar.md"; sourceTree = "<group>"; };
 		1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-Unit.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				1A21EA3125EABC6F00672BD3 /* l-systems.md */,
+				1A5CFFA0262B3F0000E03F96 /* Lsys-grammar.md */,
 			);
 			path = notes;
 			sourceTree = "<group>";
