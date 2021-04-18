@@ -49,20 +49,39 @@ I'm thinking that this grammar won't have the ability to define its own function
 available within the interpretter, likely which overlays swift functions or its standard library.
 
 ```
-program        → statement* EOF ;
+program        → directionStmt? constantsDecl? moduleDecl* axiomDecl produceDecl* decomposeDecl? EOF ;
 
-declaration    → funDecl
-               | varDecl
-               | statement ;
-// funDecl        → "fun" function ;
-// function       → IDENTIFIER "(" parameters? ")" block ;
-parameters     → IDENTIFIER ( "," IDENTIFIER )* ;
+// optional direction statement - default is 'forward', also consider 'ltr' and 'rtl' as replacements
+directionStmt  → "forward"
+               | "backward" ;
+
+constantsDecl  → "{" varDecl* "}" ;
+moduleDecl     → "module" "{" IDENTIFIER "(" moduleArguments? ")" "}" ;
+moduleArgument → IDENTIFIER ( "," IDENTIFIER )* ;
+axiomDecl      → "axiom" moduleStmt* ;
+
+produceDecl    → context block? "(" logic_or ")" block? "produces" moduleStmt* ";" ;
+decomposeDecl  → context "produces" moduleStmt*  ";" ;
+
+context        → moduleStmt "<<"? moduleStmt? "<"? moduleStmt? ">"? moduleStmt? ">>"? ;
+moduleStmt     → IDENTIFIER "(" moduleCond? ")" ;
+moduleCond     → logic_or ( "," logic_or )* ;
+
+moduleStmt     → IDENTIFIER "(" moduleArgs? ")" ;
+moduleArgs   → expression ( "," expression )* ;
+
+// more classic programming statements, including
+// - if/then control flow statements
+// - expression evaluation, including assignment, statements
+// - calling a function with the expectation of a built-in standard library
+//   for the basic trig/mathematical goodies.
+//
+// Currently excluding any looping controls (for/while) and print statements
 
 statement      → exprStmt
 //               | forStmt
                | ifStmt
 //               | printStmt
-//               | returnStmt
 //               | whileStmt
                | block ;
 
@@ -73,7 +92,6 @@ ifStmt         → "if" "(" expression ")" statement
                ( "else" statement )? ;
 exprStmt       → expression ";" ;
 //printStmt      → "print" expression ";" ;
-//returnStmt     → "return" expression? ";" ;
 //whileStmt      → "while" "(" expression ")" statement ;
 
 block          → "{" declaration* "}" ;
