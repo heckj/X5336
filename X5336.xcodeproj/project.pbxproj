@@ -57,7 +57,7 @@
 		1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lindenmayer.swift; sourceTree = "<group>"; };
 		1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LindenmayerView.swift; sourceTree = "<group>"; };
 		1A21EA2F25EABC4E00672BD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1A21EA3125EABC6F00672BD3 /* l-systems.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "l-systems.md"; sourceTree = "<group>"; };
+		1A4C53FA2693B1D800C7DBF5 /* notes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notes; sourceTree = "<group>"; };
 		1A506E5225EAB9E300E51CE2 /* X5336App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336App.swift; sourceTree = "<group>"; };
 		1A506E5325EAB9E300E51CE2 /* X5336Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336Document.swift; sourceTree = "<group>"; };
 		1A506E5425EAB9E300E51CE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A5CFFA0262B3F0000E03F96 /* Lsys-grammar.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Lsys-grammar.md"; sourceTree = "<group>"; };
 		1A5CFFA1262B539000E03F96 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
 		1A5CFFB3262B53E100E03F96 /* AST+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AST+String.swift"; sourceTree = "<group>"; };
 		1A5CFFBB262B540300E03F96 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -128,20 +127,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A21EA3025EABC6F00672BD3 /* notes */ = {
-			isa = PBXGroup;
-			children = (
-				1A21EA3125EABC6F00672BD3 /* l-systems.md */,
-				1A5CFFA0262B3F0000E03F96 /* Lsys-grammar.md */,
-			);
-			path = notes;
-			sourceTree = "<group>";
-		};
 		1A506E4C25EAB9E300E51CE2 = {
 			isa = PBXGroup;
 			children = (
 				1A21EA2F25EABC4E00672BD3 /* README.md */,
-				1A21EA3025EABC6F00672BD3 /* notes */,
+				1A4C53FA2693B1D800C7DBF5 /* notes */,
 				1A506E5125EAB9E300E51CE2 /* Shared */,
 				1A506E5C25EAB9E400E51CE2 /* iOS */,
 				1A506E6325EAB9E400E51CE2 /* macOS */,
@@ -244,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A506E8625EAB9E400E51CE2 /* Build configuration list for PBXNativeTarget "X5336 (iOS)" */;
 			buildPhases = (
+				1A4C53FB2693B37900C7DBF5 /* swift-format */,
 				1A506E5625EAB9E400E51CE2 /* Sources */,
 				1A506E5725EAB9E400E51CE2 /* Frameworks */,
 				1A506E5825EAB9E400E51CE2 /* Resources */,
@@ -445,6 +436,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd BuildTools\nSDKROOT=macosx\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
+		};
+		1A4C53FB2693B37900C7DBF5 /* swift-format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "swift-format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which /opt/homebrew/bin/swift-format >/dev/null; then\n    /opt/homebrew/bin/swift-format -m format -i -r ${PROJECT_DIR}\n    /opt/homebrew/bin/swift-format -m lint -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
