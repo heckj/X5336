@@ -32,6 +32,7 @@
 		1A5CFFCC262B545000E03F96 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFCB262B545000E03F96 /* Parser.swift */; };
 		1A5CFFCD262B545000E03F96 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFCB262B545000E03F96 /* Parser.swift */; };
 		1A6FB59A25F07B1B00842B5E /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6FB59925F07B1B00842B5E /* Squall */; };
+		1AC3C1242693AE8300E44C41 /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC3C1232693AE8300E44C41 /* Squall */; };
 		1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AC3C1242693AE8300E44C41 /* Squall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,7 @@
 				1A506E7825EAB9E400E51CE2 /* Tests macOS */,
 				1ACA102925EACA93009BDC78 /* X5336CommonTests */,
 				1A506E5B25EAB9E400E51CE2 /* Products */,
+				1AC3C1222693AE8300E44C41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,6 +220,13 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		1AC3C1222693AE8300E44C41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1ACA102925EACA93009BDC78 /* X5336CommonTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +253,9 @@
 			dependencies = (
 			);
 			name = "X5336 (iOS)";
+			packageProductDependencies = (
+				1AC3C1232693AE8300E44C41 /* Squall */,
+			);
 			productName = "X5336 (iOS)";
 			productReference = 1A506E5A25EAB9E400E51CE2 /* X5336.app */;
 			productType = "com.apple.product-type.application";
@@ -630,7 +643,7 @@
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -652,7 +665,7 @@
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -918,6 +931,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		1A6FB59925F07B1B00842B5E /* Squall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */;
+			productName = Squall;
+		};
+		1AC3C1232693AE8300E44C41 /* Squall */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */;
 			productName = Squall;

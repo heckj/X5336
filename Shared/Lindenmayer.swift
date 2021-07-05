@@ -104,7 +104,7 @@ public enum LindenmayerRule: CustomStringConvertible {
 // - rules (list of sequences that match the internal state representation
 //   - rules have 3 major elements:
 //     - precedence (what's getting rewritten, and mapping to values scoped to the rule for
-//       parametric L-systems), and may include directly preceeding or following modules for
+//       parametric L-systems), and may include directly preceding or following modules for
 //       contextual matches of the rule
 //     - predicates (parameter specific - provides comparisons of the parametric values in
 //       order to determine if a rule should be applied
