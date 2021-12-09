@@ -21,16 +21,6 @@
 		1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5425EAB9E300E51CE2 /* ContentView.swift */; };
 		1A506E8225EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
 		1A506E8325EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
-		1A5CFFA2262B539000E03F96 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFA1262B539000E03F96 /* AST.swift */; };
-		1A5CFFA3262B539000E03F96 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFA1262B539000E03F96 /* AST.swift */; };
-		1A5CFFB4262B53E100E03F96 /* AST+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFB3262B53E100E03F96 /* AST+String.swift */; };
-		1A5CFFB5262B53E100E03F96 /* AST+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFB3262B53E100E03F96 /* AST+String.swift */; };
-		1A5CFFBC262B540300E03F96 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFBB262B540300E03F96 /* Token.swift */; };
-		1A5CFFBD262B540300E03F96 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFBB262B540300E03F96 /* Token.swift */; };
-		1A5CFFC4262B542500E03F96 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFC3262B542500E03F96 /* Tokenizer.swift */; };
-		1A5CFFC5262B542500E03F96 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFC3262B542500E03F96 /* Tokenizer.swift */; };
-		1A5CFFCC262B545000E03F96 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFCB262B545000E03F96 /* Parser.swift */; };
-		1A5CFFCD262B545000E03F96 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5CFFCB262B545000E03F96 /* Parser.swift */; };
 		1A6FB59A25F07B1B00842B5E /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6FB59925F07B1B00842B5E /* Squall */; };
 		1AC3C1242693AE8300E44C41 /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC3C1232693AE8300E44C41 /* Squall */; };
 		1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */; };
@@ -73,11 +63,6 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A5CFFA1262B539000E03F96 /* AST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
-		1A5CFFB3262B53E100E03F96 /* AST+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AST+String.swift"; sourceTree = "<group>"; };
-		1A5CFFBB262B540300E03F96 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		1A5CFFC3262B542500E03F96 /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
-		1A5CFFCB262B545000E03F96 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-Unit.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
@@ -152,11 +137,6 @@
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
 				1A506E5525EAB9E400E51CE2 /* Assets.xcassets */,
-				1A5CFFA1262B539000E03F96 /* AST.swift */,
-				1A5CFFB3262B53E100E03F96 /* AST+String.swift */,
-				1A5CFFBB262B540300E03F96 /* Token.swift */,
-				1A5CFFC3262B542500E03F96 /* Tokenizer.swift */,
-				1A5CFFCB262B545000E03F96 /* Parser.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -453,7 +433,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which /opt/homebrew/bin/swift-format >/dev/null; then\n    /opt/homebrew/bin/swift-format -m format -i -r ${PROJECT_DIR}\n    /opt/homebrew/bin/swift-format -m lint -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which /opt/homebrew/bin/swift-format >/dev/null; then\n    /opt/homebrew/bin/swift-format format -i -r ${PROJECT_DIR}\n    /opt/homebrew/bin/swift-format lint -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -463,15 +443,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A21EA2625EABB5200672BD3 /* Lindenmayer.swift in Sources */,
-				1A5CFFA2262B539000E03F96 /* AST.swift in Sources */,
-				1A5CFFCC262B545000E03F96 /* Parser.swift in Sources */,
 				1A21EA2825EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
-				1A5CFFB4262B53E100E03F96 /* AST+String.swift in Sources */,
-				1A5CFFC4262B542500E03F96 /* Tokenizer.swift in Sources */,
-				1A5CFFBC262B540300E03F96 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,15 +455,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A21EA2725EABB5200672BD3 /* Lindenmayer.swift in Sources */,
-				1A5CFFA3262B539000E03F96 /* AST.swift in Sources */,
-				1A5CFFCD262B545000E03F96 /* Parser.swift in Sources */,
 				1A21EA2925EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
-				1A5CFFB5262B53E100E03F96 /* AST+String.swift in Sources */,
-				1A5CFFC5262B542500E03F96 /* Tokenizer.swift in Sources */,
-				1A5CFFBD262B540300E03F96 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +553,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -636,6 +608,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -705,7 +679,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rhonabwy.X5336;
 				PRODUCT_NAME = X5336;
 				SDKROOT = macosx;
@@ -730,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rhonabwy.X5336;
 				PRODUCT_NAME = X5336;
 				SDKROOT = macosx;
