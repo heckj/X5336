@@ -11,6 +11,8 @@
 		1A21EA2725EABB5200672BD3 /* Lindenmayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */; };
 		1A21EA2825EABB5200672BD3 /* LindenmayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */; };
 		1A21EA2925EABB5200672BD3 /* LindenmayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */; };
+		1A3CAD4C2762909300AC531E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* File.swift */; };
+		1A3CAD4D2762909300AC531E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* File.swift */; };
 		1A506E6F25EAB9E400E51CE2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E6E25EAB9E400E51CE2 /* Tests_iOS.swift */; };
 		1A506E7A25EAB9E400E51CE2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */; };
 		1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5225EAB9E300E51CE2 /* X5336App.swift */; };
@@ -47,6 +49,7 @@
 		1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lindenmayer.swift; sourceTree = "<group>"; };
 		1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LindenmayerView.swift; sourceTree = "<group>"; };
 		1A21EA2F25EABC4E00672BD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1A3CAD4B2762909300AC531E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		1A4C53FA2693B1D800C7DBF5 /* notes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notes; sourceTree = "<group>"; };
 		1A506E5225EAB9E300E51CE2 /* X5336App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336App.swift; sourceTree = "<group>"; };
 		1A506E5325EAB9E300E51CE2 /* X5336Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336Document.swift; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */,
+				1A3CAD4B2762909300AC531E /* File.swift */,
 				1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */,
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
@@ -443,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A21EA2625EABB5200672BD3 /* Lindenmayer.swift in Sources */,
+				1A3CAD4C2762909300AC531E /* File.swift in Sources */,
 				1A21EA2825EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
@@ -455,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A21EA2725EABB5200672BD3 /* Lindenmayer.swift in Sources */,
+				1A3CAD4D2762909300AC531E /* File.swift in Sources */,
 				1A21EA2925EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,

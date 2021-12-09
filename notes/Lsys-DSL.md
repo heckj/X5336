@@ -34,3 +34,52 @@ Processing Rules
   - If no matching rule is found, the node "drops through" and is left unchanged.
   - a rule *can* be stochastic - so if it matches, there's a percentage change that it will be triggered. The examples from The Algorithmic Beauty of Plants made it look like there was a predicate that was generally matched, and then a collection of stochastic rules that for the generated results that sum'd up to 100%.
   
+Example basic Lsys:
+
+    let pythagoras = Lindenmayer(start: "0",
+                                 rules: ["1": "11", "0": "1[-0]+0"],
+                                 variables: ["1": .draw, "0": .draw, "-": .turn(.left, 45), "+": .turn(.right, 45)])
+
+with a dsl:
+
+    Lsys(start: ModuleA()) {
+        Rule(nil,ModuleA.self,nil) { left, direct, right in
+            // this is a 'produces' closure
+            [ModuleB(),BR,Turn(.left, 45),ModuleA(),POP,Turn(.right, 45),ModuleA()]
+        }
+        Rule(nil,ModuleB.self,nil) {
+            [ModuleB(),ModuleB()]
+        }
+    }
+
+    Rule(ModuleB.self) { left, direct, right in
+        ModuleB(direct.value+1)
+    }.when { left, direct, right in
+        // this is a 'conditional' closure
+        direct.value < 10
+    }
+    
+}
+// ^^ compile time enforcement of things
+  ==> generates data structure like?
+    
+Lsys [
+  Rule [
+  ]
+  Cond[
+    Rule [
+    ]
+  ]
+]
+
+- but how to arrange stochastic production results - 10% here, 30% there, etc. 
+
+// \/ interpretted at runtime - stringly evaluate symbols into their respective
+//    things... each character is a module, and () has special meaning to look up 
+//    values within the module.
+Lsys("1") {
+  Rule("0") {
+    (return) "1[-0]+0"
+  }
+  Rule("1") { (return) "11" }
+}
