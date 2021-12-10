@@ -227,4 +227,20 @@ I think in each of these cases, we want to pass the graphics rendering context (
  The default should probably be SwiftUI's [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext).
  It also provides a [CoreGraphics proxy](https://developer.apple.com/documentation/swiftui/graphicscontext/withcgcontext(content:)) that we can use to draw into the context - at least if we don't want to use SwiftUI's drawing primitives.
  
+ 2DConstructor {
+  or is it: init(_ state: [Module]) w/ a var state?
+ 
+  func path(_ state: [Module]) -> CGPath
+ 
+ ... iterate through the Modules - converting them into drawing things on CGPath?
+   - also manages a Position and Angle state that evolves and updates...
+ 
+  - how can I define the relevant instructions on Module such that they're composable?
+ 
+ could work w/ cgPath or CGMutablePath and tweak that
+ - or could try and use SwiftUI's `Path`, updating the path by sequentially calling
+ the various methods to update it: addLine(to:), move(to:)
+ 
+ }
+ 
  */
