@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "MurmurHash-Swift",
+        "repositoryURL": "https://github.com/daisuke-t-jp/MurmurHash-Swift",
+        "state": {
+          "branch": null,
+          "revision": "c1faa847a7e4151474f7435afa2e314d5e737fd4",
+          "version": "1.1.0"
+        }
+      },
+      {
         "package": "Squall",
         "repositoryURL": "https://github.com/heckj/Squall",
         "state": {

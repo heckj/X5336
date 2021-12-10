@@ -1,5 +1,6 @@
 import Foundation
 import Squall
+import MurmurHash_Swift
 
 // Loosely based on the patterned language at
 // [Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop-ch1.pdf)

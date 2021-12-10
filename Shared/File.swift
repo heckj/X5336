@@ -205,3 +205,26 @@ public struct LSystem {
 //
 //}
 // ^^ compile time enforcement of things
+
+
+/*
+ Representation options:
+ - UIKit - CoreGraphics
+ - AppKit - COreGraphics
+ - both - MetalKit
+   - https://developer.apple.com/documentation/metalkit/mtkview
+ - both - SwiftUI canvas
+   - https://developer.apple.com/documentation/swiftui/canvas
+   - https://developer.apple.com/documentation/swiftui/graphicscontext
+   - https://betterprogramming.pub/implementing-swiftui-canvas-view-in-ios-15-b7909eac207
+ 
+ - both - 3D w/ Scenekit
+   - https://developer.apple.com/documentation/scenekit/
+   - https://litoarias.medium.com/scenekit-to-show-3d-content-in-swift-5-5253afbe63b1
+ - ios/both? - 3D w/ RealityKit
+
+I think in each of these cases, we want to pass the graphics rendering context (or scene?) into the "LsystemRep" to get the relevant things drawn.
+ The default should probably be SwiftUI's [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext).
+ It also provides a [CoreGraphics proxy](https://developer.apple.com/documentation/swiftui/graphicscontext/withcgcontext(content:)) that we can use to draw into the context - at least if we don't want to use SwiftUI's drawing primitives.
+ 
+ */
