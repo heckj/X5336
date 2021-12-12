@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A21EA2625EABB5200672BD3 /* Lindenmayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */; };
-		1A21EA2725EABB5200672BD3 /* Lindenmayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */; };
-		1A21EA2825EABB5200672BD3 /* LindenmayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */; };
-		1A21EA2925EABB5200672BD3 /* LindenmayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */; };
 		1A3CAD4C2762909300AC531E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* Module.swift */; };
 		1A3CAD4D2762909300AC531E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* Module.swift */; };
 		1A506E6F25EAB9E400E51CE2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E6E25EAB9E400E51CE2 /* Tests_iOS.swift */; };
@@ -153,17 +149,12 @@
 		1A506E5125EAB9E300E51CE2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1ADA969227669AAD0085162B /* Lindenmayer */,
 				1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */,
 				1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */,
-				1A3CAD4B2762909300AC531E /* Module.swift */,
-				1ADA968F276697BF0085162B /* BuiltinModules.swift */,
-				1ADA9689276697760085162B /* LSystem.swift */,
-				1ADA968C2766977D0085162B /* Rule.swift */,
-				1ADA96862766972F0085162B /* LSystemCGRenderer.swift */,
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
-				1ADA965F27668C060085162B /* Lsystem2DView.swift */,
 				1A506E5525EAB9E400E51CE2 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -233,6 +224,19 @@
 				1ACA102C25EACA93009BDC78 /* Info.plist */,
 			);
 			path = X5336CommonTests;
+			sourceTree = "<group>";
+		};
+		1ADA969227669AAD0085162B /* Lindenmayer */ = {
+			isa = PBXGroup;
+			children = (
+				1ADA965F27668C060085162B /* Lsystem2DView.swift */,
+				1A3CAD4B2762909300AC531E /* Module.swift */,
+				1ADA968F276697BF0085162B /* BuiltinModules.swift */,
+				1ADA9689276697760085162B /* LSystem.swift */,
+				1ADA968C2766977D0085162B /* Rule.swift */,
+				1ADA96862766972F0085162B /* LSystemCGRenderer.swift */,
+			);
+			path = Lindenmayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,10 +458,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A21EA2625EABB5200672BD3 /* Lindenmayer.swift in Sources */,
 				1ADA968D2766977D0085162B /* Rule.swift in Sources */,
 				1A3CAD4C2762909300AC531E /* Module.swift in Sources */,
-				1A21EA2825EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1ADA968A276697760085162B /* LSystem.swift in Sources */,
 				1ADA966027668C060085162B /* Lsystem2DView.swift in Sources */,
 				1ADA96872766972F0085162B /* LSystemCGRenderer.swift in Sources */,
@@ -472,10 +474,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A21EA2725EABB5200672BD3 /* Lindenmayer.swift in Sources */,
 				1ADA968E2766977D0085162B /* Rule.swift in Sources */,
 				1A3CAD4D2762909300AC531E /* Module.swift in Sources */,
-				1A21EA2925EABB5200672BD3 /* LindenmayerView.swift in Sources */,
 				1ADA968B276697760085162B /* LSystem.swift in Sources */,
 				1ADA966127668C070085162B /* Lsystem2DView.swift in Sources */,
 				1ADA96882766972F0085162B /* LSystemCGRenderer.swift in Sources */,
