@@ -25,11 +25,13 @@ public protocol Module : CustomStringConvertible {
     subscript(dynamicMember member: String) -> Double? {
         get
     }
-    // and maybe something to evaluate the rule into a 2D or 3D representation
+    
+    var render2D: RenderCommand { get }
+    var render3D: RenderCommand { get }
 }
 
 extension Module {
-    // - dyanmicMemberLookup default implementation
+    // MARK: - dyanmicMemberLookup default implementation
     // Q(heckj): Is this worth it?
     
     subscript(dynamicMember member: String) -> Double? {
@@ -42,19 +44,172 @@ extension Module {
 }
 
 extension Module {
-    // - CustomStringConvertible default implementation
+    // MARK: - CustomStringConvertible default implementation
     
     var description: String {
         return name
     }
 }
 
-// - EXAMPLE MODULE -
+extension Module {
+    // MARK: - Default render command implementations
+    
+    var render2D: RenderCommand {
+        return .ignore
+    }
+    
+    var render3D: RenderCommand {
+        return .ignore
+    }
+    
+}
+
+// MARK: - EXAMPLE MODULE -
 
 struct Internode: Module {
     // This is the thing that I want external developers using the library to be able to create to represent elements within their L-system.
     var name = "I"
     var params: [String:Double] = [:]
+}
+
+// MARK: - RENDERING/REPRESENTATION -
+
+public enum Turn: String {
+    case right = "_"
+    case left = "+"
+}
+
+public enum Roll: String {
+    case left = "\\"
+    case right = "/"
+}
+
+public enum Bend: String {
+    case up = "^"
+    case down = "&"
+}
+
+// NOTE(heckj): extensions can't be extended by external developers, so
+// if we find we want that, these should instead be set up as static variables
+// on a struct, and then we do slightly different case mechanisms.
+public enum RenderCommand {
+    case bend(Bend, Double = 30)
+    case roll(Roll, Double = 30)
+    case move(Double = 1.0)  // "f"
+    case draw(Double = 1.0)  // "F"
+    case turn(Turn, Double = 90)
+    case saveState  // "["
+    case restoreState  // "]"
+    case ignore
+}
+
+public struct PathState {
+    var angle: Double
+    var position: CGPoint
+    
+    public init () {
+        self.init(0, .zero)
+    }
+    
+    public init(_ angle: Double, _ position: CGPoint) {
+        self.angle = angle
+        self.position = position
+    }
+}
+
+struct CGRenderer {
+    let initialState: PathState
+    let unitLength: Double
+    
+    public init(unitLength: Double = 1) {
+        self.initialState = PathState()
+        self.unitLength = unitLength
+    }
+    
+    public init(initialState: PathState, unitLength: Double) {
+        self.initialState = initialState
+        self.unitLength = unitLength
+    }
+    
+    public func path(modules: [Module], forRect destinationRect: CGRect? = nil) -> CGPath {
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        
+        var state: [PathState] = []
+        var currentState = initialState
+        
+        for module in modules {
+            switch module.render2D {
+                
+            case .bend(_, _):
+                break
+            case .roll(_, _):
+                break
+            case .move(_):
+                currentState = calculateState(currentState, distance: unitLength)
+                path.move(to: currentState.position)
+            case .draw(_):
+                currentState = calculateState(currentState, distance: unitLength)
+                path.addLine(to: currentState.position)
+            case .turn(let direction, let angle):
+                currentState = calculateState(currentState, angle: angle, direction: direction)
+            case .saveState:
+                state.append(currentState)
+            case .restoreState:
+                currentState = state.removeLast()
+                path.move(to: currentState.position)
+            case .ignore:
+                break
+            }
+        }
+        
+        guard let destinationRect = destinationRect else {
+            return path
+        }
+        
+        // Fit the path into our bounds
+        var pathRect = path.boundingBox
+        let containerRect = destinationRect.insetBy(dx: CGFloat(unitLength), dy: CGFloat(unitLength))
+        
+        // First make sure the path is aligned with our origin
+        var transform = CGAffineTransform(translationX: -pathRect.minX, y: -pathRect.minY)
+        var transformedPath = path.copy(using: &transform)!
+        
+        // Next, scale the path to fit snuggly in our path
+        pathRect = transformedPath.boundingBoxOfPath
+        let scale = min(containerRect.width / pathRect.width, containerRect.height / pathRect.height)
+        transform = CGAffineTransform(scaleX: scale, y: scale)
+        transformedPath = transformedPath.copy(using: &transform)!
+        
+        // Finally, move the path to the correct origin
+        transform = CGAffineTransform(translationX: containerRect.minX, y: containerRect.minY)
+        transformedPath = transformedPath.copy(using: &transform)!
+        
+        return transformedPath
+    }
+    
+    // MARK: - Private
+    
+    func degreesToRadians(_ value: Double) -> Double {
+        return value * .pi / 180.0
+    }
+    
+    func calculateState(_ state: PathState, distance: Double) -> PathState {
+        let x = state.position.x + CGFloat(distance * cos(degreesToRadians(state.angle)))
+        let y = state.position.y + CGFloat(distance * sin(degreesToRadians(state.angle)))
+        
+        return PathState(state.angle, CGPoint(x: x, y: y))
+    }
+    
+    func calculateState(_ state: PathState, angle: Double, direction: Turn)
+    -> PathState
+    {
+        if direction == .left {
+            return PathState(state.angle - angle, state.position)
+        }
+        
+        return PathState(state.angle + angle, state.position)
+    }
 }
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
@@ -107,7 +262,7 @@ public struct Rule {
     init(_ direct: Module, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
         self.init(nil, direct, nil, produceSingle)
     }
-
+    
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
     /// - Parameters:
     ///   - leftCtx: The atom 'to the left' of the atom being evaluated, if avaialble.
@@ -124,7 +279,7 @@ public struct Rule {
         let directmatch = directCtx.name == matchset.1.name
         return leftmatch && directmatch && rightmatch
     }
-
+    
 }
 
 public struct LSystem {
@@ -177,70 +332,3 @@ public struct LSystem {
         return newState
     }
 }
-
-//Example basic Lsys:
-//
-//    let pythagoras = Lindenmayer(start: "0",
-//                                 rules: ["1": "11", "0": "1[-0]+0"],
-//                                 variables: ["1": .draw, "0": .draw, "-": .turn(.left, 45), "+": .turn(.right, 45)])
-//
-//with a dsl:
-//
-//    Lsys(start: ModuleA()) {
-//        Rule(nil,ModuleA.self,nil) { left, direct, right in
-//            // this is a 'produces' closure
-//            [ModuleB(),BR,Turn(.left, 45),ModuleA(),POP,Turn(.right, 45),ModuleA()]
-//        }
-//        Rule(nil,ModuleB.self,nil) {
-//            [ModuleB(),ModuleB()]
-//        }
-//    }
-//
-//    Rule(ModuleB.self) { left, direct, right in
-//        ModuleB(direct.value+1)
-//    }.when { left, direct, right in
-//        // this is a 'conditional' closure
-//        direct.value < 10
-//    }
-//
-//}
-// ^^ compile time enforcement of things
-
-
-/*
- Representation options:
- - UIKit - CoreGraphics
- - AppKit - COreGraphics
- - both - MetalKit
-   - https://developer.apple.com/documentation/metalkit/mtkview
- - both - SwiftUI canvas
-   - https://developer.apple.com/documentation/swiftui/canvas
-   - https://developer.apple.com/documentation/swiftui/graphicscontext
-   - https://betterprogramming.pub/implementing-swiftui-canvas-view-in-ios-15-b7909eac207
- 
- - both - 3D w/ Scenekit
-   - https://developer.apple.com/documentation/scenekit/
-   - https://litoarias.medium.com/scenekit-to-show-3d-content-in-swift-5-5253afbe63b1
- - ios/both? - 3D w/ RealityKit
-
-I think in each of these cases, we want to pass the graphics rendering context (or scene?) into the "LsystemRep" to get the relevant things drawn.
- The default should probably be SwiftUI's [GraphicsContext](https://developer.apple.com/documentation/swiftui/graphicscontext).
- It also provides a [CoreGraphics proxy](https://developer.apple.com/documentation/swiftui/graphicscontext/withcgcontext(content:)) that we can use to draw into the context - at least if we don't want to use SwiftUI's drawing primitives.
- 
- 2DConstructor {
-  or is it: init(_ state: [Module]) w/ a var state?
- 
-  func path(_ state: [Module]) -> CGPath
- 
- ... iterate through the Modules - converting them into drawing things on CGPath?
-   - also manages a Position and Angle state that evolves and updates...
- 
-  - how can I define the relevant instructions on Module such that they're composable?
- 
- could work w/ cgPath or CGMutablePath and tweak that
- - or could try and use SwiftUI's `Path`, updating the path by sequentially calling
- the various methods to update it: addLine(to:), move(to:)
- 
- }
- 
- */
