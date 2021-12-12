@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Binding var document: X5336Document
-    let renderer = CGRenderer()
+    let renderer = LSystemCGRenderer()
     var body: some View {
         Lsystem2DView(cgpath: renderer.path(modules: [Internode() as Module]))
             .border(.blue, width: 1.0)

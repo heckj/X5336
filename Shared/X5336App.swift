@@ -15,7 +15,7 @@ struct X5336App: App {
 //            ContentView(document: file.$document)
 //        }
 //    }
-    let renderer = CGRenderer()
+    let renderer = LSystemCGRenderer()
 
     var body: some Scene {
         WindowGroup {

@@ -27,7 +27,7 @@ struct Lsystem2DView: View {
 }
 
 struct Lsystem2DView_Previews: PreviewProvider {
-    static let renderer = CGRenderer()
+    static let renderer = LSystemCGRenderer()
     static var previews: some View {
         Lsystem2DView(cgpath: renderer.path(modules: [Internode() as Module]))
     }

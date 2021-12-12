@@ -52,7 +52,7 @@ public struct PathState {
     }
 }
 
-struct CGRenderer {
+struct LSystemCGRenderer {
     let initialState: PathState
     let unitLength: Double
 
