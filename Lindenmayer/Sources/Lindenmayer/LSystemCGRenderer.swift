@@ -5,6 +5,7 @@
 //  Created by Joseph Heck on 12/12/21.
 //
 
+import CoreGraphics
 import Foundation
 
 // MARK: - RENDERING/REPRESENTATION -

@@ -20,20 +20,6 @@
                ReferencedContainer = "container:X5336.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1ACA102725EACA93009BDC78"
-               BuildableName = "X5336CommonTests.xctest"
-               BlueprintName = "X5336CommonTests"
-               ReferencedContainer = "container:X5336.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -5,8 +5,8 @@
 //  Created by Joseph Heck on 12/12/21.
 //
 
-import SwiftUI
 import Lindenmayer
+import SwiftUI
 
 public struct Lsystem2DView: View {
     let cgpath: CGPath
@@ -25,11 +25,10 @@ public struct Lsystem2DView: View {
             context.stroke(Path(cgpath), with: GraphicsContext.Shading.color(Color.green))
         }
     }
-    
+
     public init(cgpath: CGPath) {
         self.cgpath = cgpath
     }
-
 }
 
 struct Lsystem2DView_Previews: PreviewProvider {

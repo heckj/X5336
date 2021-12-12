@@ -22,11 +22,10 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:X5336.xcodeproj",
-        "identifier" : "1ACA102725EACA93009BDC78",
-        "name" : "X5336CommonTests"
+        "containerPath" : "container:Lindenmayer",
+        "identifier" : "LindenmayerTests",
+        "name" : "LindenmayerTests"
       }
     }
   ],

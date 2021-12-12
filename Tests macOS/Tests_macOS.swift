@@ -5,6 +5,7 @@
 //  Created by Joseph Heck on 2/27/21.
 //
 
+import X5336
 import XCTest
 
 class Tests_macOS: XCTestCase {
@@ -21,6 +22,10 @@ class Tests_macOS: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func testNothing() throws {
+        XCTAssertEqual(1, 1)
+    }
+    
     func testExample() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()

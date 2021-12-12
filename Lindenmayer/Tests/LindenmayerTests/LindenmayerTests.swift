@@ -1,6 +1,6 @@
-import XCTest
-//@testable
+// @testable
 import Lindenmayer
+import XCTest
 
 final class LindenmayerTests: XCTestCase {
 //    func testExample() throws {
@@ -9,10 +9,9 @@ final class LindenmayerTests: XCTestCase {
 //        // results.
 //        XCTAssertEqual(Lindenmayer().text, "Hello, World!")
 //    }
-    
+
     func testBuiltins() {
         let x = Lindenmayer.Modules.internode
         XCTAssertEqual(x.description, "I")
     }
-
 }

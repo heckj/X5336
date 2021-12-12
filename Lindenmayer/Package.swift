@@ -7,13 +7,14 @@ let package = Package(
     name: "Lindenmayer",
     platforms: [
         .iOS(.v14),
-        .macOS(.v12)
+        .macOS(.v12),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Lindenmayer",
-            targets: ["Lindenmayer"]),
+            targets: ["Lindenmayer"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,9 +25,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Lindenmayer",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "LindenmayerTests",
-            dependencies: ["Lindenmayer"]),
+            dependencies: ["Lindenmayer"]
+        ),
     ]
 )

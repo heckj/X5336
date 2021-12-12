@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3BCF052766A6D3003ADD4A /* Lindenmayer in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3BCF042766A6D3003ADD4A /* Lindenmayer */; };
+		1A3BCF072766A6D8003ADD4A /* Lindenmayer in Frameworks */ = {isa = PBXBuildFile; productRef = 1A3BCF062766A6D8003ADD4A /* Lindenmayer */; };
 		1A506E6F25EAB9E400E51CE2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E6E25EAB9E400E51CE2 /* Tests_iOS.swift */; };
 		1A506E7A25EAB9E400E51CE2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */; };
 		1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5225EAB9E300E51CE2 /* X5336App.swift */; };
@@ -17,8 +19,6 @@
 		1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5425EAB9E300E51CE2 /* ContentView.swift */; };
 		1A506E8225EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
 		1A506E8325EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
-		1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */; };
-		1ADA969427669C6B0085162B /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA969327669C6B0085162B /* ModuleTests.swift */; };
 		1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
 		1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
 /* End PBXBuildFile section */
@@ -41,8 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lindenmayer.swift; sourceTree = "<group>"; };
-		1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LindenmayerView.swift; sourceTree = "<group>"; };
 		1A21EA2F25EABC4E00672BD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A4C53FA2693B1D800C7DBF5 /* notes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notes; sourceTree = "<group>"; };
 		1A506E5225EAB9E300E51CE2 /* X5336App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336App.swift; sourceTree = "<group>"; };
@@ -60,13 +58,8 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-Unit.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
-		1ACA102825EACA93009BDC78 /* X5336CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = X5336CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336CommonTests.swift; sourceTree = "<group>"; };
-		1ACA102C25EACA93009BDC78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1ADA969327669C6B0085162B /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		1ADA96A22766A45B0085162B /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindenmayer; sourceTree = "<group>"; };
 		1ADA96A72766A4F50085162B /* Lsystem2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem2DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A3BCF072766A6D8003ADD4A /* Lindenmayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A3BCF052766A6D3003ADD4A /* Lindenmayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,13 +89,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1A506E7225EAB9E400E51CE2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ACA102525EACA93009BDC78 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -121,7 +109,6 @@
 				1A506E6325EAB9E400E51CE2 /* macOS */,
 				1A506E6D25EAB9E400E51CE2 /* Tests iOS */,
 				1A506E7825EAB9E400E51CE2 /* Tests macOS */,
-				1ACA102925EACA93009BDC78 /* X5336CommonTests */,
 				1A506E5B25EAB9E400E51CE2 /* Products */,
 				1AC3C1222693AE8300E44C41 /* Frameworks */,
 			);
@@ -130,9 +117,6 @@
 		1A506E5125EAB9E300E51CE2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1ADA969227669AAD0085162B /* Lindenmayer */,
-				1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */,
-				1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */,
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
@@ -149,7 +133,6 @@
 				1A506E6225EAB9E400E51CE2 /* X5336.app */,
 				1A506E6A25EAB9E400E51CE2 /* Tests iOS.xctest */,
 				1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */,
-				1ACA102825EACA93009BDC78 /* X5336CommonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,24 +181,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1ACA102925EACA93009BDC78 /* X5336CommonTests */ = {
-			isa = PBXGroup;
-			children = (
-				1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */,
-				1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */,
-				1ADA969327669C6B0085162B /* ModuleTests.swift */,
-				1ACA102C25EACA93009BDC78 /* Info.plist */,
-			);
-			path = X5336CommonTests;
-			sourceTree = "<group>";
-		};
-		1ADA969227669AAD0085162B /* Lindenmayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Lindenmayer;
-			sourceTree = "<group>";
-		};
 		1ADA96A12766A45B0085162B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +207,7 @@
 			);
 			name = "X5336 (iOS)";
 			packageProductDependencies = (
+				1A3BCF062766A6D8003ADD4A /* Lindenmayer */,
 			);
 			productName = "X5336 (iOS)";
 			productReference = 1A506E5A25EAB9E400E51CE2 /* X5336.app */;
@@ -262,6 +228,7 @@
 			);
 			name = "X5336 (macOS)";
 			packageProductDependencies = (
+				1A3BCF042766A6D3003ADD4A /* Lindenmayer */,
 			);
 			productName = "X5336 (macOS)";
 			productReference = 1A506E6225EAB9E400E51CE2 /* X5336.app */;
@@ -282,6 +249,8 @@
 				1A506E6C25EAB9E400E51CE2 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
+			packageProductDependencies = (
+			);
 			productName = "Tests iOS";
 			productReference = 1A506E6A25EAB9E400E51CE2 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -301,27 +270,11 @@
 				1A506E7725EAB9E400E51CE2 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
+			packageProductDependencies = (
+			);
 			productName = "Tests macOS";
 			productReference = 1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		1ACA102725EACA93009BDC78 /* X5336CommonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1ACA102F25EACA93009BDC78 /* Build configuration list for PBXNativeTarget "X5336CommonTests" */;
-			buildPhases = (
-				1A34B78925EACE8200459784 /* Run Script (swiftformat) */,
-				1ACA102425EACA93009BDC78 /* Sources */,
-				1ACA102525EACA93009BDC78 /* Frameworks */,
-				1ACA102625EACA93009BDC78 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = X5336CommonTests;
-			productName = X5336CommonTests;
-			productReference = 1ACA102825EACA93009BDC78 /* X5336CommonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -329,7 +282,7 @@
 		1A506E4D25EAB9E300E51CE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					1A506E5925EAB9E400E51CE2 = {
@@ -345,9 +298,6 @@
 					1A506E7425EAB9E400E51CE2 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = 1A506E6125EAB9E400E51CE2;
-					};
-					1ACA102725EACA93009BDC78 = {
-						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -370,7 +320,6 @@
 				1A506E6125EAB9E400E51CE2 /* X5336 (macOS) */,
 				1A506E6925EAB9E400E51CE2 /* Tests iOS */,
 				1A506E7425EAB9E400E51CE2 /* Tests macOS */,
-				1ACA102725EACA93009BDC78 /* X5336CommonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,35 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1ACA102625EACA93009BDC78 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1A34B78925EACE8200459784 /* Run Script (swiftformat) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script (swiftformat)";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd BuildTools\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A506E5625EAB9E400E51CE2 /* Sources */ = {
@@ -472,15 +393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A506E7A25EAB9E400E51CE2 /* Tests_macOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ACA102425EACA93009BDC78 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */,
-				1ADA969427669C6B0085162B /* ModuleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,7 +645,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -755,7 +667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -784,7 +696,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rhonabwy.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -806,53 +718,12 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rhonabwy.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "X5336 (macOS)";
-			};
-			name = Release;
-		};
-		1ACA102D25EACA93009BDC78 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BDV4VC27D3;
-				INFOPLIST_FILE = X5336CommonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rhonabwy.X5336CommonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1ACA102E25EACA93009BDC78 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BDV4VC27D3;
-				INFOPLIST_FILE = X5336CommonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rhonabwy.X5336CommonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -904,18 +775,17 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1ACA102F25EACA93009BDC78 /* Build configuration list for PBXNativeTarget "X5336CommonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1ACA102D25EACA93009BDC78 /* Debug */,
-				1ACA102E25EACA93009BDC78 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1A3BCF042766A6D3003ADD4A /* Lindenmayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Lindenmayer;
+		};
+		1A3BCF062766A6D8003ADD4A /* Lindenmayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Lindenmayer;
+		};
 		1ADA969B2766A05D0085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lindenmayer;

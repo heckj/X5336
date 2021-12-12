@@ -20,20 +20,6 @@
                ReferencedContainer = "container:X5336.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1ACA102725EACA93009BDC78"
-               BuildableName = "X5336CommonTests.xctest"
-               BlueprintName = "X5336CommonTests"
-               ReferencedContainer = "container:X5336.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,11 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:X5336CommonTests/X5336-Unit.xctestplan"
+            reference = "container:Tests macOS/X5336-macOS.xctestplan"
             default = "YES">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Tests macOS/X5336-macOS.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -58,6 +41,16 @@
                BlueprintIdentifier = "1A506E7425EAB9E400E51CE2"
                BuildableName = "Tests macOS.xctest"
                BlueprintName = "Tests macOS"
+               ReferencedContainer = "container:X5336.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A3BCF0F2766AE0B003ADD4A"
+               BuildableName = "X5336Tests.xctest"
+               BlueprintName = "X5336Tests"
                ReferencedContainer = "container:X5336.xcodeproj">
             </BuildableReference>
          </TestableReference>

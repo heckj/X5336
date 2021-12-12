@@ -19,6 +19,6 @@ public struct Internode: Module {
     public var render2D: RenderCommand = .draw(10) // draws a line 10 units long
 }
 
-extension Modules {
-    public static var internode = Internode()
+public extension Modules {
+    static var internode = Internode()
 }

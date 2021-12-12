@@ -5,8 +5,8 @@
 //  Created by Joseph Heck on 2/27/21.
 //
 
-import SwiftUI
 import Lindenmayer
+import SwiftUI
 
 @main
 struct X5336App: App {
@@ -20,7 +20,7 @@ struct X5336App: App {
 
     var body: some Scene {
         WindowGroup {
-            Lsystem2DView(cgpath: renderer.path(modules: [Lindenmayer.Modules.internode as Module]))
+            ContentView()
         }
     }
 }

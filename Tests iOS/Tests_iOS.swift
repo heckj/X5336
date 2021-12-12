@@ -5,6 +5,7 @@
 //  Created by Joseph Heck on 2/27/21.
 //
 
+import X5336
 import XCTest
 
 class Tests_iOS: XCTestCase {
