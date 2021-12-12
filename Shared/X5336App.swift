@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct X5336App: App {
-//  --> used for a Document based app
+    //  --> used for a Document based app
 //    var body: some Scene {
 //        DocumentGroup(newDocument: X5336Document()) { file in
 //            ContentView(document: file.$document)

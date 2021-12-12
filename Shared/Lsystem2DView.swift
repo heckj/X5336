@@ -10,7 +10,7 @@ import SwiftUI
 struct Lsystem2DView: View {
     let cgpath: CGPath
     var body: some View {
-        Canvas { context, size in
+        Canvas { context, _ in
             // context provided is a SwiftUI GraphicsContext
 //            context.withCGContext { cgctx in
 //                // cgctx is a CoreGraphics.Context
