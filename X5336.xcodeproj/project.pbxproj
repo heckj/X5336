@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A3CAD4C2762909300AC531E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* Module.swift */; };
-		1A3CAD4D2762909300AC531E /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CAD4B2762909300AC531E /* Module.swift */; };
 		1A506E6F25EAB9E400E51CE2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E6E25EAB9E400E51CE2 /* Tests_iOS.swift */; };
 		1A506E7A25EAB9E400E51CE2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */; };
 		1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5225EAB9E300E51CE2 /* X5336App.swift */; };
@@ -19,21 +17,10 @@
 		1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5425EAB9E300E51CE2 /* ContentView.swift */; };
 		1A506E8225EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
 		1A506E8325EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
-		1A6DADAF2764169700FF6574 /* MurmurHash-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6DADAE2764169700FF6574 /* MurmurHash-Swift */; };
-		1A6DADB1276416A700FF6574 /* MurmurHash-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6DADB0276416A700FF6574 /* MurmurHash-Swift */; };
-		1A6FB59A25F07B1B00842B5E /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1A6FB59925F07B1B00842B5E /* Squall */; };
-		1AC3C1242693AE8300E44C41 /* Squall in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC3C1232693AE8300E44C41 /* Squall */; };
 		1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */; };
-		1ADA966027668C060085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA965F27668C060085162B /* Lsystem2DView.swift */; };
-		1ADA966127668C070085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA965F27668C060085162B /* Lsystem2DView.swift */; };
-		1ADA96872766972F0085162B /* LSystemCGRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96862766972F0085162B /* LSystemCGRenderer.swift */; };
-		1ADA96882766972F0085162B /* LSystemCGRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96862766972F0085162B /* LSystemCGRenderer.swift */; };
-		1ADA968A276697760085162B /* LSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA9689276697760085162B /* LSystem.swift */; };
-		1ADA968B276697760085162B /* LSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA9689276697760085162B /* LSystem.swift */; };
-		1ADA968D2766977D0085162B /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA968C2766977D0085162B /* Rule.swift */; };
-		1ADA968E2766977D0085162B /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA968C2766977D0085162B /* Rule.swift */; };
-		1ADA9690276697BF0085162B /* BuiltinModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA968F276697BF0085162B /* BuiltinModules.swift */; };
-		1ADA9691276697BF0085162B /* BuiltinModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA968F276697BF0085162B /* BuiltinModules.swift */; };
+		1ADA969427669C6B0085162B /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA969327669C6B0085162B /* ModuleTests.swift */; };
+		1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
+		1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +44,6 @@
 		1A21EA2425EABB5200672BD3 /* Lindenmayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lindenmayer.swift; sourceTree = "<group>"; };
 		1A21EA2525EABB5200672BD3 /* LindenmayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LindenmayerView.swift; sourceTree = "<group>"; };
 		1A21EA2F25EABC4E00672BD3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1A3CAD4B2762909300AC531E /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		1A4C53FA2693B1D800C7DBF5 /* notes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notes; sourceTree = "<group>"; };
 		1A506E5225EAB9E300E51CE2 /* X5336App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336App.swift; sourceTree = "<group>"; };
 		1A506E5325EAB9E300E51CE2 /* X5336Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336Document.swift; sourceTree = "<group>"; };
@@ -80,11 +66,9 @@
 		1ACA102825EACA93009BDC78 /* X5336CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = X5336CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = X5336CommonTests.swift; sourceTree = "<group>"; };
 		1ACA102C25EACA93009BDC78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1ADA965F27668C060085162B /* Lsystem2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem2DView.swift; sourceTree = "<group>"; };
-		1ADA96862766972F0085162B /* LSystemCGRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSystemCGRenderer.swift; sourceTree = "<group>"; };
-		1ADA9689276697760085162B /* LSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSystem.swift; sourceTree = "<group>"; };
-		1ADA968C2766977D0085162B /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		1ADA968F276697BF0085162B /* BuiltinModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltinModules.swift; sourceTree = "<group>"; };
+		1ADA969327669C6B0085162B /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
+		1ADA96A22766A45B0085162B /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindenmayer; sourceTree = "<group>"; };
+		1ADA96A72766A4F50085162B /* Lsystem2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem2DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A6DADB1276416A700FF6574 /* MurmurHash-Swift in Frameworks */,
-				1AC3C1242693AE8300E44C41 /* Squall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A6DADAF2764169700FF6574 /* MurmurHash-Swift in Frameworks */,
-				1A6FB59A25F07B1B00842B5E /* Squall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +113,7 @@
 		1A506E4C25EAB9E300E51CE2 = {
 			isa = PBXGroup;
 			children = (
+				1ADA96A12766A45B0085162B /* Packages */,
 				1A21EA2F25EABC4E00672BD3 /* README.md */,
 				1A4C53FA2693B1D800C7DBF5 /* notes */,
 				1A506E5125EAB9E300E51CE2 /* Shared */,
@@ -155,6 +136,7 @@
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
+				1ADA96A72766A4F50085162B /* Lsystem2DView.swift */,
 				1A506E5525EAB9E400E51CE2 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -221,6 +203,7 @@
 			children = (
 				1A8CAC5025EAF4FF0011B6B4 /* X5336-Unit.xctestplan */,
 				1ACA102A25EACA93009BDC78 /* X5336CommonTests.swift */,
+				1ADA969327669C6B0085162B /* ModuleTests.swift */,
 				1ACA102C25EACA93009BDC78 /* Info.plist */,
 			);
 			path = X5336CommonTests;
@@ -229,14 +212,16 @@
 		1ADA969227669AAD0085162B /* Lindenmayer */ = {
 			isa = PBXGroup;
 			children = (
-				1ADA965F27668C060085162B /* Lsystem2DView.swift */,
-				1A3CAD4B2762909300AC531E /* Module.swift */,
-				1ADA968F276697BF0085162B /* BuiltinModules.swift */,
-				1ADA9689276697760085162B /* LSystem.swift */,
-				1ADA968C2766977D0085162B /* Rule.swift */,
-				1ADA96862766972F0085162B /* LSystemCGRenderer.swift */,
 			);
 			path = Lindenmayer;
+			sourceTree = "<group>";
+		};
+		1ADA96A12766A45B0085162B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				1ADA96A22766A45B0085162B /* Lindenmayer */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,11 +238,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				1ADA969C2766A05D0085162B /* PBXTargetDependency */,
 			);
 			name = "X5336 (iOS)";
 			packageProductDependencies = (
-				1AC3C1232693AE8300E44C41 /* Squall */,
-				1A6DADB0276416A700FF6574 /* MurmurHash-Swift */,
 			);
 			productName = "X5336 (iOS)";
 			productReference = 1A506E5A25EAB9E400E51CE2 /* X5336.app */;
@@ -274,11 +258,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				1ADA969E2766A0620085162B /* PBXTargetDependency */,
 			);
 			name = "X5336 (macOS)";
 			packageProductDependencies = (
-				1A6FB59925F07B1B00842B5E /* Squall */,
-				1A6DADAE2764169700FF6574 /* MurmurHash-Swift */,
 			);
 			productName = "X5336 (macOS)";
 			productReference = 1A506E6225EAB9E400E51CE2 /* X5336.app */;
@@ -295,6 +278,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1ADA96A42766A4960085162B /* PBXTargetDependency */,
 				1A506E6C25EAB9E400E51CE2 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
@@ -313,6 +297,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1ADA96A62766A49B0085162B /* PBXTargetDependency */,
 				1A506E7725EAB9E400E51CE2 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
@@ -376,8 +361,6 @@
 			);
 			mainGroup = 1A506E4C25EAB9E300E51CE2;
 			packageReferences = (
-				1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */,
-				1A6DADAD2764169700FF6574 /* XCRemoteSwiftPackageReference "MurmurHash-Swift" */,
 			);
 			productRefGroup = 1A506E5B25EAB9E400E51CE2 /* Products */;
 			projectDirPath = "";
@@ -458,13 +441,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADA968D2766977D0085162B /* Rule.swift in Sources */,
-				1A3CAD4C2762909300AC531E /* Module.swift in Sources */,
-				1ADA968A276697760085162B /* LSystem.swift in Sources */,
-				1ADA966027668C060085162B /* Lsystem2DView.swift in Sources */,
-				1ADA96872766972F0085162B /* LSystemCGRenderer.swift in Sources */,
+				1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */,
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1ADA9690276697BF0085162B /* BuiltinModules.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
 			);
@@ -474,13 +452,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADA968E2766977D0085162B /* Rule.swift in Sources */,
-				1A3CAD4D2762909300AC531E /* Module.swift in Sources */,
-				1ADA968B276697760085162B /* LSystem.swift in Sources */,
-				1ADA966127668C070085162B /* Lsystem2DView.swift in Sources */,
-				1ADA96882766972F0085162B /* LSystemCGRenderer.swift in Sources */,
+				1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */,
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1ADA9691276697BF0085162B /* BuiltinModules.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
 			);
@@ -507,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ACA102B25EACA93009BDC78 /* X5336CommonTests.swift in Sources */,
+				1ADA969427669C6B0085162B /* ModuleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +496,22 @@
 			isa = PBXTargetDependency;
 			target = 1A506E6125EAB9E400E51CE2 /* X5336 (macOS) */;
 			targetProxy = 1A506E7625EAB9E400E51CE2 /* PBXContainerItemProxy */;
+		};
+		1ADA969C2766A05D0085162B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1ADA969B2766A05D0085162B /* Lindenmayer */;
+		};
+		1ADA969E2766A0620085162B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1ADA969D2766A0620085162B /* Lindenmayer */;
+		};
+		1ADA96A42766A4960085162B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1ADA96A32766A4960085162B /* Lindenmayer */;
+		};
+		1ADA96A62766A49B0085162B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1ADA96A52766A49B0085162B /* Lindenmayer */;
 		};
 /* End PBXTargetDependency section */
 
@@ -831,7 +821,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				INFOPLIST_FILE = X5336CommonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -851,7 +841,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BDV4VC27D3;
 				INFOPLIST_FILE = X5336CommonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -925,45 +915,22 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		1A6DADAD2764169700FF6574 /* XCRemoteSwiftPackageReference "MurmurHash-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/daisuke-t-jp/MurmurHash-Swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-		1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/heckj/Squall";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		1A6DADAE2764169700FF6574 /* MurmurHash-Swift */ = {
+		1ADA969B2766A05D0085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A6DADAD2764169700FF6574 /* XCRemoteSwiftPackageReference "MurmurHash-Swift" */;
-			productName = "MurmurHash-Swift";
+			productName = Lindenmayer;
 		};
-		1A6DADB0276416A700FF6574 /* MurmurHash-Swift */ = {
+		1ADA969D2766A0620085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A6DADAD2764169700FF6574 /* XCRemoteSwiftPackageReference "MurmurHash-Swift" */;
-			productName = "MurmurHash-Swift";
+			productName = Lindenmayer;
 		};
-		1A6FB59925F07B1B00842B5E /* Squall */ = {
+		1ADA96A32766A4960085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */;
-			productName = Squall;
+			productName = Lindenmayer;
 		};
-		1AC3C1232693AE8300E44C41 /* Squall */ = {
+		1ADA96A52766A49B0085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A6FB59825F07B1B00842B5E /* XCRemoteSwiftPackageReference "Squall" */;
-			productName = Squall;
+			productName = Lindenmayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

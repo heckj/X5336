@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Lindenmayer
 
-struct Lsystem2DView: View {
+public struct Lsystem2DView: View {
     let cgpath: CGPath
-    var body: some View {
+    public var body: some View {
         Canvas { context, _ in
             // context provided is a SwiftUI GraphicsContext
 //            context.withCGContext { cgctx in
@@ -24,11 +25,16 @@ struct Lsystem2DView: View {
             context.stroke(Path(cgpath), with: GraphicsContext.Shading.color(Color.green))
         }
     }
+    
+    public init(cgpath: CGPath) {
+        self.cgpath = cgpath
+    }
+
 }
 
 struct Lsystem2DView_Previews: PreviewProvider {
     static let renderer = LSystemCGRenderer()
     static var previews: some View {
-        Lsystem2DView(cgpath: renderer.path(modules: [Internode() as Module]))
+        Lsystem2DView(cgpath: renderer.path(modules: [Lindenmayer.Modules.internode as Module]))
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lindenmayer
 
 @main
 struct X5336App: App {
@@ -19,7 +20,7 @@ struct X5336App: App {
 
     var body: some Scene {
         WindowGroup {
-            Lsystem2DView(cgpath: renderer.path(modules: [Internode() as Module]))
+            Lsystem2DView(cgpath: renderer.path(modules: [Lindenmayer.Modules.internode as Module]))
         }
     }
 }

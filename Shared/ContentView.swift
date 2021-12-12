@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Lindenmayer
 
 struct ContentView: View {
     @Binding var document: X5336Document
     let renderer = LSystemCGRenderer()
     var body: some View {
-        Lsystem2DView(cgpath: renderer.path(modules: [Internode() as Module]))
+        Lsystem2DView(cgpath: renderer.path(modules: [Lindenmayer.Modules.internode as Module]))
             .border(.blue, width: 1.0)
             .padding()
             .border(.red, width: 1.0)

@@ -30,7 +30,7 @@ public protocol Module: CustomStringConvertible {
     var render3D: RenderCommand { get }
 }
 
-extension Module {
+public extension Module {
     // MARK: - dyanmicMemberLookup default implementation
 
     // Q(heckj): Is this worth it?
@@ -44,7 +44,7 @@ extension Module {
     }
 }
 
-extension Module {
+public extension Module {
     // MARK: - CustomStringConvertible default implementation
 
     var description: String {
@@ -52,7 +52,7 @@ extension Module {
     }
 }
 
-extension Module {
+public extension Module {
     // MARK: - Default render command implementations
 
     var render2D: RenderCommand {
