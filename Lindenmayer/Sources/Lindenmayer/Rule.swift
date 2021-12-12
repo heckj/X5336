@@ -68,9 +68,28 @@ public struct Rule {
         // to determine if the rule should be evaluated - where the closure exposes
         // access to the internal parameters of the various matched modules - effectively
         // make this a parametric L-system.
-        let leftmatch = leftCtx?.name == matchset.0?.name
-        let rightmatch = rightCtx?.name == matchset.2?.name
-        let directmatch = directCtx.name == matchset.1.name
-        return leftmatch && directmatch && rightmatch
+        
+        // short circuit if the direct context doesn't match the matchset's setting
+        guard directCtx.name == matchset.1.name else {
+            return false
+        }
+        
+        // The left matchset _can_ be nil, but if it's provided, try to match against it.
+        let leftmatch: Bool
+        if matchset.0 != nil {
+            leftmatch = leftCtx?.name == matchset.0?.name
+        } else {
+            leftmatch = true
+        }
+
+        // The right matchset _can_ be nil, but if it's provided, try to match against it.
+        let rightmatch: Bool
+        if matchset.0 != nil {
+            rightmatch = rightCtx?.name == matchset.2?.name
+        } else {
+            rightmatch = true
+        }
+                
+        return leftmatch && rightmatch
     }
 }
