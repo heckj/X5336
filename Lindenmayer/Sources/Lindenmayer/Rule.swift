@@ -20,7 +20,7 @@ public struct Rule {
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - right: The L-system state element following the current element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    init(_ left: Module?, _ direct: Module, _ right: Module?, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
+    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
         matchset = (left, direct, right)
         produce = produces
     }
@@ -31,7 +31,7 @@ public struct Rule {
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - right: The L-system state element following the current element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    init(_ left: Module?, _ direct: Module, _ right: Module?, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
+    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
         matchset = (left, direct, right)
         produce = { left, direct, right -> [Module] in
             // converts the function that returns a single module into one that
@@ -45,7 +45,7 @@ public struct Rule {
     /// - Parameters:
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    init(_ direct: Module, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
+    public init(_ direct: Module, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
         self.init(nil, direct, nil, produces)
     }
 
@@ -53,7 +53,7 @@ public struct Rule {
     /// - Parameters:
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    init(_ direct: Module, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
+    public init(_ direct: Module, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
         self.init(nil, direct, nil, produceSingle)
     }
 
@@ -63,7 +63,7 @@ public struct Rule {
     ///   - directCtx: The current atom to evaluate.
     ///   - rightCtx: The atom 'to the right' of the atom being evaluated, if available.
     /// - Returns: A Boolean value that indicates if the rule should be applied to the current atom within the L-systems state sequence.
-    func evaluate(_ leftCtx: Module?, _ directCtx: Module, _ rightCtx: Module?) -> Bool {
+    public func evaluate(_ leftCtx: Module?, _ directCtx: Module, _ rightCtx: Module?) -> Bool {
         // TODO(heckj): add an additional property that exposes a closure to call
         // to determine if the rule should be evaluated - where the closure exposes
         // access to the internal parameters of the various matched modules - effectively

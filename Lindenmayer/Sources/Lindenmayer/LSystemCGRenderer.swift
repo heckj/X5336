@@ -28,7 +28,7 @@ public enum Bend: String {
 // NOTE(heckj): extensions can't be extended by external developers, so
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
-public enum RenderCommand {
+public enum RenderCommand : Equatable {
     case bend(Bend, Double = 30)
     case roll(Roll, Double = 30)
     case move(Double = 1.0) // "f"
