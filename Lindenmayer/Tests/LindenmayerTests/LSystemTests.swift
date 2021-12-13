@@ -7,7 +7,7 @@ final class LSystemTests: XCTestCase {
         let x = LSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)
         
-        let result = x.evolve()
+        let result = try x.evolve()
         XCTAssertEqual(result.count, 1)
         
         XCTAssertEqual(result[0].description, "I")

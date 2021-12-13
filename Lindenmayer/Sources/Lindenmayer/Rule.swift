@@ -7,10 +7,25 @@
 
 import Foundation
 
+//public enum RuleFailure: Error {
+//    case downcastFailure(m: Module) = "Error downcasting Module[]"
+//}
+
+public struct RuntimeError<T:Module>: Error {
+    let message: String
+
+    public init(_ t: Module) {
+        self.message = "Downcasting failure on module \(t.description)"
+    }
+
+    public var localizedDescription: String {
+        return message
+    }
+}
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct Rule {
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    let produce: (Module?, Module, Module?) -> [Module]
+    public let produce: (Module?, Module, Module?) throws -> [Module]
     /// The L-system uses these modules to determine is this rule should be applied and re-write the current state.
     let matchset: (Module?, Module, Module?)
 
@@ -20,7 +35,7 @@ public struct Rule {
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - right: The L-system state element following the current element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
+    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produces: @escaping (Module?, Module, Module?) throws -> [Module]) {
         matchset = (left, direct, right)
         produce = produces
     }
@@ -31,12 +46,12 @@ public struct Rule {
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - right: The L-system state element following the current element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
+    public init(_ left: Module?, _ direct: Module, _ right: Module?, _ produceSingle: @escaping (Module?, Module, Module?) throws -> Module) {
         matchset = (left, direct, right)
         produce = { left, direct, right -> [Module] in
             // converts the function that returns a single module into one that
             // returns an array of Module
-            let result = produceSingle(left, direct, right)
+            let result = try produceSingle(left, direct, right)
             return [result]
         }
     }
@@ -45,7 +60,7 @@ public struct Rule {
     /// - Parameters:
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ direct: Module, _ produces: @escaping (Module?, Module, Module?) -> [Module]) {
+    public init(_ direct: Module, _ produces: @escaping (Module?, Module, Module?) throws -> [Module]) {
         self.init(nil, direct, nil, produces)
     }
 
@@ -53,7 +68,7 @@ public struct Rule {
     /// - Parameters:
     ///   - direct: The L-system state element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ direct: Module, _ produceSingle: @escaping (Module?, Module, Module?) -> Module) {
+    public init(_ direct: Module, _ produceSingle: @escaping (Module?, Module, Module?) throws -> Module) {
         self.init(nil, direct, nil, produceSingle)
     }
 

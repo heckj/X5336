@@ -22,7 +22,7 @@ public struct LSystem {
         rules = []
     }
 
-    public func evolve() -> [Module] {
+    public func evolve() throws -> [Module] {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         var newState: [Module] = []
         for index in 0 ..< state.count {
@@ -46,7 +46,7 @@ public struct LSystem {
             if rules.first(where: { $0.evaluate(left, strict, right) }) != nil {
                 // If a rule was found, then use it to generate the modules that
                 // replace this element in the sequence.
-                newState.append(contentsOf: rules[0].produce(left, strict, right))
+                newState.append(contentsOf: try rules[0].produce(left, strict, right))
             } else {
                 // If no rule was identified, we pass along the 'Module' as an
                 // ignored module for later evaluation - for example to be used

@@ -23,7 +23,7 @@ final class WhiteboxRuleTests: XCTestCase {
         XCTAssertNotNil(r)
 
         // Verify produce returns an Internode
-        let newModule = r.produce(nil, Modules.internode, nil)
+        let newModule = try r.produce(nil, Modules.internode, nil)
         XCTAssertEqual(newModule.count, 1)
         XCTAssertEqual(newModule[0].description, "I")
     }
