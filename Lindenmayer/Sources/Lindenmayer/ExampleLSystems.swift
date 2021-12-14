@@ -22,12 +22,10 @@ public extension Examples {
     // - MARK: Algae example
     struct A: Module {
         public var name = "A"
-        public var render2D: RenderCommand = .draw(10) // draws a line 10 units long
     }
     static var a = A()
     struct B: Module {
         public var name = "B"
-        public var render2D: RenderCommand = .draw(10) // draws a line 10 units long
     }
     static var b = B()
 
