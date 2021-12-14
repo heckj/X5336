@@ -85,14 +85,14 @@ public struct Rule {
         // make this a parametric L-system.
         
         // short circuit if the direct context doesn't match the matchset's setting
-        guard directCtx.name == matchset.1.name else {
+        guard type(of: matchset.1) == type(of: directCtx) else {
             return false
         }
-        
+
         // The left matchset _can_ be nil, but if it's provided, try to match against it.
         let leftmatch: Bool
         if matchset.0 != nil {
-            leftmatch = leftCtx?.name == matchset.0?.name
+            leftmatch = type(of: matchset.0) == type(of: leftCtx)
         } else {
             leftmatch = true
         }
@@ -100,7 +100,7 @@ public struct Rule {
         // The right matchset _can_ be nil, but if it's provided, try to match against it.
         let rightmatch: Bool
         if matchset.0 != nil {
-            rightmatch = rightCtx?.name == matchset.2?.name
+            rightmatch = type(of: matchset.2) == type(of: rightCtx)
         } else {
             rightmatch = true
         }
