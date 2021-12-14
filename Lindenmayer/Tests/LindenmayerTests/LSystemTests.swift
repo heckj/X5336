@@ -60,4 +60,22 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(resultSequence, "ABAABABA")
     }
 
+    func testFractalTree_evolve2() throws {
+        var algae = Lindenmayer.Examples.fractalTree
+        try algae.evolve()
+        XCTAssertEqual(algae.state.map { $0.description }.joined(), "I[-L]+L")
+        try algae.evolve()
+        XCTAssertEqual(algae.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
+    }
+
+    func testFractalTree_rendering2() throws {
+        var tree = Lindenmayer.Examples.fractalTree
+        try tree.evolve(iterations: 2)
+        XCTAssertEqual(tree.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
+        
+        let path: CGPath = LSystemCGRenderer().path(modules: tree.state)
+        print(path)
+//        XCTAssertEqual(path.boundingBoxOfPath, CGRect(x: 0, y: 0, width: 2.70711, height: 1.70711))
+    }
+
 }

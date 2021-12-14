@@ -17,10 +17,19 @@ struct X5336App: App {
 //        }
 //    }
     let renderer = LSystemCGRenderer()
+    
+    func provideLSystemState() -> [Module] {
+        var tree = Lindenmayer.Examples.fractalTree
+        do {
+            return try tree.evolve(iterations: 5)
+        } catch {
+            return []
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(state: provideLSystemState())
         }
     }
 }

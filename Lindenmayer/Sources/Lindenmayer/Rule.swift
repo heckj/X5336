@@ -62,7 +62,8 @@ public struct ConcreteRule: Rule {
 
     // it seems like it might be better to use the type of the module for providing the
     // matchsets...
-    
+    //    let y = A.self // -> A.Type
+
     /// Creates a new rule with the extended context and closures you provide that result in a list of state elements.
     /// - Parameters:
     ///   - left: The L-system state element prior to the current element that the rule evaluates.

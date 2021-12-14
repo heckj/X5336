@@ -13,13 +13,9 @@ public enum Examples {
 
 
 public extension Examples {
-    
-    func xx() {
-        let y = A.self // -> A.Type
-        print(y)
-    }
-    
+        
     // - MARK: Algae example
+    
     struct A: Module {
         public var name = "A"
     }
@@ -37,4 +33,28 @@ public extension Examples {
             [a]
         })
     ])
+    
+    // - MARK: Fractal tree example
+    
+    struct Leaf: Module {
+        public var name = "L"
+        public var render2D: RenderCommand = .draw(5.0) // would be neat to make this green...
+    }
+    static var leaf = Leaf()
+    
+    struct Stem: Module {
+        public var name = "I"
+        public var render2D: RenderCommand = .draw(10.0) // would be neat to make this green...
+    }
+    static var stem = Stem()
+
+    static var fractalTree = LSystem(leaf, rules: [
+        ConcreteRule(leaf, { _, _, _ in
+            [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
+        }),
+        ConcreteRule(stem, { _, _, _ in
+            [stem, stem]
+        })
+    ])
+
 }

@@ -36,7 +36,7 @@ public struct LSystem {
         _state = [axiom]
         self.rules = rules
     }
-
+    
     @discardableResult
     /// Updates the state of the Lindenmayer system.
     ///
@@ -44,53 +44,63 @@ public struct LSystem {
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce``.
     /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
     /// - Returns: An updated state for the Lindenmayer system.
-    public mutating func evolve(debugPrint: Bool = false) throws -> [Module] {
+    public mutating func evolve(iterations: Int = 1, debugPrint: Bool = false) throws -> [Module] {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
         // kit for a final resolution.
         
-        if debugPrint {
-            print("Initial state: \(self.state.map { $0.description }.joined())")
-        }
-        var newState: [Module] = []
-        for index in 0 ..< state.count {
-            let left: Module?
-            let strict: Module = state[index]
-            let right: Module?
-
-            if index - 1 > 0 {
-                left = state[index - 1]
-            } else {
-                left = nil
-            }
-
-            if state.count > index + 1 {
-                right = state[index + 1]
-            } else {
-                right = nil
-            }
+        for iter in 0..<iterations {
             if debugPrint {
-                print(" - Pattern to evaluate for rule matches: [\(String(describing: left?.description)),\(strict.description),\(String(describing: right?.description))]")
+                print("Iteration: \(iter)")
             }
-
-            // Iterate through the rules, finding the first rule to match
-            // based on calling 'evaluate' on each of the rules in sequence.
-            let maybeRule: Rule? = rules.first(where: { $0.evaluate(left, strict, right) })
-            if let foundRule = maybeRule {
-                print(" - First rule identifier to match: \(foundRule)")
-                // If a rule was found, then use it to generate the modules that
-                // replace this element in the sequence.
-                newState.append(contentsOf: try foundRule.produce(left, strict, right))
-            } else {
-                print(" - No rule matched the current elements, returning the existing element: \(strict)")
-                // If no rule was identified, we pass along the 'Module' as an
-                // ignored module for later evaluation - for example to be used
-                // to represent the final visual state externally.
-                newState.append(strict)
+            
+            if debugPrint {
+                print("Initial state: \(self.state.map { $0.description }.joined())")
             }
+            var newState: [Module] = []
+            for index in 0 ..< state.count {
+                let left: Module?
+                let strict: Module = state[index]
+                let right: Module?
+                
+                if index - 1 > 0 {
+                    left = state[index - 1]
+                } else {
+                    left = nil
+                }
+                
+                if state.count > index + 1 {
+                    right = state[index + 1]
+                } else {
+                    right = nil
+                }
+                if debugPrint {
+                    print(" - Pattern to evaluate for rule matches: [\(String(describing: left?.description)),\(strict.description),\(String(describing: right?.description))]")
+                }
+                
+                // Iterate through the rules, finding the first rule to match
+                // based on calling 'evaluate' on each of the rules in sequence.
+                let maybeRule: Rule? = rules.first(where: { $0.evaluate(left, strict, right) })
+                if let foundRule = maybeRule {
+                    if debugPrint {
+                        print(" - First rule identifier to match: \(foundRule)")
+                    }
+                    // If a rule was found, then use it to generate the modules that
+                    // replace this element in the sequence.
+                    newState.append(contentsOf: try foundRule.produce(left, strict, right))
+                } else {
+                    if debugPrint {
+                        print(" - No rule matched the current elements, returning the existing element: \(strict)")
+                    }
+                    // If no rule was identified, we pass along the 'Module' as an
+                    // ignored module for later evaluation - for example to be used
+                    // to represent the final visual state externally.
+                    newState.append(strict)
+                }
+            }
+            _state = newState
         }
-        _state = newState
-        return newState
+        return self._state
     }
 }

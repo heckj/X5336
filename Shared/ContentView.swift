@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     let renderer = LSystemCGRenderer()
+    let state: [Module]
     var body: some View {
         VStack {
             Text("Lindenmayer")
                 .padding()
-            Lsystem2DView(cgpath: renderer.path(modules: [Lindenmayer.Modules.internode as Module]))
-                .border(Color.red)
+            Lsystem2DView(modules: state)
                 .padding()
             
         }
@@ -32,6 +32,6 @@ struct DocumentContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(state: [])
     }
 }

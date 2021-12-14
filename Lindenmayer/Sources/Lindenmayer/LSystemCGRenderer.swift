@@ -80,11 +80,11 @@ public struct LSystemCGRenderer {
                 break
             case .roll:
                 break
-            case .move:
-                currentState = calculateState(currentState, distance: unitLength)
+            case .move(let distance):
+                currentState = calculateState(currentState, distance: unitLength * distance)
                 path.move(to: currentState.position)
-            case .draw:
-                currentState = calculateState(currentState, distance: unitLength)
+            case .draw(let distance):
+                currentState = calculateState(currentState, distance: unitLength * distance)
                 path.addLine(to: currentState.position)
             case let .turn(direction, angle):
                 currentState = calculateState(currentState, angle: angle, direction: direction)
