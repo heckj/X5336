@@ -10,17 +10,17 @@ import Foundation
 
 // MARK: - RENDERING/REPRESENTATION -
 
-public enum Turn: String {
-    case right = "_"
+public enum TurnDirection: String {
+    case right = "-"
     case left = "+"
 }
 
-public enum Roll: String {
+public enum RollDirection: String {
     case left = "\\"
     case right = "/"
 }
 
-public enum Bend: String {
+public enum BendDirection: String {
     case up = "^"
     case down = "&"
 }
@@ -29,11 +29,11 @@ public enum Bend: String {
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
 public enum RenderCommand : Equatable {
-    case bend(Bend, Double = 30)
-    case roll(Roll, Double = 30)
+    case bend(BendDirection, Double = 30)
+    case roll(RollDirection, Double = 30)
     case move(Double = 1.0) // "f"
     case draw(Double = 1.0) // "F"
-    case turn(Turn, Double = 90)
+    case turn(TurnDirection, Double = 90)
     case saveState // "["
     case restoreState // "]"
     case ignore
@@ -136,7 +136,7 @@ public struct LSystemCGRenderer {
         return PathState(state.angle, CGPoint(x: x, y: y))
     }
 
-    func calculateState(_ state: PathState, angle: Double, direction: Turn)
+    func calculateState(_ state: PathState, angle: Double, direction: TurnDirection)
         -> PathState
     {
         if direction == .left {
