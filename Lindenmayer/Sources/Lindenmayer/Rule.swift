@@ -24,16 +24,22 @@ public struct RuntimeError<T:Module>: Error {
     
 }
 
+/// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public protocol Rule {
+    
+    /// <#Description#>
     var produce: (Module?, Module, Module?) throws -> [Module] {
         get
     }
+    
+    /// <#Description#>
+    /// - Returns: <#description#>
     func evaluate(_ leftCtx: Module?, _ directCtx: Module, _ rightCtx: Module?) -> Bool
     
-    // ?? do I need 'init' on this as well?
+    // ?? do I need 'init' on the protocol as well?
 }
 
-/// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
+/// A concrete implementation of Rule
 public struct ConcreteRule: Rule {
         
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
@@ -42,6 +48,9 @@ public struct ConcreteRule: Rule {
     /// The L-system uses these modules to determine is this rule should be applied and re-write the current state.
     let matchset: (Module?, Module, Module?)
 
+    // it seems like it might be better to use the type of the module for providing the
+    // matchsets...
+    
     /// Creates a new rule with the extended context and closures you provide that result in a list of state elements.
     /// - Parameters:
     ///   - left: The L-system state element prior to the current element that the rule evaluates.

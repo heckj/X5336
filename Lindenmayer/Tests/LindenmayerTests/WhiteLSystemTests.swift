@@ -11,7 +11,7 @@ final class WhiteboxLSystemTests: XCTestCase {
         XCTAssertEqual(x.rules.count, 0)
         // 1 atom in the state - the axiom
         XCTAssertEqual(x.state.count, 1)
-        let downcast = x.state[0] as! Internode
+        let downcast = x.state[0] as! Lindenmayer.Modules.Internode
         XCTAssertEqual(downcast.description, "I")
     }
 }

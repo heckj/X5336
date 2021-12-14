@@ -7,22 +7,32 @@
 
 import Foundation
 
-/// An instance of a Lindenmayer system.
+/// An instance of a parameterized, stochastic Lindenmayer system.
+///
+/// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem {
     let axiom: Module
     let rules: [Rule]
+    // TODO(heckj): enable global variables/parameters that get injected for consumption within the rule evaluation closures.
+    // maybe call it "constants", maybe "globals", maybe "parameters" or "evolution parameters"
+    
+    var _state: [Module]
+    public var state: [Module] {
+        get {
+            return _state
+        }
+    }
 
-    var state: [Module]
-
-    public init(_ axiom: Module) {
+    public init(_ axiom: Module, rules:[Rule] = []) {
         self.axiom = axiom
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
-        state = [axiom]
-        rules = []
+        _state = [axiom]
+        self.rules = rules
     }
 
-    public func evolve() throws -> [Module] {
+    @discardableResult
+    public mutating func evolve() throws -> [Module] {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
@@ -58,6 +68,7 @@ public struct LSystem {
                 newState.append(strict)
             }
         }
+        _state = newState
         return newState
     }
 }
