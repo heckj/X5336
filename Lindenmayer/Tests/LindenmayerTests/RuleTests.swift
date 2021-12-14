@@ -5,7 +5,6 @@ final class RuleTests: XCTestCase {
 
     struct Foo: Module {
         var name: String = "foo"
-        var params: [String : Double] = [:]
     }
     let foo = Foo()
 

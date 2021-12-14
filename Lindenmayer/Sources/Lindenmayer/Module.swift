@@ -15,12 +15,6 @@ public protocol Module: CustomStringConvertible {
     /// Use a single character or very short string for the name, as it's used in textual descriptions of the state of an L-system.
     var name: String { get }
 
-    // By using a map for the parameters, I'm constraining all the parameters
-    // to be accessed via a a string, and to be a Double - no integers,
-    // Booleans, or random types.
-    /// A dictionary that represents the underlying parameters, if any, of the module.
-    var params: [String: Double] { get }
-
     /// Returns the module's parameter defined by the string provided if available; otherwise, nil.
     subscript(dynamicMember _: String) -> Double? {
         get
@@ -36,11 +30,13 @@ public extension Module {
     // Q(heckj): Is this worth it?
 
     subscript(dynamicMember member: String) -> Double? {
-        if params.keys.contains(member) {
-            return params[member]
-        } else {
-            return nil
+        let reflection = Mirror(reflecting: self)
+        for reflected_property in reflection.children {
+            if reflected_property.label == member {
+                return reflected_property.value as? Double
+            }
         }
+        return nil
     }
 }
 

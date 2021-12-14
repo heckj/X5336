@@ -5,10 +5,11 @@ final class ParametricRuleTests: XCTestCase {
 
     struct ParameterizedExample: Module {
         var name: String = "P"
-        var params: [String : Double] = [:]
-        // Create an initizer that accepts any named parameters you require.
+        var i: Double
+        
+        // Create an initializer that accepts any parameters you require.
         init(_ i: Double = 10) {
-            params["i"] = i
+            self.i = i
         }
     }
     let p = ParameterizedExample()
@@ -33,10 +34,9 @@ final class ParametricRuleTests: XCTestCase {
         let newModules: [Module] = try r.produce(nil, p, nil)
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
-        XCTAssertEqual(param.params.count, 1)
         // verify that our rule was processed, returning the same module with
         // an increased value from 10.0 -> 11.0.
-        XCTAssertEqual(param.params["i"], 11)
+        XCTAssertEqual(param.i, 11)
         
     }
     

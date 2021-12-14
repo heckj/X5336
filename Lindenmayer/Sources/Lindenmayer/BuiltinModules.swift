@@ -15,25 +15,21 @@ public struct Modules {}
 public struct Internode: Module {
     // This is the kind of thing that I want external developers using the library to be able to create to represent elements within their L-system.
     public var name = "I"
-    public var params: [String: Double] = [:]
     public var render2D: RenderCommand = .draw(10) // draws a line 10 units long
 }
 
 public struct Branch: Module {
     public var name = "["
-    public var params: [String: Double] = [:]
     public var render2D: RenderCommand = .saveState
 }
 
 public struct EndBranch: Module {
     public var name = "]"
-    public var params: [String: Double] = [:]
     public var render2D: RenderCommand = .restoreState
 }
 
 public struct TurnLeft: Module {
     public var name = "-"
-    public var params: [String: Double] = [:]
     var angle: Double
     public var render2D: RenderCommand  {
         get {
@@ -48,7 +44,6 @@ public struct TurnLeft: Module {
 
 public struct TurnRight: Module {
     public var name = "+"
-    public var params: [String: Double] = [:]
     var angle: Double
     public var render2D: RenderCommand  {
         get {
@@ -63,7 +58,6 @@ public struct TurnRight: Module {
 
 public struct Move: Module {
     public var name = "f"
-    public var params: [String: Double] = [:]
     var length: Double
     public var render2D: RenderCommand  {
         get {
@@ -78,7 +72,6 @@ public struct Move: Module {
 
 public struct Draw: Module {
     public var name = "F"
-    public var params: [String: Double] = [:]
     var length: Double
     public var render2D: RenderCommand  {
         get {
