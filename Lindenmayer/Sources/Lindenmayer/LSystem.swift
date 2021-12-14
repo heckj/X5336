@@ -24,6 +24,10 @@ public struct LSystem {
 
     public func evolve() throws -> [Module] {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
+        // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
+        // in order to run the whole suite of the state in parallel for a new result. Await the whole
+        // kit for a final resolution.
+        
         var newState: [Module] = []
         for index in 0 ..< state.count {
             let left: Module?

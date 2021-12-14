@@ -4,7 +4,7 @@ import XCTest
 final class WhiteboxRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return ctx
         }
         XCTAssertNotNil(r)
@@ -17,7 +17,7 @@ final class WhiteboxRuleTests: XCTestCase {
     }
 
     func testRuleProduction() throws {
-        let r = Rule(Modules.internode) { _,_,_ in 
+        let r = ConcreteRule(Modules.internode) { _,_,_ in 
             return Modules.internode
         }
         XCTAssertNotNil(r)

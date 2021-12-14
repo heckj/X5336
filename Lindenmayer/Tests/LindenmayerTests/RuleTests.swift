@@ -10,7 +10,7 @@ final class RuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             XCTAssertNotNil(ctx)
             XCTAssertNil(lctx)
             XCTAssertNil(rctx)
@@ -23,7 +23,7 @@ final class RuleTests: XCTestCase {
     }
     
     func testRuleBasicMatch() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return self.foo
         }
         
@@ -31,7 +31,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleBasicFailMatch() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return self.foo
         }
         
@@ -39,7 +39,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraRight() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return self.foo
         }
         
@@ -47,7 +47,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeft() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return self.foo
         }
         
@@ -55,7 +55,7 @@ final class RuleTests: XCTestCase {
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
-        let r = Rule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
             return self.foo
         }
         
