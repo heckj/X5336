@@ -25,28 +25,40 @@ public struct RuntimeError<T:Module>: Error {
 }
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public protocol Rule {
+public protocol Rule: CustomStringConvertible {
     
-    /// <#Description#>
+    /// The set of types that this rule matches.
+    var matchset:(Module?, Module, Module?) {
+        get
+    }
+    
+    /// A closure that you provide which defines the modules to provide in place of the evaluated module.
     var produce: (Module?, Module, Module?) throws -> [Module] {
         get
     }
     
-    /// <#Description#>
-    /// - Returns: <#description#>
+    /// Returns a Boolean value that indicates whether the rule matches the context provided.
     func evaluate(_ leftCtx: Module?, _ directCtx: Module, _ rightCtx: Module?) -> Bool
     
     // ?? do I need 'init' on the protocol as well?
 }
 
+extension Rule {
+    
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule[matching \(matchset)]"
+    }
+}
+
 /// A concrete implementation of Rule
 public struct ConcreteRule: Rule {
-        
+    
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produce: (Module?, Module, Module?) throws -> [Module]
     
     /// The L-system uses these modules to determine is this rule should be applied and re-write the current state.
-    let matchset: (Module?, Module, Module?)
+    public let matchset: (Module?, Module, Module?)
 
     // it seems like it might be better to use the type of the module for providing the
     // matchsets...
@@ -113,16 +125,18 @@ public struct ConcreteRule: Rule {
 
         // The left matchset _can_ be nil, but if it's provided, try to match against it.
         let leftmatch: Bool
-        if matchset.0 != nil {
-            leftmatch = type(of: matchset.0) == type(of: leftCtx)
+        // First unwrap the type if we can, because an Optional<Foo> won't match Foo...
+        if let unwrapedLeft = matchset.0 {
+            leftmatch = type(of: unwrapedLeft) == type(of: leftCtx)
         } else {
             leftmatch = true
         }
 
         // The right matchset _can_ be nil, but if it's provided, try to match against it.
         let rightmatch: Bool
-        if matchset.0 != nil {
-            rightmatch = type(of: matchset.2) == type(of: rightCtx)
+        // First unwrap the type if we can, because an Optional<Foo> won't match Foo...
+        if let unwrapedRight = matchset.2 {
+            rightmatch = type(of: unwrapedRight) == type(of: rightCtx)
         } else {
             rightmatch = true
         }

@@ -42,7 +42,7 @@ final class LSystemTests: XCTestCase {
         try algae.evolve()
         resultSequence = algae.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
-        try algae.evolve()
+        try algae.evolve(debugPrint: true)
         resultSequence = algae.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABA")
     }
