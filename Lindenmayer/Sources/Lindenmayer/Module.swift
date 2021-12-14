@@ -4,7 +4,6 @@
 //
 //  Created by Joseph Heck on 12/9/21.
 //
-
 import Foundation
 
 /// A module represents an element in an L-system state array, and its parameters, if any.
@@ -22,6 +21,12 @@ public protocol Module: CustomStringConvertible {
 
     var render2D: RenderCommand { get }
     var render3D: RenderCommand { get }
+    
+    // func duplicate() -> Self // returns a 'Module'
+    // There's a lot of existential class usage here (using a Protocol as a class).
+    // The constraints on this kind of usage are documented in Swift under
+    // [existential-member-access-limitations](https://github.com/apple/swift/blob/main/userdocs/diagnostics/existential-member-access-limitations.md)
+
 }
 
 public extension Module {

@@ -21,11 +21,15 @@ public struct RuntimeError<T:Module>: Error {
     public var localizedDescription: String {
         return message
     }
+    
 }
+
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct Rule {
+        
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produce: (Module?, Module, Module?) throws -> [Module]
+    
     /// The L-system uses these modules to determine is this rule should be applied and re-write the current state.
     let matchset: (Module?, Module, Module?)
 
