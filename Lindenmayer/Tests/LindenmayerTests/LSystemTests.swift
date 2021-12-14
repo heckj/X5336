@@ -42,9 +42,22 @@ final class LSystemTests: XCTestCase {
         try algae.evolve()
         resultSequence = algae.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
-        try algae.evolve(debugPrint: true)
+        try algae.evolve() // debugPrint: true
         resultSequence = algae.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABA")
+    }
+
+    func testAlgaeLSystem_evolve3() throws {
+        var resultSequence = ""
+        var algae = Lindenmayer.Examples.algae
+        try algae.evolve()
+        try algae.evolve()
+        try algae.evolve()
+        resultSequence = algae.state.map { $0.description }.joined()
+        XCTAssertEqual(resultSequence, "ABAAB")
+        try algae.evolve()
+        resultSequence = algae.state.map { $0.description }.joined()
+        XCTAssertEqual(resultSequence, "ABAABABA")
     }
 
 }
