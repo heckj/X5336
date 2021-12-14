@@ -93,4 +93,10 @@ public struct Draw: Module {
 
 public extension Modules {
     static var internode = Internode()
+    static var draw = Draw()
+    static var move = Move()
+    static var turnleft = TurnLeft()
+    static var turnright = TurnRight()
+    static var branch = Branch()
+    static var endbranch = EndBranch()
 }
