@@ -1,5 +1,5 @@
 //
-//  TwoDRenderCommands.swift
+//  TwoDTwoDRenderCommands.swift
 //  
 //
 //  Created by Joseph Heck on 12/15/21.
@@ -27,7 +27,7 @@ public enum BendDirection: String {
 // NOTE(heckj): extensions can't be extended by external developers, so
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
-public enum RenderCommand : Equatable {
+public enum TwoDRenderCommand : Equatable {
     case bend(BendDirection, Double = 30)
     case roll(RollDirection, Double = 30)
     case move(Double = 1.0) // "f"

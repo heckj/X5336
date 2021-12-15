@@ -20,9 +20,9 @@ public protocol Module: CustomStringConvertible {
     }
     
     /// Returns a sequence of render commands to display the content in 2-dimensionals.
-    var render2D: [RenderCommand] { get }
+    var render2D: [TwoDRenderCommand] { get }
     /// Returns a sequence of render commands to display the content in 3-dimensionals.
-    var render3D: [RenderCommand] { get }
+    var render3D: [TwoDRenderCommand] { get }
     
     // func duplicate() -> Self // returns a 'Module'
     // There's a lot of existential class usage here (using a Protocol as a class).
@@ -58,11 +58,11 @@ public extension Module {
 public extension Module {
     // MARK: - Default render command implementations
 
-    var render2D: [RenderCommand] {
+    var render2D: [TwoDRenderCommand] {
         return [.ignore]
     }
 
-    var render3D: [RenderCommand] {
+    var render3D: [TwoDRenderCommand] {
         return [.ignore]
     }
 }

@@ -16,7 +16,7 @@ public extension Modules {
     struct Internode: Module {
         // This is the kind of thing that I want external developers using the library to be able to create to represent elements within their L-system.
         public var name = "I"
-        public var render2D: [RenderCommand] = [.draw(10)] // draws a line 10 units long
+        public var render2D: [TwoDRenderCommand] = [.draw(10)] // draws a line 10 units long
     }
     static var internode = Internode()
     
@@ -24,20 +24,20 @@ public extension Modules {
 
     struct Branch: Module {
         public var name = "["
-        public var render2D: [RenderCommand] = [.saveState]
+        public var render2D: [TwoDRenderCommand] = [.saveState]
     }
     static var branch = Branch()
 
     struct EndBranch: Module {
         public var name = "]"
-        public var render2D: [RenderCommand] = [.restoreState]
+        public var render2D: [TwoDRenderCommand] = [.restoreState]
     }
     static var endbranch = EndBranch()
 
     struct TurnLeft: Module {
         public var name = "-"
         var angle: Double
-        public var render2D: [RenderCommand]  {
+        public var render2D: [TwoDRenderCommand]  {
             get {
                 [.turn(.left, self.angle)]
             }
@@ -52,7 +52,7 @@ public extension Modules {
     struct TurnRight: Module {
         public var name = "+"
         var angle: Double
-        public var render2D: [RenderCommand]  {
+        public var render2D: [TwoDRenderCommand]  {
             get {
                 [.turn(.right, self.angle)]
             }
@@ -68,7 +68,7 @@ public extension Modules {
     struct Move: Module {
         public var name = "f"
         var length: Double
-        public var render2D: [RenderCommand] {
+        public var render2D: [TwoDRenderCommand] {
             get {
                 [.move(self.length)]
             }
@@ -83,7 +83,7 @@ public extension Modules {
     struct Draw: Module {
         public var name = "F"
         var length: Double
-        public var render2D: [RenderCommand] {
+        public var render2D: [TwoDRenderCommand] {
             get {
                 [.draw(self.length)]
             }

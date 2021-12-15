@@ -22,8 +22,8 @@ final class LindenmayerTests: XCTestCase {
         // Verify name is passed out as 'description'
         XCTAssertEqual(x.description, "foo")
         // Verify default built-in behavior for a new module
-        XCTAssertEqual(x.render2D, [RenderCommand.ignore])
-        XCTAssertEqual(x.render3D, [RenderCommand.ignore])
+        XCTAssertEqual(x.render2D, [TwoDRenderCommand.ignore])
+        XCTAssertEqual(x.render3D, [TwoDRenderCommand.ignore])
         // Verify subscript lookup returns nil, but doesn't throw
         XCTAssertNil(x[dynamicMember: "something"])
         XCTAssertNil(x.something)

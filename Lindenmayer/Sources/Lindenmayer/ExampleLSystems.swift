@@ -35,13 +35,13 @@ public extension Examples {
     
     struct Leaf: Module {
         public var name = "L"
-        public var render2D: [RenderCommand] = [.draw(5.0)] // would be neat to make this green...
+        public var render2D: [TwoDRenderCommand] = [.draw(5.0)] // would be neat to make this green...
     }
     static var leaf = Leaf()
     
     struct Stem: Module {
         public var name = "I"
-        public var render2D: [RenderCommand] = [.draw(10.0)] // would be neat to make this green...
+        public var render2D: [TwoDRenderCommand] = [.draw(10.0)] // would be neat to make this green...
     }
     static var stem = Stem()
 
@@ -69,13 +69,13 @@ public extension Examples {
     
     struct F: Module {
         public var name = "F"
-        public var render2D: [RenderCommand] = [.draw(10.0)]
+        public var render2D: [TwoDRenderCommand] = [.draw(10.0)]
     }
     static var f = F()
     
     struct G: Module {
         public var name = "G"
-        public var render2D: [RenderCommand] = [.draw(10.0)]
+        public var render2D: [TwoDRenderCommand] = [.draw(10.0)]
     }
     static var g = G()
 
@@ -107,7 +107,7 @@ public extension Examples {
     // - MARK: Barnsley fern example
     struct X: Module {
         public var name = "X"
-        public var render2D: [RenderCommand] = [.ignore]
+        public var render2D: [TwoDRenderCommand] = [.ignore]
     }
     static var x = X()
     
