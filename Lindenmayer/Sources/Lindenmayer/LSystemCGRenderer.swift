@@ -14,7 +14,11 @@ struct PathState {
     var lineWidth: Double
     var lineColor: CGColor
 
-    public init(_ angle: Double = 0, _ position: CGPoint = .zero, _ lineWidth: Double = 1.0, _ lineColor: CGColor = .black) {
+    init() {
+        self.init(0, .zero, 1.0, .black)
+    }
+    
+    init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: CGColor) {
         self.angle = angle
         self.position = position
         self.lineWidth = lineWidth
@@ -32,19 +36,6 @@ public struct LSystemCGRenderer {
     }
 
     public func draw(_ lsystem: LSystem, into context: GraphicsContext, ofSize size: CGSize) {
-        // context provided is a SwiftUI GraphicsContext
-        //            context.withCGContext { cgctx in
-        //                // cgctx is a CoreGraphics.Context
-        //                cgctx.addPath(path)
-        //                cgctx.setStrokeColor(CGColor.black)
-        //                cgctx.setLineWidth(1.0)
-        //                cgctx.strokePath()
-        //
-        //                print(size)
-        //            }
-
-        
-
         var state: [PathState] = []
         var currentState = initialState
 
@@ -74,10 +65,10 @@ public struct LSystemCGRenderer {
                     currentState = state.removeLast()
                 case .ignore:
                     break
-                case .setLineWidth(_):
-                    break
-                case .setLineColor(_):
-                    break
+                case let .setLineWidth(width):
+                    currentState = updatedStateWithLineWidth(currentState, lineWidth: width)
+                case let .setLineColor(color):
+                    currentState = updatedStateWithLineColor(currentState, lineColor: color)
                 }
             }
         }
@@ -160,16 +151,24 @@ public struct LSystemCGRenderer {
         let x = state.position.x + CGFloat(distance * cos(degreesToRadians(state.angle)))
         let y = state.position.y + CGFloat(distance * sin(degreesToRadians(state.angle)))
 
-        return PathState(state.angle, CGPoint(x: x, y: y))
+        return PathState(state.angle, CGPoint(x: x, y: y), state.lineWidth, state.lineColor)
+    }
+
+    func updatedStateWithLineWidth(_ state: PathState, lineWidth: Double) -> PathState {
+        return PathState(state.angle, state.position, lineWidth, state.lineColor)
+    }
+
+    func updatedStateWithLineColor(_ state: PathState, lineColor: CGColor) -> PathState {
+        return PathState(state.angle, state.position, state.lineWidth, lineColor)
     }
 
     func updatedStateByTurning(_ state: PathState, angle: Double, direction: TurnDirection)
         -> PathState
     {
         if direction == .left {
-            return PathState(state.angle - angle, state.position)
+            return PathState(state.angle - angle, state.position, state.lineWidth, state.lineColor)
         }
 
-        return PathState(state.angle + angle, state.position)
+        return PathState(state.angle + angle, state.position, state.lineWidth, state.lineColor)
     }
 }
