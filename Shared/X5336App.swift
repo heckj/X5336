@@ -19,12 +19,11 @@ struct X5336App: App {
     let renderer = LSystemCGRenderer()
     
     func provideLSystemState() -> [Module] {
-        var tree = Lindenmayer.Examples.fractalTree
+        var tree = Lindenmayer.Examples.kochCurve
         do {
-            return try tree.evolve(iterations: 5)
-        } catch {
-            return []
-        }
+            try tree.evolve(iterations: 5)
+        } catch {}
+        return tree.state
     }
 
     var body: some Scene {

@@ -75,26 +75,28 @@ public struct LSystemCGRenderer {
         var currentState = initialState
 
         for module in modules {
-            switch module.render2D {
-            case .bend:
-                break
-            case .roll:
-                break
-            case .move(let distance):
-                currentState = calculateState(currentState, distance: unitLength * distance)
-                path.move(to: currentState.position)
-            case .draw(let distance):
-                currentState = calculateState(currentState, distance: unitLength * distance)
-                path.addLine(to: currentState.position)
-            case let .turn(direction, angle):
-                currentState = calculateState(currentState, angle: angle, direction: direction)
-            case .saveState:
-                state.append(currentState)
-            case .restoreState:
-                currentState = state.removeLast()
-                path.move(to: currentState.position)
-            case .ignore:
-                break
+            for cmd in module.render2D {
+                switch cmd {
+                case .bend:
+                    break
+                case .roll:
+                    break
+                case .move(let distance):
+                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    path.move(to: currentState.position)
+                case .draw(let distance):
+                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    path.addLine(to: currentState.position)
+                case let .turn(direction, angle):
+                    currentState = calculateState(currentState, angle: angle, direction: direction)
+                case .saveState:
+                    state.append(currentState)
+                case .restoreState:
+                    currentState = state.removeLast()
+                    path.move(to: currentState.position)
+                case .ignore:
+                    break
+                }
             }
         }
 

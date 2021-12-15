@@ -54,4 +54,51 @@ public extension Examples {
         })
     ])
 
+    // - MARK: Koch curve example
+    
+    static var kochCurve = LSystem(Modules.Draw(10), rules: [
+        ConcreteRule(Modules.Draw.self, { _, _, _ in
+            [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
+        })
+    ])
+
+    // - MARK: Sierpinski triangle example
+    
+    // to enable this, I need to support an axiom of more than a single module, and a decomposition step
+    // so that each rule could produce a sequence of draw commands, not just a single one.
+    
+    /*
+     
+     variables : F G
+     constants : + −
+     start  : F−G−G
+     rules  : (F → F−G+F+G−F), (G → GG)
+     angle  : 120°
+     Here, F means "draw forward", G means "draw forward", + means "turn left by angle", and − means "turn right by angle".
+     
+     Sierpinski Arrowhead Curve:
+     
+     variables : A B
+     constants : + −
+     start  : A
+     rules  : (A → B−A−B), (B → A+B+A)
+     angle  : 60°
+     Here, A and B both mean "draw forward", + means "turn left by angle", and − means "turn right by angle" (see turtle graphics).
+     */
+    static var sierpinskiTriangle = LSystem(Modules.Draw(10), rules: [
+        ConcreteRule(Modules.Draw.self, { _, _, _ in
+            [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
+        })
+    ])
+    
+    // - MARK: dragon curve example
+
+    /*
+     variables : F G
+     constants : + −
+     start  : F
+     rules  : (F → F+G), (G → F-G)
+     angle  : 90°
+     Here, F and G both mean "draw forward", + means "turn left by angle", and − means "turn right by angle".
+     */
 }

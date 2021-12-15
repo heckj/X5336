@@ -11,8 +11,8 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(result.count, 1)
         
         XCTAssertEqual(result[0].description, "I")
-        XCTAssertEqual(result[0].render2D, .draw(10))
-        XCTAssertEqual(result[0].render3D, .ignore)
+        XCTAssertEqual(result[0].render2D, [.draw(10)])
+        XCTAssertEqual(result[0].render3D, [.ignore])
         
         try x.evolve()
         XCTAssertEqual(x.state.count, 1)
