@@ -56,11 +56,11 @@ public struct LSystemCGRenderer {
                 case .roll:
                     break
                 case .move(let distance):
-                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                 case .draw(let distance):
                     let path = CGMutablePath()
                     path.move(to: currentState.position)
-                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.addLine(to: currentState.position)
                     context.stroke(
                         Path(path),
@@ -103,10 +103,10 @@ public struct LSystemCGRenderer {
                 case .roll:
                     break
                 case .move(let distance):
-                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.move(to: currentState.position)
                 case .draw(let distance):
-                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.addLine(to: currentState.position)
                 case let .turn(direction, angle):
                     currentState = calculateState(currentState, angle: angle, direction: direction)
@@ -156,7 +156,7 @@ public struct LSystemCGRenderer {
         return value * .pi / 180.0
     }
 
-    func calculateState(_ state: PathState, distance: Double) -> PathState {
+    func updatedStateByMoving(_ state: PathState, distance: Double) -> PathState {
         let x = state.position.x + CGFloat(distance * cos(degreesToRadians(state.angle)))
         let y = state.position.y + CGFloat(distance * sin(degreesToRadians(state.angle)))
 
