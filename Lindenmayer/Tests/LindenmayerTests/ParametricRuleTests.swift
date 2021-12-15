@@ -16,7 +16,7 @@ final class ParametricRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = ConcreteRule(p) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(ParameterizedExample.self) { (lctx, ctx, rctx) -> Module in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
@@ -27,9 +27,9 @@ final class ParametricRuleTests: XCTestCase {
         XCTAssertNotNil(r)
         
         // verify evaluation will trigger with a default P module
-        XCTAssertEqual(r.evaluate(nil, p, nil), true)
+        XCTAssertEqual(r.evaluate(nil, ParameterizedExample.self, nil), true)
         // And with a different parameter value
-        XCTAssertEqual(r.evaluate(nil, ParameterizedExample(21), nil), true)
+        XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
         
         let newModules: [Module] = try r.produce(nil, p, nil)
         XCTAssertEqual(newModules.count, 1)

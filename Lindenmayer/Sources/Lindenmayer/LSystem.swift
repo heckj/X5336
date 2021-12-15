@@ -60,43 +60,58 @@ public struct LSystem {
             }
             var newState: [Module] = []
             for index in 0 ..< state.count {
-                let left: Module?
-                let strict: Module = state[index]
-                let right: Module?
+                let leftInstance: Module?
+                let leftInstanceType: Module.Type?
+                let strictInstance: Module = state[index]
+                let strictInstanceType: Module.Type = type(of: strictInstance)
+                let rightInstance: Module?
+                let rightInstanceType: Module.Type?
                 
                 if index - 1 > 0 {
-                    left = state[index - 1]
+                    leftInstance = state[index - 1]
+                    if let unwrappedLeftInstance = leftInstance {
+                        leftInstanceType = type(of: unwrappedLeftInstance)
+                    } else {
+                        leftInstanceType = nil
+                    }
                 } else {
-                    left = nil
+                    leftInstance = nil
+                    leftInstanceType = nil
                 }
                 
                 if state.count > index + 1 {
-                    right = state[index + 1]
+                    rightInstance = state[index + 1]
+                    if let unwrappedRightInstance = rightInstance {
+                        rightInstanceType = type(of: unwrappedRightInstance)
+                    } else {
+                        rightInstanceType = nil
+                    }
                 } else {
-                    right = nil
+                    rightInstance = nil
+                    rightInstanceType = nil
                 }
                 if debugPrint {
-                    print(" - Pattern to evaluate for rule matches: [\(String(describing: left?.description)),\(strict.description),\(String(describing: right?.description))]")
+                    print(" - Pattern to evaluate for rule matches: [\(String(describing: leftInstanceType)),\(String(describing: strictInstanceType)),\(String(describing: rightInstanceType))]")
                 }
                 
                 // Iterate through the rules, finding the first rule to match
                 // based on calling 'evaluate' on each of the rules in sequence.
-                let maybeRule: Rule? = rules.first(where: { $0.evaluate(left, strict, right) })
+                let maybeRule: Rule? = rules.first(where: { $0.evaluate(leftInstanceType, strictInstanceType, rightInstanceType) })
                 if let foundRule = maybeRule {
                     if debugPrint {
                         print(" - First rule identifier to match: \(foundRule)")
                     }
                     // If a rule was found, then use it to generate the modules that
                     // replace this element in the sequence.
-                    newState.append(contentsOf: try foundRule.produce(left, strict, right))
+                    newState.append(contentsOf: try foundRule.produce(leftInstance, strictInstance, rightInstance))
                 } else {
                     if debugPrint {
-                        print(" - No rule matched the current elements, returning the existing element: \(strict)")
+                        print(" - No rule matched the current elements, returning the existing element: \(strictInstance)")
                     }
                     // If no rule was identified, we pass along the 'Module' as an
                     // ignored module for later evaluation - for example to be used
                     // to represent the final visual state externally.
-                    newState.append(strict)
+                    newState.append(strictInstance)
                 }
             }
             _state = newState

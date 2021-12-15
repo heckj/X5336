@@ -4,7 +4,7 @@ import XCTest
 final class WhiteboxRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
-        let r = ConcreteRule(Modules.internode) { (lctx, ctx, rctx) -> Module in
+        let r = ConcreteRule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
             return ctx
         }
         XCTAssertNotNil(r)
@@ -12,12 +12,13 @@ final class WhiteboxRuleTests: XCTestCase {
         // Verify matchset with basic rule
         XCTAssertNotNil(r.matchset)
         XCTAssertNil(r.matchset.0)
-        XCTAssertEqual(r.matchset.1.description, "I")
+        // Kind of a wrong hack - Type isn't equatable, but I can get a string description of it...
+        XCTAssertEqual(String(describing: r.matchset.1), "Internode")
         XCTAssertNil(r.matchset.2)
     }
 
     func testRuleProduction() throws {
-        let r = ConcreteRule(Modules.internode) { _,_,_ in 
+        let r = ConcreteRule(Modules.Internode.self) { _,_,_ in 
             return Modules.internode
         }
         XCTAssertNotNil(r)

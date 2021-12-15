@@ -7,10 +7,7 @@
 
 import Foundation
 
-public enum Examples {
-    
-}
-
+public enum Examples {}
 
 public extension Examples {
         
@@ -26,10 +23,10 @@ public extension Examples {
     static var b = B()
 
     static var algae = LSystem(a, rules: [
-        ConcreteRule(a, { _, _, _ in
+        ConcreteRule(A.self, { _, _, _ in
             [a,b]
         }),
-        ConcreteRule(b, { _, _, _ in
+        ConcreteRule(B.self, { _, _, _ in
             [a]
         })
     ])
@@ -49,10 +46,10 @@ public extension Examples {
     static var stem = Stem()
 
     static var fractalTree = LSystem(leaf, rules: [
-        ConcreteRule(leaf, { _, _, _ in
+        ConcreteRule(Leaf.self, { _, _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         }),
-        ConcreteRule(stem, { _, _, _ in
+        ConcreteRule(Stem.self, { _, _, _ in
             [stem, stem]
         })
     ])

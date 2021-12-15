@@ -26,13 +26,13 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
 
-        let result = try algae.evolve()
-        XCTAssertEqual(result.count, 2)
+        try algae.evolve(debugPrint: true)
+        XCTAssertEqual(algae.state.count, 2)
 
-        XCTAssertEqual(result[0].description, "A")
-        XCTAssertEqual(result[1].description, "B")
+        XCTAssertEqual(algae.state[0].description, "A")
+        XCTAssertEqual(algae.state[1].description, "B")
 
-        let resultSequence = result.map { $0.description }.joined()
+        let resultSequence = algae.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
     }
 
