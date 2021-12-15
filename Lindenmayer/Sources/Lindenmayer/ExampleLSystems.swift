@@ -121,5 +121,16 @@ public extension Examples {
             })
         ]
     )
+    
+    static var barnsleyFarmEvolved: LSystem {
+        get {
+            var sys = Lindenmayer.Examples.barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
+            do {
+                sys = try sys.evolve(iterations: 6)
+            } catch {}
+            return sys
+        }
+    }
+
 
 }
