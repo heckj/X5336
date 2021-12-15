@@ -8,7 +8,7 @@
 import CoreGraphics
 import SwiftUI
 
-public struct PathState {
+struct PathState {
     var angle: Double
     var position: CGPoint
     var lineWidth: Double
@@ -28,11 +28,6 @@ public struct LSystemCGRenderer {
 
     public init(unitLength: Double = 1) {
         initialState = PathState()
-        self.unitLength = unitLength
-    }
-
-    public init(initialState: PathState, unitLength: Double) {
-        self.initialState = initialState
         self.unitLength = unitLength
     }
 
