@@ -35,9 +35,9 @@ public struct Lsystem2DView: View {
 struct Lsystem2DView_Previews: PreviewProvider {
     static let renderer = LSystemCGRenderer()
     static func provideLSystemState() -> [Module] {
-        var tree = Lindenmayer.Examples.fractalTree
+        let tree = Lindenmayer.Examples.fractalTree
         do {
-            return try tree.evolve(iterations: 3)
+            return try tree.evolve(iterations: 3).state
         } catch {
             return []
         }

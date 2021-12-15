@@ -4,7 +4,7 @@ import XCTest
 final class LSystemTests: XCTestCase {
 
     func testLSystemDefault() throws {
-        var x = LSystem(Lindenmayer.Modules.internode)
+        let x = LSystem(Lindenmayer.Modules.internode)
         XCTAssertNotNil(x)
         
         let result = x.state
@@ -14,64 +14,62 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(result[0].render2D, [.draw(10)])
         XCTAssertEqual(result[0].render3D, [.ignore])
         
-        try x.evolve()
-        XCTAssertEqual(x.state.count, 1)
-        let downcast = x.state[0] as! Lindenmayer.Modules.Internode
+        let updated = try x.evolve()
+        XCTAssertEqual(updated.state.count, 1)
+        let downcast = updated.state[0] as! Lindenmayer.Modules.Internode
         XCTAssertEqual(downcast.description, "I")
     }
 
     func testAlgaeLSystem_evolve1() throws {
-        var algae = Lindenmayer.Examples.algae
+        let algae = Lindenmayer.Examples.algae
         XCTAssertNotNil(algae)
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
 
-        try algae.evolve(debugPrint: true)
-        XCTAssertEqual(algae.state.count, 2)
+        let iter1 = try algae.evolve() //debugPrint: true
+        XCTAssertEqual(iter1.state.count, 2)
 
-        XCTAssertEqual(algae.state[0].description, "A")
-        XCTAssertEqual(algae.state[1].description, "B")
+        XCTAssertEqual(iter1.state[0].description, "A")
+        XCTAssertEqual(iter1.state[1].description, "B")
 
-        let resultSequence = algae.state.map { $0.description }.joined()
+        let resultSequence = iter1.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
     }
 
     func testAlgaeLSystem_evolve2() throws {
         var resultSequence = ""
-        var algae = Lindenmayer.Examples.algae
-        try algae.evolve()
-        resultSequence = algae.state.map { $0.description }.joined()
+        let algae = Lindenmayer.Examples.algae
+        let iter2 = try algae.evolve()
+        resultSequence = iter2.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
-        try algae.evolve() // debugPrint: true
-        resultSequence = algae.state.map { $0.description }.joined()
+        let iter3 = try iter2.evolve() // debugPrint: true
+        resultSequence = iter3.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABA")
     }
 
     func testAlgaeLSystem_evolve3() throws {
         var resultSequence = ""
-        var algae = Lindenmayer.Examples.algae
-        try algae.evolve()
-        try algae.evolve()
-        try algae.evolve()
-        resultSequence = algae.state.map { $0.description }.joined()
+        let algae = Lindenmayer.Examples.algae
+        let evolution = try algae.evolve(iterations: 3)
+        resultSequence = evolution.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABAAB")
-        try algae.evolve()
-        resultSequence = algae.state.map { $0.description }.joined()
+        let evolution2 = try evolution.evolve()
+        resultSequence = evolution2.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABAABABA")
     }
 
     func testFractalTree_evolve2() throws {
-        var algae = Lindenmayer.Examples.fractalTree
-        try algae.evolve()
-        XCTAssertEqual(algae.state.map { $0.description }.joined(), "I[-L]+L")
-        try algae.evolve()
-        XCTAssertEqual(algae.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
+        let tree = Lindenmayer.Examples.fractalTree
+        let evo1 = try tree.evolve()
+        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[-L]+L")
+        let evo2 = try evo1.evolve()
+        XCTAssertEqual(evo2.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
     }
 
     func testFractalTree_rendering2() throws {
-        var tree = Lindenmayer.Examples.fractalTree
-        try tree.evolve(iterations: 2)
-        XCTAssertEqual(tree.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
+        let tree = Lindenmayer.Examples.fractalTree
+        let evo1 = try tree.evolve(iterations: 2)
+        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
         
         let path: CGPath = LSystemCGRenderer().path(modules: tree.state)
         print(path)

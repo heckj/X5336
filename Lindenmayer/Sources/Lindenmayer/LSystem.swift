@@ -11,7 +11,6 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem {
-    let axiom: [Module]
     let rules: [Rule] // consider making this 'var' and allowing rules to be added after the LSystem is instantiated...
     
     // TODO(heckj): enable global variables/parameters that get injected for consumption within the rule evaluation closures.
@@ -30,7 +29,6 @@ public struct LSystem {
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: Module, rules:[Rule] = []) {
-        self.axiom = [axiom]
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = [axiom]
@@ -42,45 +40,43 @@ public struct LSystem {
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: [Module], rules:[Rule] = []) {
-        self.axiom = axiom
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = axiom
         self.rules = rules
     }
 
-    @discardableResult
     /// Updates the state of the Lindenmayer system.
     ///
     /// The Lindermayer system iterates through the rules provided, applying the first rule that matches the state from the rule to the current state of the system.
     /// When applying the rule, the element that matched is replaced with what the rule returns from ``Rule/produce``.
     /// The types of errors that may be thrown is defined by any errors referenced and thrown within the set of rules you provide.
-    /// - Returns: An updated state for the Lindenmayer system.
-    public mutating func evolve(iterations: Int = 1, debugPrint: Bool = false) throws -> [Module] {
+    /// - Returns: An updated Lindenmayer system.
+    public func evolve(iterations: Int = 1, debugPrint: Bool = false) throws -> LSystem {
         // Performance is O(n)(z) with the (n) number of atoms in the state and (z) number of rules to apply.
         // TODO(heckj): revisit this with async methods in mind, creating tasks for each iteration
         // in order to run the whole suite of the state in parallel for a new result. Await the whole
         // kit for a final resolution.
-        
+        var currentState: [Module] = state
         for iter in 0..<iterations {
+            var newState: [Module] = []
             if debugPrint {
-                print("Iteration: \(iter)")
+                print("Iteration #\(iter)")
             }
             
             if debugPrint {
-                print("Initial state: \(self.state.map { $0.description }.joined())")
+                print("Initial state: \(currentState.map { $0.description }.joined())")
             }
-            var newState: [Module] = []
-            for index in 0 ..< state.count {
+            for index in 0 ..< currentState.count {
                 let leftInstance: Module?
                 let leftInstanceType: Module.Type?
-                let strictInstance: Module = state[index]
+                let strictInstance: Module = currentState[index]
                 let strictInstanceType: Module.Type = type(of: strictInstance)
                 let rightInstance: Module?
                 let rightInstanceType: Module.Type?
                 
                 if index - 1 > 0 {
-                    leftInstance = state[index - 1]
+                    leftInstance = currentState[index - 1]
                     if let unwrappedLeftInstance = leftInstance {
                         leftInstanceType = type(of: unwrappedLeftInstance)
                     } else {
@@ -91,8 +87,8 @@ public struct LSystem {
                     leftInstanceType = nil
                 }
                 
-                if state.count > index + 1 {
-                    rightInstance = state[index + 1]
+                if currentState.count > index + 1 {
+                    rightInstance = currentState[index + 1]
                     if let unwrappedRightInstance = rightInstance {
                         rightInstanceType = type(of: unwrappedRightInstance)
                     } else {
@@ -126,8 +122,9 @@ public struct LSystem {
                     newState.append(strictInstance)
                 }
             }
-            _state = newState
+            // update the current state for the next iteration of processing
+            currentState = newState
         }
-        return self._state
+        return LSystem(currentState, rules: self.rules)
     }
 }
