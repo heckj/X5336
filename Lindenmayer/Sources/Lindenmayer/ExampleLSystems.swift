@@ -35,13 +35,13 @@ public extension Examples {
     
     struct Leaf: Module {
         public var name = "L"
-        public var render2D: RenderCommand = .draw(5.0) // would be neat to make this green...
+        public var render2D: [RenderCommand] = [.draw(5.0)] // would be neat to make this green...
     }
     static var leaf = Leaf()
     
     struct Stem: Module {
         public var name = "I"
-        public var render2D: RenderCommand = .draw(10.0) // would be neat to make this green...
+        public var render2D: [RenderCommand] = [.draw(10.0)] // would be neat to make this green...
     }
     static var stem = Stem()
 
@@ -67,38 +67,59 @@ public extension Examples {
     // to enable this, I need to support an axiom of more than a single module, and a decomposition step
     // so that each rule could produce a sequence of draw commands, not just a single one.
     
-    /*
-     
-     variables : F G
-     constants : + −
-     start  : F−G−G
-     rules  : (F → F−G+F+G−F), (G → GG)
-     angle  : 120°
-     Here, F means "draw forward", G means "draw forward", + means "turn left by angle", and − means "turn right by angle".
-     
-     Sierpinski Arrowhead Curve:
-     
-     variables : A B
-     constants : + −
-     start  : A
-     rules  : (A → B−A−B), (B → A+B+A)
-     angle  : 60°
-     Here, A and B both mean "draw forward", + means "turn left by angle", and − means "turn right by angle" (see turtle graphics).
-     */
-    static var sierpinskiTriangle = LSystem(Modules.Draw(10), rules: [
-        ConcreteRule(Modules.Draw.self, { _, _, _ in
-            [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
-        })
-    ])
+    struct F: Module {
+        public var name = "F"
+        public var render2D: [RenderCommand] = [.draw(10.0)]
+    }
+    static var f = F()
+    
+    struct G: Module {
+        public var name = "G"
+        public var render2D: [RenderCommand] = [.draw(10.0)]
+    }
+    static var g = G()
+
+    static var sierpinskiTriangle = LSystem(
+        [f,Modules.TurnRight(120),g,Modules.TurnRight(120),g,Modules.TurnRight(120)],
+        rules: [
+            ConcreteRule(F.self, { _, _, _ in
+                [f,Modules.TurnRight(120),g,Modules.TurnLeft(120),f,Modules.TurnLeft(120),g,Modules.TurnRight(120),f]
+            }),
+            ConcreteRule(G.self, { _, _, _ in
+                [g,g]
+            })
+        ]
+    )
     
     // - MARK: dragon curve example
 
-    /*
-     variables : F G
-     constants : + −
-     start  : F
-     rules  : (F → F+G), (G → F-G)
-     angle  : 90°
-     Here, F and G both mean "draw forward", + means "turn left by angle", and − means "turn right by angle".
-     */
+    static var dragonCurve = LSystem(f,
+        rules: [
+            ConcreteRule(F.self, { _, _, _ in
+                [f,Modules.TurnLeft(90),g]
+            }),
+            ConcreteRule(G.self, { _, _, _ in
+                [f,Modules.TurnRight(90),g]
+            })
+        ]
+    )
+
+    // - MARK: Barnsley fern example
+    struct X: Module {
+        public var name = "X"
+        public var render2D: [RenderCommand] = [.ignore]
+    }
+    static var x = X()
+    
+    static var barnsleyFern = LSystem(x,
+        rules: [
+            ConcreteRule(X.self, { _, _, _ in
+                [f,Modules.TurnLeft(25),Modules.branch,Modules.branch,x,Modules.endbranch,Modules.TurnRight(25),x,Modules.endbranch,Modules.TurnRight(25),f,Modules.branch,Modules.TurnRight(25),f,x,Modules.endbranch,Modules.TurnLeft(25),x]
+            }),
+            ConcreteRule(F.self, { _, _, _ in
+                [f,f]
+            })
+        ]
+    )
+
 }

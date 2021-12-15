@@ -6,6 +6,12 @@ final class LindenmayerTests: XCTestCase {
 
     func testBuiltins() {
         XCTAssertNotNil(Lindenmayer.Modules.internode)
+        XCTAssertNotNil(Lindenmayer.Modules.draw)
+        XCTAssertNotNil(Lindenmayer.Modules.move)
+        XCTAssertNotNil(Lindenmayer.Modules.branch)
+        XCTAssertNotNil(Lindenmayer.Modules.endbranch)
+        XCTAssertNotNil(Lindenmayer.Modules.turnleft)
+        XCTAssertNotNil(Lindenmayer.Modules.turnright)
     }
     
     func testModuleFoo() {

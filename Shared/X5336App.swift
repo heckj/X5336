@@ -19,9 +19,9 @@ struct X5336App: App {
     let renderer = LSystemCGRenderer()
     
     func provideLSystemState() -> [Module] {
-        var tree = Lindenmayer.Examples.kochCurve
+        var tree = Lindenmayer.Examples.barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
         do {
-            try tree.evolve(iterations: 5)
+            try tree.evolve(iterations: 6)
         } catch {}
         return tree.state
     }

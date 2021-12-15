@@ -11,7 +11,7 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem {
-    let axiom: Module
+    let axiom: [Module]
     let rules: [Rule] // consider making this 'var' and allowing rules to be added after the LSystem is instantiated...
     
     // TODO(heckj): enable global variables/parameters that get injected for consumption within the rule evaluation closures.
@@ -25,18 +25,30 @@ public struct LSystem {
         }
     }
     
-    /// Creates a new Lindenmayer system from the axiom and rules you provide.
+    /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
     public init(_ axiom: Module, rules:[Rule] = []) {
-        self.axiom = axiom
+        self.axiom = [axiom]
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = [axiom]
         self.rules = rules
     }
-    
+
+    /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
+    /// - Parameters:
+    ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
+    ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
+    public init(_ axiom: [Module], rules:[Rule] = []) {
+        self.axiom = axiom
+        // Using [axiom] instead of [] ensures that we always have a state
+        // environment that can be evolved based on the rules available.
+        _state = axiom
+        self.rules = rules
+    }
+
     @discardableResult
     /// Updates the state of the Lindenmayer system.
     ///
