@@ -9,21 +9,11 @@ import Lindenmayer
 import SwiftUI
 
 public struct Lsystem2DView: View {
-    //    let cgpath: CGPath
     let modules: [Module]
     static let renderer = LSystemCGRenderer()
     public var body: some View {
         Canvas { context, size in
-            // context provided is a SwiftUI GraphicsContext
-            //            context.withCGContext { cgctx in
-            //                // cgctx is a CoreGraphics.Context
-            //                cgctx.addPath(path)
-            //                cgctx.setStrokeColor(CGColor.black)
-            //                cgctx.setLineWidth(1.0)
-            //                cgctx.strokePath()
-            //
-            //                print(size)
-            //            }
+//            renderer.draw(<#T##lsystem: LSystem##LSystem#>, into: context, ofSize: size)
             let canvasRect = CGRect(origin: CGPoint(), size: size)
             let path = Lsystem2DView.renderer.path(modules: modules, forRect: canvasRect)
             context.stroke(Path(path),

@@ -6,18 +6,19 @@
 //
 
 import CoreGraphics
+import SwiftUI
 
 public struct PathState {
     var angle: Double
     var position: CGPoint
+    var lineWidth: Double
+    var lineColor: CGColor
 
-    public init() {
-        self.init(0, .zero)
-    }
-
-    public init(_ angle: Double, _ position: CGPoint) {
+    public init(_ angle: Double = 0, _ position: CGPoint = .zero, _ lineWidth: Double = 1.0, _ lineColor: CGColor = .black) {
         self.angle = angle
         self.position = position
+        self.lineWidth = lineWidth
+        self.lineColor = lineColor
     }
 }
 
@@ -35,6 +36,28 @@ public struct LSystemCGRenderer {
         self.unitLength = unitLength
     }
 
+    public func draw(_ lsystem: LSystem, into context: GraphicsContext, ofSize size: CGSize) {
+        // context provided is a SwiftUI GraphicsContext
+        //            context.withCGContext { cgctx in
+        //                // cgctx is a CoreGraphics.Context
+        //                cgctx.addPath(path)
+        //                cgctx.setStrokeColor(CGColor.black)
+        //                cgctx.setLineWidth(1.0)
+        //                cgctx.strokePath()
+        //
+        //                print(size)
+        //            }
+        let canvasRect = CGRect(origin: CGPoint(), size: size)
+        let path = path(modules: lsystem.state, forRect: canvasRect)
+        context.stroke(Path(path),
+                       with: GraphicsContext.Shading.color(Color.green))
+    }
+    
+    /// Returns a Core Graphics path representing the set of modules, ignoring line weights and colors.
+    /// - Parameters:
+    ///   - modules: The modules that make up the state of an LSystem.
+    ///   - destinationRect: An optional rectangle that, if provided, the path will be scaled into.
+    /// - Returns: The path that draws the 2D representation of the provided LSystem modules.
     public func path(modules: [Module], forRect destinationRect: CGRect? = nil) -> CGPath {
         let path = CGMutablePath()
         path.move(to: CGPoint(x: 0, y: 0))
@@ -63,6 +86,10 @@ public struct LSystemCGRenderer {
                     currentState = state.removeLast()
                     path.move(to: currentState.position)
                 case .ignore:
+                    break
+                case .setLineWidth(_):
+                    break
+                case .setLineColor(_):
                     break
                 }
             }

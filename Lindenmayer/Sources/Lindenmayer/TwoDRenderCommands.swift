@@ -35,5 +35,7 @@ public enum TwoDRenderCommand : Equatable {
     case turn(TurnDirection, Double = 90)
     case saveState // "["
     case restoreState // "]"
+    case setLineWidth(Double = 1.0)
+    case setLineColor(CGColor = CGColor.black)
     case ignore
 }
