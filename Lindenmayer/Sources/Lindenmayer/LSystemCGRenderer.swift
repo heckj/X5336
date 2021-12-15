@@ -67,7 +67,7 @@ public struct LSystemCGRenderer {
                         with: GraphicsContext.Shading.color(Color(currentState.lineColor)),
                         lineWidth: currentState.lineWidth)
                 case let .turn(direction, angle):
-                    currentState = calculateState(currentState, angle: angle, direction: direction)
+                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
                 case .saveState:
                     state.append(currentState)
                 case .restoreState:
@@ -109,7 +109,7 @@ public struct LSystemCGRenderer {
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.addLine(to: currentState.position)
                 case let .turn(direction, angle):
-                    currentState = calculateState(currentState, angle: angle, direction: direction)
+                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
                 case .saveState:
                     state.append(currentState)
                 case .restoreState:
@@ -163,7 +163,7 @@ public struct LSystemCGRenderer {
         return PathState(state.angle, CGPoint(x: x, y: y))
     }
 
-    func calculateState(_ state: PathState, angle: Double, direction: TurnDirection)
+    func updatedStateByTurning(_ state: PathState, angle: Double, direction: TurnDirection)
         -> PathState
     {
         if direction == .left {
