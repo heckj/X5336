@@ -42,10 +42,45 @@ public struct LSystemCGRenderer {
         //
         //                print(size)
         //            }
-        let canvasRect = CGRect(origin: CGPoint(), size: size)
-        let path = path(modules: lsystem.state, forRect: canvasRect)
-        context.stroke(Path(path),
-                       with: GraphicsContext.Shading.color(Color.green))
+
+        
+
+        var state: [PathState] = []
+        var currentState = initialState
+
+        for module in lsystem.state {
+            for cmd in module.render2D {
+                switch cmd {
+                case .bend:
+                    break
+                case .roll:
+                    break
+                case .move(let distance):
+                    currentState = calculateState(currentState, distance: unitLength * distance)
+                case .draw(let distance):
+                    let path = CGMutablePath()
+                    path.move(to: currentState.position)
+                    currentState = calculateState(currentState, distance: unitLength * distance)
+                    path.addLine(to: currentState.position)
+                    context.stroke(
+                        Path(path),
+                        with: GraphicsContext.Shading.color(Color(currentState.lineColor)),
+                        lineWidth: currentState.lineWidth)
+                case let .turn(direction, angle):
+                    currentState = calculateState(currentState, angle: angle, direction: direction)
+                case .saveState:
+                    state.append(currentState)
+                case .restoreState:
+                    currentState = state.removeLast()
+                case .ignore:
+                    break
+                case .setLineWidth(_):
+                    break
+                case .setLineColor(_):
+                    break
+                }
+            }
+        }
     }
     
     /// Returns a Core Graphics path representing the set of modules, ignoring line weights and colors.
