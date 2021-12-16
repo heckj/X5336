@@ -1,5 +1,5 @@
 //
-//  LSystemCGRenderer.swift
+//  GraphicsContextRenderer.swift
 //  X5336
 //
 //  Created by Joseph Heck on 12/12/21.
@@ -26,7 +26,7 @@ struct PathState {
     }
 }
 
-public struct CoreGraphicsRenderer {
+public struct GraphicsContextRenderer {
     let unitLength: Double
 
     public init(unitLength: Double = 1) {
@@ -125,6 +125,9 @@ public struct CoreGraphicsRenderer {
                 minX = min(currentState.position.x, minX)
                 maxY = max(currentState.position.y, maxY)
                 maxX = max(currentState.position.x, maxX)
+                // print("current location: [\(currentState.position.x), \(currentState.position.y)]")
+                // print("Minimums: [\(minX), \(minY)]")
+                // print("Maximums: [\(maxX), \(maxY)]")
             }
         }
         return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)

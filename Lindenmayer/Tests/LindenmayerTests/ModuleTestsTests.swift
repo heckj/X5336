@@ -2,7 +2,7 @@
 import Lindenmayer
 import XCTest
 
-final class LindenmayerTests: XCTestCase {
+final class ModuleTests: XCTestCase {
 
     func testBuiltins() {
         XCTAssertNotNil(Lindenmayer.Modules.internode)

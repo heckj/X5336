@@ -66,14 +66,11 @@ final class LSystemTests: XCTestCase {
         XCTAssertEqual(evo2.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
     }
 
-    func testFractalTree_rendering2() throws {
-        let tree = Lindenmayer.Examples.fractalTree
-        let evo1 = try tree.evolve(iterations: 2)
-        XCTAssertEqual(evo1.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
-        
-        let path: CGRect = CoreGraphicsRenderer().calcBoundingRect(system: tree)
-        print(path)
-//        XCTAssertEqual(path.boundingBoxOfPath, CGRect(x: 0, y: 0, width: 2.70711, height: 1.70711))
+    func testLSystem_kochCurve() throws {
+        let tree = Lindenmayer.Examples.kochCurve
+        let evo1 = try tree.evolve(iterations: 3)
+        XCTAssertEqual(evo1.state.map { $0.description }.joined(),
+                       "F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F")
     }
 
 }
