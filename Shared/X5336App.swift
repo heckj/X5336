@@ -15,18 +15,10 @@ struct X5336App: App {
 //        DocumentGroup(newDocument: X5336Document()) { file in
 //            ContentView(document: file.$document)
 //        }
-//    }
-    func provideLSystemState() -> LSystem {
-        var sys = Lindenmayer.Examples.fractalTree //barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
-        do {
-            sys = try sys.evolve(iterations: 6)
-        } catch {}
-        return sys
-    }
-    
+//    }    
     var body: some Scene {
         WindowGroup {
-            ContentView(system: provideLSystemState())
+            DynamicLSystemView()
         }
     }
 }

@@ -19,6 +19,8 @@
 		1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5425EAB9E300E51CE2 /* ContentView.swift */; };
 		1A506E8225EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
 		1A506E8325EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
+		1AD04C21276AD948007EA5DB /* DynamicLSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */; };
+		1AD04C22276AD948007EA5DB /* DynamicLSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */; };
 		1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
 		1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,7 @@
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
+		1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLSystemView.swift; sourceTree = "<group>"; };
 		1ADA96A22766A45B0085162B /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindenmayer; sourceTree = "<group>"; };
 		1ADA96A72766A4F50085162B /* Lsystem2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem2DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
+				1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
 				1ADA96A72766A4F50085162B /* Lsystem2DView.swift */,
@@ -366,6 +370,7 @@
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
+				1AD04C21276AD948007EA5DB /* DynamicLSystemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +382,7 @@
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
+				1AD04C22276AD948007EA5DB /* DynamicLSystemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

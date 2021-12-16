@@ -71,7 +71,7 @@ final class LSystemTests: XCTestCase {
         let evo1 = try tree.evolve(iterations: 2)
         XCTAssertEqual(evo1.state.map { $0.description }.joined(), "II[-I[-L]+L]+I[-L]+L")
         
-        let path: CGPath = LSystemCGRenderer().path(modules: tree.state)
+        let path: CGRect = CoreGraphicsRenderer().calcBoundingRect(system: tree)
         print(path)
 //        XCTAssertEqual(path.boundingBoxOfPath, CGRect(x: 0, y: 0, width: 2.70711, height: 1.70711))
     }

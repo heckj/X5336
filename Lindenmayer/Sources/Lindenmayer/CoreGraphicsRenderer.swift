@@ -15,7 +15,7 @@ struct PathState {
     var lineColor: CGColor
 
     init() {
-        self.init(-90, .zero, 1.0, .black)
+        self.init(-90, .zero, 1.0, CGColor.init(gray: 0.0, alpha: 1.0))
     }
     
     init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: CGColor) {

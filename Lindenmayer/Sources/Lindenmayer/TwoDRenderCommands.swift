@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 // MARK: - RENDERING/REPRESENTATION -
 
@@ -36,6 +37,6 @@ public enum TwoDRenderCommand : Equatable {
     case saveState // "["
     case restoreState // "]"
     case setLineWidth(Double = 1.0)
-    case setLineColor(CGColor = CGColor.black)
+    case setLineColor(CGColor = CGColor(gray: 0.0, alpha: 1.0))
     case ignore
 }
