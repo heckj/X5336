@@ -24,8 +24,12 @@ public struct RuntimeError<T:Module>: Error {
 
 public struct Rule: CustomStringConvertible {
     
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
+    public typealias multiMatchProducesSingleModule = (Module?, Module, Module?) throws -> Module
+    public typealias singleMatchProducesList = (Module) throws -> [Module]
+    
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
-    public let produce: (Module?, Module, Module?) throws -> [Module]
+    public let produce: multiMatchProducesModuleList
     
     /// The L-system uses the types of these modules to determine is this rule should be applied and re-write the current state.
     public let matchset: (Module.Type?, Module.Type, Module.Type?)
@@ -40,7 +44,7 @@ public struct Rule: CustomStringConvertible {
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produces: @escaping (Module?, Module, Module?) throws -> [Module]) {
+    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produces: @escaping multiMatchProducesModuleList) {
         matchset = (left, direct, right)
         produce = produces
     }
@@ -51,7 +55,7 @@ public struct Rule: CustomStringConvertible {
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceSingle: @escaping (Module?, Module, Module?) throws -> Module) {
+    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceSingle: @escaping multiMatchProducesSingleModule) {
         matchset = (left, direct, right)
         produce = { left, direct, right -> [Module] in
             // converts the function that returns a single module into one that
@@ -65,15 +69,18 @@ public struct Rule: CustomStringConvertible {
     /// - Parameters:
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ direct: Module.Type, _ produces: @escaping (Module?, Module, Module?) throws -> [Module]) {
-        self.init(nil, direct, nil, produces)
+    public init(_ direct: Module.Type, _ singleModuleProduce: @escaping singleMatchProducesList) {
+        matchset = (nil, direct, nil)
+        produce = { left, direct, right -> [Module] in
+            return try singleModuleProduce(direct)
+        }
     }
 
     /// Creates a new rule to match the state element you provide along with a closures that results in a single state element.
     /// - Parameters:
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ direct: Module.Type, _ produceSingle: @escaping (Module?, Module, Module?) throws -> Module) {
+    public init(_ direct: Module.Type, _ produceSingle: @escaping multiMatchProducesSingleModule) {
         self.init(nil, direct, nil, produceSingle)
     }
 
