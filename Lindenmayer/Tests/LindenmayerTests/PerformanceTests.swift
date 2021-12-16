@@ -23,5 +23,21 @@ final class PerformanceTests: XCTestCase {
             } catch {}
         }
     }
-
+    
+    func X_testPerfBoundingRectCalc()  {
+        let evo1: LSystem?
+        do {
+            // 20.675 seconds
+            let tree = Lindenmayer.Examples.barnsleyFern
+            evo1 = try tree.evolve(iterations: 10)
+            XCTAssertNotNil(evo1)
+        } catch {
+            evo1 = nil
+        }
+        self.measure() {
+            // 9.9 seconds
+            let path: CGRect = GraphicsContextRenderer().calcBoundingRect(system: evo1!)
+            print(path)
+        }
+    }
 }
