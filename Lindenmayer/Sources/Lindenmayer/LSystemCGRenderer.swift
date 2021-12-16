@@ -15,7 +15,7 @@ struct PathState {
     var lineColor: CGColor
 
     init() {
-        self.init(0, .zero, 1.0, .black)
+        self.init(-90, .zero, 1.0, .black)
     }
     
     init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: CGColor) {
@@ -27,17 +27,29 @@ struct PathState {
 }
 
 public struct LSystemCGRenderer {
-    let initialState: PathState
     let unitLength: Double
 
     public init(unitLength: Double = 1) {
-        initialState = PathState()
         self.unitLength = unitLength
     }
 
-    public func draw(_ lsystem: LSystem, into context: GraphicsContext, ofSize size: CGSize) {
+    public func draw(_ lsystem: LSystem, into context: inout GraphicsContext, ofSize size: CGSize) {
+        // This is less pretty, because we have to process the whole damn thing to figure out the end-result
+        // size prior to running the commands... grrr.
+        let boundingBox = self.calcBoundingRect(system: lsystem)
+        //print("Bounding box of complete path: \(boundingBox)")
+
+        // Next, scale the path to fit snuggly in our path
+        let scale = min(size.width / boundingBox.width, size.height / boundingBox.height)
+        //print("Setting uniform scale factor of: \(scale)")
+        context.scaleBy(x: scale, y: scale)
+
+        // Translate the context based on the bounding box minimums
+        context.translateBy(x: -boundingBox.minX, y: -boundingBox.minY)
+        //print("translating x by \(-boundingBox.minX) and y by \(-boundingBox.minY)")
+
         var state: [PathState] = []
-        var currentState = initialState
+        var currentState = PathState()
 
         for module in lsystem.state {
             for cmd in module.render2D {
@@ -74,6 +86,42 @@ public struct LSystemCGRenderer {
         }
     }
     
+    /// Returns a Core Graphics rectangle after processing the L-System you provide to identify the boundaries of the 2D rendering.
+    /// - Parameter system: The L-System to process.
+    /// - Returns: The CGRect that represents the boundaries of the draw commands.
+    public func calcBoundingRect(system: LSystem) -> CGRect {
+        var stateStack: [PathState] = []
+        var currentState = PathState()
+        var minY: Double = 0
+        var maxY: Double = 0
+        var minX: Double = 0
+        var maxX: Double = 0
+        
+        for module in system.state {
+            for cmd in module.render2D {
+                switch cmd {
+                case let .move(distance):
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
+                case let .draw(distance):
+                    currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
+                case let .turn(direction, angle):
+                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
+                case .saveState:
+                    stateStack.append(currentState)
+                case .restoreState:
+                    currentState = stateStack.removeLast()
+                default:
+                    break
+                }
+                minY = min(currentState.position.y, minY)
+                minX = min(currentState.position.x, minX)
+                maxY = max(currentState.position.y, maxY)
+                maxX = max(currentState.position.x, maxX)
+            }
+        }
+        return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)
+    }
+    
     /// Returns a Core Graphics path representing the set of modules, ignoring line weights and colors.
     /// - Parameters:
     ///   - modules: The modules that make up the state of an LSystem.
@@ -84,7 +132,7 @@ public struct LSystemCGRenderer {
         path.move(to: CGPoint(x: 0, y: 0))
 
         var state: [PathState] = []
-        var currentState = initialState
+        var currentState = PathState()
 
         for module in modules {
             for cmd in module.render2D {

@@ -13,11 +13,12 @@ public struct Lsystem2DView: View {
     static let renderer = LSystemCGRenderer()
     public var body: some View {
         Canvas { context, size in
-//            renderer.draw(<#T##lsystem: LSystem##LSystem#>, into: context, ofSize: size)
-            let canvasRect = CGRect(origin: CGPoint(), size: size)
-            let path = Lsystem2DView.renderer.path(modules: system.state, forRect: canvasRect)
-            context.stroke(Path(path),
-                           with: GraphicsContext.Shading.color(Color.green))
+//            print("initial size: \(size)")
+            Lsystem2DView.renderer.draw(system, into: &context, ofSize: size)
+//            let canvasRect = CGRect(origin: CGPoint(), size: size)
+//            let path = Lsystem2DView.renderer.path(modules: system.state, forRect: canvasRect)
+//            context.stroke(Path(path),
+//                           with: GraphicsContext.Shading.color(Color.green))
         }
     }
 }
