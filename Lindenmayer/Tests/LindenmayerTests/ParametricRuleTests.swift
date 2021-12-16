@@ -16,12 +16,11 @@ final class ParametricRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = Rule(ParameterizedExample.self) { (lctx, ctx, rctx) -> Module in
+        let r = Rule(ParameterizedExample.self) { (ctx) -> [Module] in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
-            return ParameterizedExample(value + 1.0)
-            
+            return [ParameterizedExample(value + 1.0)]
         }
         
         XCTAssertNotNil(r)

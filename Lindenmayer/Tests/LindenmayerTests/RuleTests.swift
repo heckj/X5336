@@ -10,12 +10,10 @@ final class RuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
             XCTAssertNotNil(ctx)
-            XCTAssertNil(lctx)
-            XCTAssertNil(rctx)
             
-            return ctx
+            return [ctx]
         }
         XCTAssertNotNil(r)
         let check = r.evaluate(nil, type(of: foo), nil)
@@ -23,40 +21,40 @@ final class RuleTests: XCTestCase {
     }
     
     func testRuleBasicMatch() throws {
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
-            return self.foo
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
+            return [self.foo]
         }
         
         XCTAssertEqual(r.evaluate(nil, Modules.Internode.self, nil), true)
     }
 
     func testRuleBasicFailMatch() throws {
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
-            return self.foo
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
+            return [self.foo]
         }
         
         XCTAssertEqual(r.evaluate(nil, Foo.self, nil), false)
     }
 
     func testRuleMatchExtraRight() throws {
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
-            return self.foo
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
+            return [self.foo]
         }
         
         XCTAssertEqual(r.evaluate(nil, Modules.Internode.self, Foo.self), true)
     }
 
     func testRuleMatchExtraLeft() throws {
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
-            return self.foo
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
+            return [self.foo]
         }
         
         XCTAssertEqual(r.evaluate(Foo.self, Modules.Internode.self, nil), true)
     }
 
     func testRuleMatchExtraLeftAndRight() throws {
-        let r = Rule(Modules.Internode.self) { (lctx, ctx, rctx) -> Module in
-            return self.foo
+        let r = Rule(Modules.Internode.self) { (ctx) -> [Module] in
+            return [self.foo]
         }
         
         XCTAssertEqual(r.evaluate(Foo.self, Modules.Internode.self, Foo.self), true)

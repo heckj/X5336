@@ -25,7 +25,6 @@ public struct RuntimeError<T:Module>: Error {
 public struct Rule: CustomStringConvertible {
     
     public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
-    public typealias multiMatchProducesSingleModule = (Module?, Module, Module?) throws -> Module
     public typealias singleMatchProducesList = (Module) throws -> [Module]
     
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
@@ -49,22 +48,6 @@ public struct Rule: CustomStringConvertible {
         produce = produces
     }
 
-    /// Creates a new rule with the extended context and closures you provide that results in a single state element.
-    /// - Parameters:
-    ///   - left: The type of the L-system state element prior to the current element that the rule evaluates.
-    ///   - direct: The type of the L-system state element that the rule evaluates.
-    ///   - right: The type of the L-system state element following the current element that the rule evaluates.
-    ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceSingle: @escaping multiMatchProducesSingleModule) {
-        matchset = (left, direct, right)
-        produce = { left, direct, right -> [Module] in
-            // converts the function that returns a single module into one that
-            // returns an array of Module
-            let result = try produceSingle(left, direct, right)
-            return [result]
-        }
-    }
-
     /// Creates a new rule to match the state element you provide along with a closures that results in a list of state elements.
     /// - Parameters:
     ///   - direct: The type of the L-system state element that the rule evaluates.
@@ -74,14 +57,6 @@ public struct Rule: CustomStringConvertible {
         produce = { left, direct, right -> [Module] in
             return try singleModuleProduce(direct)
         }
-    }
-
-    /// Creates a new rule to match the state element you provide along with a closures that results in a single state element.
-    /// - Parameters:
-    ///   - direct: The type of the L-system state element that the rule evaluates.
-    ///   - produceSingle: A closure that produces an L-system state element to use in place of the current element.
-    public init(_ direct: Module.Type, _ produceSingle: @escaping multiMatchProducesSingleModule) {
-        self.init(nil, direct, nil, produceSingle)
     }
 
     /// Determines if a rule should be evaluated while processing the individual atoms of an L-system state sequence.
