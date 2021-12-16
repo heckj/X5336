@@ -16,7 +16,7 @@ final class ParametricRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = ConcreteRule(ParameterizedExample.self) { (lctx, ctx, rctx) -> Module in
+        let r = Rule(ParameterizedExample.self) { (lctx, ctx, rctx) -> Module in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
