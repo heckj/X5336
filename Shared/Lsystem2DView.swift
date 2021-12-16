@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct Lsystem2DView: View {
     let system: LSystem
-    let renderer = LSystemCGRenderer()
+    let renderer = CoreGraphicsRenderer()
     public var body: some View {
         Canvas { context, size in
 //            print("initial size: \(size)")

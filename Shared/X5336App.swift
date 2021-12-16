@@ -17,7 +17,7 @@ struct X5336App: App {
 //        }
 //    }
     func provideLSystemState() -> LSystem {
-        var sys = Lindenmayer.Examples.barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
+        var sys = Lindenmayer.Examples.fractalTree //barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
         do {
             sys = try sys.evolve(iterations: 6)
         } catch {}

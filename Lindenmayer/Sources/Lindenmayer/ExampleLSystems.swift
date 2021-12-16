@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public enum Examples {}
 
@@ -34,14 +35,19 @@ public extension Examples {
     // - MARK: Fractal tree example
     
     struct Leaf: Module {
+        static let green = CGColor.init(red: 0.3, green: 0.56, blue: 0.0, alpha: 1.0)
         public var name = "L"
-        public var render2D: [TwoDRenderCommand] = [.draw(5.0)] // would be neat to make this green...
+        public var render2D: [TwoDRenderCommand] = [
+            .setLineWidth(3),
+            .setLineColor(green),
+            .draw(5)
+        ]
     }
     static var leaf = Leaf()
     
     struct Stem: Module {
         public var name = "I"
-        public var render2D: [TwoDRenderCommand] = [.draw(10.0)] // would be neat to make this green...
+        public var render2D: [TwoDRenderCommand] = [.draw(10)] // would be neat to make this green...
     }
     static var stem = Stem()
 

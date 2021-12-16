@@ -9,7 +9,6 @@ import Lindenmayer
 import SwiftUI
 
 struct ContentView: View {
-    let renderer = LSystemCGRenderer()
     let system: LSystem
     var body: some View {
         VStack {

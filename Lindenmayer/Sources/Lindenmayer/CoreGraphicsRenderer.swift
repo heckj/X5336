@@ -26,7 +26,7 @@ struct PathState {
     }
 }
 
-public struct LSystemCGRenderer {
+public struct CoreGraphicsRenderer {
     let unitLength: Double
 
     public init(unitLength: Double = 1) {
