@@ -34,7 +34,7 @@ public extension Examples {
     // - MARK: Fractal tree example
     
     struct Leaf: Module {
-        static let green = CGColor.init(red: 0.3, green: 0.56, blue: 0.0, alpha: 1.0)
+        static let green = ColorRepresentation(r: 0.3, g: 0.56, b: 0.0)
         public var name = "L"
         public var render2D: [TwoDRenderCommand] = [
             .setLineWidth(3),

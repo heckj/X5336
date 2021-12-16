@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 // MARK: - RENDERING/REPRESENTATION -
 
@@ -25,6 +24,32 @@ public enum BendDirection: String {
     case down = "&"
 }
 
+public struct ColorRepresentation: Equatable {
+    let red: Double
+    let green: Double
+    let blue: Double
+    let alpha: Double
+    
+    public init(r: Double, g: Double, b: Double) {
+        self.red = r
+        self.green = g
+        self.blue = b
+        self.alpha = 1.0
+    }
+    
+    public init(red: Double, green: Double, blue: Double, alpha: Double) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
+    }
+    
+    static var black: ColorRepresentation {
+        get {
+            return ColorRepresentation(r: 1, g: 1, b: 1)
+        }
+    }
+}
 // NOTE(heckj): extensions can't be extended by external developers, so
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
@@ -37,6 +62,6 @@ public enum TwoDRenderCommand : Equatable {
     case saveState // "["
     case restoreState // "]"
     case setLineWidth(Double = 1.0)
-    case setLineColor(CGColor = CGColor(gray: 0.0, alpha: 1.0))
+    case setLineColor(ColorRepresentation = ColorRepresentation(r: 1.0, g: 1.0, b: 1.0))
     case ignore
 }

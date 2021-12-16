@@ -12,17 +12,26 @@ struct PathState {
     var angle: Double
     var position: CGPoint
     var lineWidth: Double
-    var lineColor: CGColor
+    var lineColor: ColorRepresentation
 
     init() {
-        self.init(-90, .zero, 1.0, CGColor.init(gray: 0.0, alpha: 1.0))
+        self.init(-90, .zero, 1.0, ColorRepresentation.black)
     }
     
-    init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: CGColor) {
+    init(_ angle: Double, _ position: CGPoint, _ lineWidth: Double, _ lineColor: ColorRepresentation) {
         self.angle = angle
         self.position = position
         self.lineWidth = lineWidth
         self.lineColor = lineColor
+    }
+}
+
+// convenience for making a SwiftUI Color from the Color Representation struct
+extension ColorRepresentation {
+    var color: SwiftUI.Color {
+        get {
+            Color(red: self.red, green: self.green, blue: self.blue, opacity: self.alpha)
+        }
     }
 }
 
@@ -75,7 +84,7 @@ public struct GraphicsContextRenderer {
                     path.addLine(to: currentState.position)
                     context.stroke(
                         Path(path),
-                        with: GraphicsContext.Shading.color(Color(currentState.lineColor)),
+                        with: GraphicsContext.Shading.color(currentState.lineColor.color),
                         lineWidth: currentState.lineWidth)
                 case let .turn(direction, angle):
                     currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
@@ -217,7 +226,7 @@ public struct GraphicsContextRenderer {
         return PathState(state.angle, state.position, lineWidth, state.lineColor)
     }
 
-    func updatedStateWithLineColor(_ state: PathState, lineColor: CGColor) -> PathState {
+    func updatedStateWithLineColor(_ state: PathState, lineColor: ColorRepresentation) -> PathState {
         return PathState(state.angle, state.position, state.lineWidth, lineColor)
     }
 
