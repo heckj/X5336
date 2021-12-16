@@ -21,33 +21,8 @@ public struct RuntimeError<T:Module>: Error {
 }
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-public protocol Rule: CustomStringConvertible {
-    
-    /// The set of types that this rule matches.
-    var matchset:(Module.Type?, Module.Type, Module.Type?) {
-        get
-    }
-    
-    /// A closure that you provide which defines the modules to provide in place of the evaluated module.
-    var produce: (Module?, Module, Module?) throws -> [Module] {
-        get
-    }
-    
-    /// Returns a Boolean value that indicates whether the rule matches the context provided.
-    func evaluate(_ leftCtx: Module.Type?, _ directCtx: Module.Type, _ rightCtx: Module.Type?) -> Bool
-    
-    // ?? do I need 'init' on the protocol as well?
-}
 
-extension Rule {
-    /// A description of the rule that details what it matches
-    public var description: String {
-        return "Rule[matching \(matchset)]"
-    }
-}
-
-/// A concrete implementation of Rule
-public struct ConcreteRule: Rule {
+public struct Rule: CustomStringConvertible {
     
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produce: (Module?, Module, Module?) throws -> [Module]
@@ -139,4 +114,12 @@ public struct ConcreteRule: Rule {
                 
         return leftmatch && rightmatch
     }
+    
+    // - MARK: CustomStringConvertable
+    
+    /// A description of the rule that details what it matches
+    public var description: String {
+        return "Rule[matching \(matchset)]"
+    }
+
 }

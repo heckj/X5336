@@ -23,10 +23,10 @@ public extension Examples {
     static var b = B()
 
     static var algae = LSystem(a, rules: [
-        ConcreteRule(A.self, { _, _, _ in
+        Rule(A.self, { _, _, _ in
             [a,b]
         }),
-        ConcreteRule(B.self, { _, _, _ in
+        Rule(B.self, { _, _, _ in
             [a]
         })
     ])
@@ -51,10 +51,10 @@ public extension Examples {
     static var stem = Stem()
 
     static var fractalTree = LSystem(leaf, rules: [
-        ConcreteRule(Leaf.self, { _, _, _ in
+        Rule(Leaf.self, { _, _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
         }),
-        ConcreteRule(Stem.self, { _, _, _ in
+        Rule(Stem.self, { _, _, _ in
             [stem, stem]
         })
     ])
@@ -62,7 +62,7 @@ public extension Examples {
     // - MARK: Koch curve example
     
     static var kochCurve = LSystem(Modules.Draw(10), rules: [
-        ConcreteRule(Modules.Draw.self, { _, _, _ in
+        Rule(Modules.Draw.self, { _, _, _ in
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         })
     ])
@@ -87,10 +87,10 @@ public extension Examples {
     static var sierpinskiTriangle = LSystem(
         [f,Modules.TurnRight(120),g,Modules.TurnRight(120),g,Modules.TurnRight(120)],
         rules: [
-            ConcreteRule(F.self, { _, _, _ in
+            Rule(F.self, { _, _, _ in
                 [f,Modules.TurnRight(120),g,Modules.TurnLeft(120),f,Modules.TurnLeft(120),g,Modules.TurnRight(120),f]
             }),
-            ConcreteRule(G.self, { _, _, _ in
+            Rule(G.self, { _, _, _ in
                 [g,g]
             })
         ]
@@ -100,10 +100,10 @@ public extension Examples {
 
     static var dragonCurve = LSystem(f,
         rules: [
-            ConcreteRule(F.self, { _, _, _ in
+            Rule(F.self, { _, _, _ in
                 [f,Modules.TurnLeft(90),g]
             }),
-            ConcreteRule(G.self, { _, _, _ in
+            Rule(G.self, { _, _, _ in
                 [f,Modules.TurnRight(90),g]
             })
         ]
@@ -118,10 +118,10 @@ public extension Examples {
     
     static var barnsleyFern = LSystem(x,
         rules: [
-            ConcreteRule(X.self, { _, _, _ in
+            Rule(X.self, { _, _, _ in
                 [f,Modules.TurnLeft(25),Modules.branch,Modules.branch,x,Modules.endbranch,Modules.TurnRight(25),x,Modules.endbranch,Modules.TurnRight(25),f,Modules.branch,Modules.TurnRight(25),f,x,Modules.endbranch,Modules.TurnLeft(25),x]
             }),
-            ConcreteRule(F.self, { _, _, _ in
+            Rule(F.self, { _, _, _ in
                 [f,f]
             })
         ]
