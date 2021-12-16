@@ -7,10 +7,6 @@
 
 import Foundation
 
-//public enum RuleFailure: Error {
-//    case downcastFailure(m: Module) = "Error downcasting Module[]"
-//}
-
 public struct RuntimeError<T:Module>: Error {
     let message: String
 
@@ -44,7 +40,6 @@ public protocol Rule: CustomStringConvertible {
 }
 
 extension Rule {
-    
     /// A description of the rule that details what it matches
     public var description: String {
         return "Rule[matching \(matchset)]"

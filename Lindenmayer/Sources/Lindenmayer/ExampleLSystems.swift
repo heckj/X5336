@@ -1,6 +1,5 @@
 //
 //  ExampleLSystems.swift
-//  
 //
 //  Created by Joseph Heck on 12/14/21.
 //
@@ -130,7 +129,7 @@ public extension Examples {
     
     static var barnsleyFarmEvolved: LSystem {
         get {
-            var sys = Lindenmayer.Examples.barnsleyFern //dragonCurve //sierpinskiTriangle //kochCurve
+            var sys = Lindenmayer.Examples.barnsleyFern
             do {
                 sys = try sys.evolve(iterations: 6)
             } catch {}
