@@ -11,7 +11,7 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem {
-    let rules: [Rule] // consider making this 'var' and allowing rules to be added after the LSystem is instantiated...
+    public let rules: [Rule] // consider making this 'var' and allowing rules to be added after the LSystem is instantiated...
     
     // TODO(heckj): enable global variables/parameters that get injected for consumption within the rule evaluation closures.
     // maybe call it "constants", maybe "globals", maybe "parameters" or "evolution parameters"

@@ -12,9 +12,11 @@ public struct Lsystem2DView: View {
     let system: LSystem
     let renderer = GraphicsContextRenderer()
     public var body: some View {
-        Canvas { context, size in
-//            print("initial size: \(size)")
-            renderer.draw(system, into: &context, ofSize: size)
+        VStack {
+            LSystemMetrics(system: system)
+            Canvas { context, size in
+                renderer.draw(system, into: &context, ofSize: size)
+            }
         }
     }
 }

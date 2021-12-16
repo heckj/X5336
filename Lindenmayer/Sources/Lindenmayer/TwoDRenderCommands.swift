@@ -46,7 +46,7 @@ public struct ColorRepresentation: Equatable {
     
     static var black: ColorRepresentation {
         get {
-            return ColorRepresentation(r: 1, g: 1, b: 1)
+            return ColorRepresentation(r: 0, g: 0, b: 0)
         }
     }
 }
@@ -62,6 +62,6 @@ public enum TwoDRenderCommand : Equatable {
     case saveState // "["
     case restoreState // "]"
     case setLineWidth(Double = 1.0)
-    case setLineColor(ColorRepresentation = ColorRepresentation(r: 1.0, g: 1.0, b: 1.0))
+    case setLineColor(ColorRepresentation = ColorRepresentation(r: 0.0, g: 0.0, b: 0.0))
     case ignore
 }
