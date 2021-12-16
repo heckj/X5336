@@ -32,22 +32,30 @@ public struct LSystemCGRenderer {
     public init(unitLength: Double = 1) {
         self.unitLength = unitLength
     }
+    
+    /// Draws the L-System into the provided GraphicsContext.
+    ///
+    /// - Parameters:
+    ///   - lsystem: The L-System to draw.
+    ///   - context: The SwiftUI graphics context into which to draw.
+    ///   - size: The optional size of the available graphics context. If provided, the function pre-calculates the size of the rendered L-system and adjusts the drawing to fill the space available.
+    public func draw(_ lsystem: LSystem, into context: inout GraphicsContext, ofSize size: CGSize? = nil) {
+        if let size = size {
+            // This is less pretty, because we have to process the whole damn thing to figure out the end-result
+            // size prior to running the commands... grrr.
+            let boundingBox = self.calcBoundingRect(system: lsystem)
+            //print("Bounding box of complete path: \(boundingBox)")
 
-    public func draw(_ lsystem: LSystem, into context: inout GraphicsContext, ofSize size: CGSize) {
-        // This is less pretty, because we have to process the whole damn thing to figure out the end-result
-        // size prior to running the commands... grrr.
-        let boundingBox = self.calcBoundingRect(system: lsystem)
-        //print("Bounding box of complete path: \(boundingBox)")
+            // Next, scale the path to fit snuggly in our path
+            let scale = min(size.width / boundingBox.width, size.height / boundingBox.height)
+            //print("Setting uniform scale factor of: \(scale)")
+            context.scaleBy(x: scale, y: scale)
 
-        // Next, scale the path to fit snuggly in our path
-        let scale = min(size.width / boundingBox.width, size.height / boundingBox.height)
-        //print("Setting uniform scale factor of: \(scale)")
-        context.scaleBy(x: scale, y: scale)
-
-        // Translate the context based on the bounding box minimums
-        context.translateBy(x: -boundingBox.minX, y: -boundingBox.minY)
-        //print("translating x by \(-boundingBox.minX) and y by \(-boundingBox.minY)")
-
+            // Translate the context based on the bounding box minimums
+            context.translateBy(x: -boundingBox.minX, y: -boundingBox.minY)
+            //print("translating x by \(-boundingBox.minX) and y by \(-boundingBox.minY)")
+        }
+        
         var state: [PathState] = []
         var currentState = PathState()
 
@@ -127,7 +135,7 @@ public struct LSystemCGRenderer {
     ///   - modules: The modules that make up the state of an LSystem.
     ///   - destinationRect: An optional rectangle that, if provided, the path will be scaled into.
     /// - Returns: The path that draws the 2D representation of the provided LSystem modules.
-    public func path(modules: [Module], forRect destinationRect: CGRect? = nil) -> CGPath {
+    func path(modules: [Module], forRect destinationRect: CGRect? = nil) -> CGPath {
         let path = CGMutablePath()
         path.move(to: CGPoint(x: 0, y: 0))
 

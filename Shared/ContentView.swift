@@ -19,7 +19,6 @@ struct ContentView: View {
                 .padding()
         }
     }
-        
 }
 
 struct DocumentContentView: View {
