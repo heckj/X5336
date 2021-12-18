@@ -7,9 +7,39 @@
 import Foundation
 import CoreGraphics
 
-public enum Examples {}
+public enum Examples: String, CaseIterable, Identifiable {
+    case sierpinskiTriangle
+    case kochCurve
+    case dragonCurve
+    case fractalTree
+    case barnsleyFern
+    public var id: String { self.rawValue }
+    public var lsystem: LSystem {
+        get {
+            switch self {
+                case .sierpinskiTriangle:
+                    return DetailedExamples.sierpinskiTriangle
+                case .kochCurve:
+                    return DetailedExamples.kochCurve
+                case .dragonCurve:
+                    return DetailedExamples.dragonCurve
+                case .fractalTree:
+                    return DetailedExamples.fractalTree
+                case .barnsleyFern:
+                    return DetailedExamples.barnsleyFern
+            }
+        }
+    }
+    public func evolved(iterations: Int) -> LSystem {
+        var evolved: LSystem = self.lsystem
+        do {
+            evolved = try evolved.evolve(iterations: iterations)
+        } catch {}
+        return evolved
+    }
+}
 
-public extension Examples {
+struct DetailedExamples {
         
     // - MARK: Algae example
     
@@ -110,6 +140,7 @@ public extension Examples {
     )
 
     // - MARK: Barnsley fern example
+    
     struct X: Module {
         public var name = "X"
         public var render2D: [TwoDRenderCommand] = [.ignore]
@@ -126,16 +157,5 @@ public extension Examples {
             })
         ]
     )
-    
-    static var barnsleyFarmEvolved: LSystem {
-        get {
-            var sys = Lindenmayer.Examples.barnsleyFern
-            do {
-                sys = try sys.evolve(iterations: 6)
-            } catch {}
-            return sys
-        }
-    }
-
 
 }

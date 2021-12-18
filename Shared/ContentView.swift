@@ -29,6 +29,6 @@ struct DocumentContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(system: Examples.barnsleyFarmEvolved)
+        ContentView(system: Examples.barnsleyFern.evolved(iterations: 6))
     }
 }

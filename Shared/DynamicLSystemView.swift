@@ -8,46 +8,17 @@
 import SwiftUI
 import Lindenmayer
 
-func provideLSystemState(from sys: LSystemChoice, iterations: Int) -> LSystem {
-    var evolved: LSystem
-    switch sys {
-        case .sierpinskiTriangle:
-            evolved = Lindenmayer.Examples.sierpinskiTriangle
-        case .kochCurve:
-            evolved = Lindenmayer.Examples.kochCurve
-        case .dragonCurve:
-            evolved = Lindenmayer.Examples.dragonCurve
-        case .fractalTree:
-            evolved = Lindenmayer.Examples.fractalTree
-        case .barnsleyFern:
-            evolved = Lindenmayer.Examples.barnsleyFern
-    }
-    do {
-        evolved = try evolved.evolve(iterations: iterations)
-    } catch {}
-    return evolved
-}
-
-enum LSystemChoice: String, CaseIterable, Identifiable {
-    case sierpinskiTriangle
-    case kochCurve
-    case dragonCurve
-    case fractalTree
-    case barnsleyFern
-    var id: String { self.rawValue }
-}
-
 struct DynamicLSystemView: View {
     @State private var evolutions: Double = 0
-    @State private var selectedSystem = LSystemChoice.fractalTree
+    @State private var selectedSystem = Lindenmayer.Examples.fractalTree
     var body: some View {
         VStack {
             Picker("L-System", selection: $selectedSystem) {
-                Text("Fractal Tree").tag(LSystemChoice.fractalTree)
-                Text("Koch Curve").tag(LSystemChoice.kochCurve)
-                Text("Sierpinski Triangle").tag(LSystemChoice.sierpinskiTriangle)
-                Text("Dragon Curve").tag(LSystemChoice.dragonCurve)
-                Text("Barnsley Fern").tag(LSystemChoice.barnsleyFern)
+                Text("Fractal Tree").tag(Lindenmayer.Examples.fractalTree)
+                Text("Koch Curve").tag(Lindenmayer.Examples.kochCurve)
+                Text("Sierpinski Triangle").tag(Lindenmayer.Examples.sierpinskiTriangle)
+                Text("Dragon Curve").tag(Lindenmayer.Examples.dragonCurve)
+                Text("Barnsley Fern").tag(Lindenmayer.Examples.barnsleyFern)
             }
             .padding()
             HStack {
@@ -61,7 +32,7 @@ struct DynamicLSystemView: View {
                 }
             }
             .padding()
-            Lsystem2DView(system: provideLSystemState(from: selectedSystem, iterations: Int(evolutions)))
+            Lsystem2DView(system: selectedSystem.evolved(iterations: Int(evolutions)))
         }
     }
 }

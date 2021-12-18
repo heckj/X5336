@@ -23,6 +23,6 @@ struct LSystemMetrics: View {
 
 struct LSystemMetrics_Previews: PreviewProvider {
     static var previews: some View {
-        LSystemMetrics(system: Lindenmayer.Examples.barnsleyFern)
+        LSystemMetrics(system: Lindenmayer.Examples.barnsleyFern.lsystem)
     }
 }

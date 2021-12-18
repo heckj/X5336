@@ -23,6 +23,6 @@ public struct Lsystem2DView: View {
 
 struct Lsystem2DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem2DView(system: Examples.barnsleyFarmEvolved)
+        Lsystem2DView(system: Examples.barnsleyFern.evolved(iterations: 4))
     }
 }
