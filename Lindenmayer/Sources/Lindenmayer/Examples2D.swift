@@ -6,6 +6,9 @@
 
 import Foundation
 
+/// A collection of two-dimensional example L-systems.
+///
+/// The collection examples were inspired by the Wikipedia page [L-system](https://en.wikipedia.org/wiki/L-system).
 public enum Examples2D: String, CaseIterable, Identifiable {
     case sierpinskiTriangle
     case kochCurve
@@ -13,6 +16,7 @@ public enum Examples2D: String, CaseIterable, Identifiable {
     case fractalTree
     case barnsleyFern
     public var id: String { self.rawValue }
+    /// The example seed L-system
     public var lsystem: LSystem {
         get {
             switch self {
@@ -29,6 +33,9 @@ public enum Examples2D: String, CaseIterable, Identifiable {
             }
         }
     }
+    /// The L-system evolved by a number of iterations you provide.
+    /// - Parameter iterations: The number of times to evolve the L-system.
+    /// - Returns: The updated L-system from the number of evolutions you provided.
     public func evolved(iterations: Int) -> LSystem {
         var evolved: LSystem = self.lsystem
         do {
@@ -97,9 +104,6 @@ struct DetailedExamples {
     ])
 
     // - MARK: Sierpinski triangle example
-    
-    // to enable this, I need to support an axiom of more than a single module, and a decomposition step
-    // so that each rule could produce a sequence of draw commands, not just a single one.
     
     struct F: Module {
         public var name = "F"
