@@ -62,6 +62,6 @@ struct Lsystem3DView: View {
 
 struct Lsystem3DView_Previews: PreviewProvider {
     static var previews: some View {
-        Lsystem3DView(system: Lindenmayer.Examples.fractalTree.lsystem)
+        Lsystem3DView(system: Lindenmayer.Examples2D.fractalTree.lsystem)
     }
 }

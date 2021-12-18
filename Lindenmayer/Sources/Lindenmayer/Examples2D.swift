@@ -5,9 +5,8 @@
 //
 
 import Foundation
-import CoreGraphics
 
-public enum Examples: String, CaseIterable, Identifiable {
+public enum Examples2D: String, CaseIterable, Identifiable {
     case sierpinskiTriangle
     case kochCurve
     case dragonCurve

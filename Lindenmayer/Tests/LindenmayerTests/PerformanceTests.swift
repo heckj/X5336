@@ -6,7 +6,7 @@ final class PerformanceTests: XCTestCase {
     func X_testMemoryUse() {
         self.measure(metrics: [XCTMemoryMetric()]) {
             do {
-                let tree = Lindenmayer.Examples.barnsleyFern
+                let tree = Lindenmayer.Examples2D.barnsleyFern
                 let evo1 = try tree.evolve(iterations: 6)
                 XCTAssertNotNil(evo1)
             } catch {}
@@ -17,7 +17,7 @@ final class PerformanceTests: XCTestCase {
         self.measure() {
             do {
                 // 20.675 seconds
-                let tree = Lindenmayer.Examples.barnsleyFern
+                let tree = Lindenmayer.Examples2D.barnsleyFern
                 let evo1 = try tree.evolve(iterations: 10)
                 XCTAssertNotNil(evo1)
             } catch {}
@@ -28,7 +28,7 @@ final class PerformanceTests: XCTestCase {
         let evo1: LSystem?
         do {
             // 20.675 seconds
-            let tree = Lindenmayer.Examples.barnsleyFern
+            let tree = Lindenmayer.Examples2D.barnsleyFern
             evo1 = try tree.evolve(iterations: 10)
             XCTAssertNotNil(evo1)
         } catch {

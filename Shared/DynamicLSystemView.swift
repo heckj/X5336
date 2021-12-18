@@ -10,15 +10,15 @@ import Lindenmayer
 
 struct DynamicLSystemView: View {
     @State private var evolutions: Double = 0
-    @State private var selectedSystem = Lindenmayer.Examples.fractalTree
+    @State private var selectedSystem = Lindenmayer.Examples2D.fractalTree
     var body: some View {
         VStack {
             Picker("L-System", selection: $selectedSystem) {
-                Text("Fractal Tree").tag(Lindenmayer.Examples.fractalTree)
-                Text("Koch Curve").tag(Lindenmayer.Examples.kochCurve)
-                Text("Sierpinski Triangle").tag(Lindenmayer.Examples.sierpinskiTriangle)
-                Text("Dragon Curve").tag(Lindenmayer.Examples.dragonCurve)
-                Text("Barnsley Fern").tag(Lindenmayer.Examples.barnsleyFern)
+                Text("Fractal Tree").tag(Lindenmayer.Examples2D.fractalTree)
+                Text("Koch Curve").tag(Lindenmayer.Examples2D.kochCurve)
+                Text("Sierpinski Triangle").tag(Lindenmayer.Examples2D.sierpinskiTriangle)
+                Text("Dragon Curve").tag(Lindenmayer.Examples2D.dragonCurve)
+                Text("Barnsley Fern").tag(Lindenmayer.Examples2D.barnsleyFern)
             }
             .padding()
             HStack {

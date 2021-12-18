@@ -21,7 +21,7 @@ final class LSystemTests: XCTestCase {
     }
 
     func testAlgaeLSystem_evolve1() throws {
-        let algae = Lindenmayer.Examples.algae
+        let algae = Lindenmayer.Examples2D.algae
         XCTAssertNotNil(algae)
         XCTAssertEqual(algae.state.count, 1)
         XCTAssertEqual(algae.state.map { $0.description }.joined(), "A")
@@ -38,7 +38,7 @@ final class LSystemTests: XCTestCase {
 
     func testAlgaeLSystem_evolve2() throws {
         var resultSequence = ""
-        let algae = Lindenmayer.Examples.algae
+        let algae = Lindenmayer.Examples2D.algae
         let iter2 = try algae.evolve()
         resultSequence = iter2.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "AB")
@@ -49,7 +49,7 @@ final class LSystemTests: XCTestCase {
 
     func testAlgaeLSystem_evolve3() throws {
         var resultSequence = ""
-        let algae = Lindenmayer.Examples.algae
+        let algae = Lindenmayer.Examples2D.algae
         let evolution = try algae.evolve(iterations: 3)
         resultSequence = evolution.state.map { $0.description }.joined()
         XCTAssertEqual(resultSequence, "ABAAB")
@@ -59,7 +59,7 @@ final class LSystemTests: XCTestCase {
     }
 
     func testFractalTree_evolve2() throws {
-        let tree = Lindenmayer.Examples.fractalTree
+        let tree = Lindenmayer.Examples2D.fractalTree
         let evo1 = try tree.evolve()
         XCTAssertEqual(evo1.state.map { $0.description }.joined(), "I[-L]+L")
         let evo2 = try evo1.evolve()
@@ -67,7 +67,7 @@ final class LSystemTests: XCTestCase {
     }
 
     func testLSystem_kochCurve() throws {
-        let tree = Lindenmayer.Examples.kochCurve
+        let tree = Lindenmayer.Examples2D.kochCurve
         let evo1 = try tree.evolve(iterations: 3)
         XCTAssertEqual(evo1.state.map { $0.description }.joined(),
                        "F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F-F-F+F+F-F-F-F+F+F-F+F-F+F+F-F+F-F+F+F-F-F-F+F+F-F")
