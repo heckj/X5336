@@ -29,53 +29,68 @@ extension ColorRepresentation {
     }
 }
 
-
 public struct SceneKitRenderer {
+    let lsystem: LSystem
+    public init(_ lsystem: LSystem) {
+        self.lsystem = lsystem
+    }
     
-    /// Draws the L-System into the provided GraphicsContext.
-    ///
-    /// - Parameters:
-    ///   - lsystem: The L-System to draw.
-    ///   - context: The SwiftUI graphics context into which to draw.
-    ///   - size: The optional size of the available graphics context. If provided, the function pre-calculates the size of the rendered L-system and adjusts the drawing to fill the space available.
-    public func draw(_ lsystem: LSystem) -> SCNNode {
-        
-        let baseNode = SCNNode()
-//        var state: [GrowthState] = []
-//        var currentState = GrowthState()
+    public var scene: SCNScene {
+        get {
+            let scene = SCNScene()
+            // create and add a camera to the scene
+            let cameraNode = SCNNode()
+            cameraNode.name = "camera"
+            cameraNode.camera = SCNCamera()
+            scene.rootNode.addChildNode(cameraNode)
 
-        for module in lsystem.state {
+            // place the camera
+            cameraNode.position = SCNVector3(x: 0, y: 0, z: 6)
+
+            /*
+             // create SCNNode
+             let geometry = SCNGeometry(mesh)
+             */
+            let node = SCNNode(geometry: SCNCapsule())
+            scene.rootNode.addChildNode(node)
+
+    //        var state: [GrowthState] = []
+    //        var currentState = GrowthState()
+
+            for module in lsystem.state {
+                
+                // process the 'module.render3D'
+                let cmd = module.render3D
+    //                switch cmd {
+    //                case .move(let distance):
+    //                    currentState = updatedStateByMoving(currentState, distance: 1 * distance)
+    //                case .draw(let distance):
+    //                    let path = CGMutablePath()
+    //                    path.move(to: currentState.position)
+    //                    currentState = updatedStateByMoving(currentState, distance: 1 * distance)
+    //                    path.addLine(to: currentState.position)
+    //                    context.stroke(
+    //                        Path(path),
+    //                        with: GraphicsContext.Shading.color(currentState.lineColor.color),
+    //                        lineWidth: currentState.lineWidth)
+    //                case let .turn(direction, angle):
+    //                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
+    //                case .saveState:
+    //                    state.append(currentState)
+    //                case .restoreState:
+    //                    currentState = state.removeLast()
+    //                case .ignore:
+    //                    break
+    //                case let .setLineWidth(width):
+    //                    currentState = updatedStateWithLineWidth(currentState, lineWidth: width)
+    //                case let .setLineColor(color):
+    //                    currentState = updatedStateWithLineColor(currentState, lineColor: color)
+    //                }
+                
+            }
             
-            // process the 'module.render3D'
-            let cmd = module.render3D
-//                switch cmd {
-//                case .move(let distance):
-//                    currentState = updatedStateByMoving(currentState, distance: 1 * distance)
-//                case .draw(let distance):
-//                    let path = CGMutablePath()
-//                    path.move(to: currentState.position)
-//                    currentState = updatedStateByMoving(currentState, distance: 1 * distance)
-//                    path.addLine(to: currentState.position)
-//                    context.stroke(
-//                        Path(path),
-//                        with: GraphicsContext.Shading.color(currentState.lineColor.color),
-//                        lineWidth: currentState.lineWidth)
-//                case let .turn(direction, angle):
-//                    currentState = updatedStateByTurning(currentState, angle: angle, direction: direction)
-//                case .saveState:
-//                    state.append(currentState)
-//                case .restoreState:
-//                    currentState = state.removeLast()
-//                case .ignore:
-//                    break
-//                case let .setLineWidth(width):
-//                    currentState = updatedStateWithLineWidth(currentState, lineWidth: width)
-//                case let .setLineColor(color):
-//                    currentState = updatedStateWithLineColor(currentState, lineColor: color)
-//                }
-            
+            return scene
         }
-        return baseNode
     }
 
     // MARK: - Private
