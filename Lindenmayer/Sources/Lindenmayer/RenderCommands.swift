@@ -1,6 +1,5 @@
 //
-//  TwoDTwoDRenderCommands.swift
-//  
+//  RenderCommands.swift
 //
 //  Created by Joseph Heck on 12/15/21.
 //
@@ -54,8 +53,6 @@ public struct ColorRepresentation: Equatable {
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
 public enum TwoDRenderCommand : Equatable {
-    case bend(BendDirection, Double = 30)
-    case roll(RollDirection, Double = 30)
     case move(Double = 1.0) // "f"
     case draw(Double = 1.0) // "F"
     case turn(TurnDirection, Double = 90)
@@ -65,3 +62,17 @@ public enum TwoDRenderCommand : Equatable {
     case setLineColor(ColorRepresentation = ColorRepresentation(r: 0.0, g: 0.0, b: 0.0))
     case ignore
 }
+
+public enum ThreeDRenderCommand : Equatable {
+    case bend(BendDirection, Double = 30)
+    case roll(RollDirection, Double = 30)
+    case move(Double = 1.0) // "f"
+    case cylinder(Double = 1.0, Double = 0.1) // "F" -> cylinder: length, radius
+    case sphere(Double = 0.1) // "o" sphere: radius
+    case turn(TurnDirection, Double = 90)
+    case saveState // "["
+    case restoreState // "]"
+    case materialColor(ColorRepresentation = ColorRepresentation(r: 0.0, g: 0.0, b: 0.0)) // -> material
+    case ignore
+}
+

@@ -22,7 +22,7 @@ public protocol Module: CustomStringConvertible {
     /// Returns a sequence of render commands to display the content in 2-dimensionals.
     var render2D: [TwoDRenderCommand] { get }
     /// Returns a sequence of render commands to display the content in 3-dimensionals.
-    var render3D: [TwoDRenderCommand] { get }
+    var render3D: [ThreeDRenderCommand] { get }
     
     // func duplicate() -> Self // returns a 'Module'
     // There's a lot of existential class usage here (using a Protocol as a class).
@@ -33,8 +33,6 @@ public protocol Module: CustomStringConvertible {
 
 public extension Module {
     // MARK: - dyanmicMemberLookup default implementation
-
-    // Q(heckj): Is this worth it?
 
     subscript(dynamicMember member: String) -> Double? {
         let reflection = Mirror(reflecting: self)
@@ -49,20 +47,35 @@ public extension Module {
 
 public extension Module {
     // MARK: - CustomStringConvertible default implementation
-
+    
+    /// Returns a string description for this module.
     var description: String {
-        return name
+        let resovledName: String
+        if self.name != "" {
+            resovledName = self.name
+        } else {
+            resovledName = String(describing: type(of: self))
+        }
+        return resovledName
     }
 }
 
 public extension Module {
     // MARK: - Default render command implementations
-
+    
+    /// The 2D rendering commands to use when a renderer represents this module visually.
+    ///
+    /// The default value is a single ``TwoDRenderCommand/ignore`` command, which provides no visual representation.
+    /// Provide your own variable that returns a list of render commands that the 2D renderer supports to define your own visual representation.
     var render2D: [TwoDRenderCommand] {
         return [.ignore]
     }
 
-    var render3D: [TwoDRenderCommand] {
+    /// The 3D rendering commands to use when a renderer represents this module visually.
+    ///
+    /// The default value is a single ``ThreeDRenderCommand/ignore`` command, which provides no visual representation.
+    /// Provide your own variable that returns a list of render commands that the 3D renderer supports to define your own visual representation.
+    var render3D: [ThreeDRenderCommand] {
         return [.ignore]
     }
 }

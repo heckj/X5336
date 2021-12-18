@@ -71,10 +71,6 @@ public struct GraphicsContextRenderer {
         for module in lsystem.state {
             for cmd in module.render2D {
                 switch cmd {
-                case .bend:
-                    break
-                case .roll:
-                    break
                 case .move(let distance):
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                 case .draw(let distance):
@@ -157,10 +153,6 @@ public struct GraphicsContextRenderer {
         for module in modules {
             for cmd in module.render2D {
                 switch cmd {
-                case .bend:
-                    break
-                case .roll:
-                    break
                 case .move(let distance):
                     currentState = updatedStateByMoving(currentState, distance: unitLength * distance)
                     path.move(to: currentState.position)
