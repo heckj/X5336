@@ -28,4 +28,14 @@ final class ModuleTests: XCTestCase {
         XCTAssertNil(x[dynamicMember: "something"])
         XCTAssertNil(x.something)
     }
+
+    func testEmptyModuleName() {
+        struct EmptyModule: Module {
+            var name: String = ""
+        }
+        let x = EmptyModule()
+        // Verify name is passed out as 'description'
+        XCTAssertEqual(x.description, "EmptyModule")
+    }
+
 }

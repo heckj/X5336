@@ -24,6 +24,7 @@ final class ParametricRuleTests: XCTestCase {
         }
         
         XCTAssertNotNil(r)
+        XCTAssertNotNil(r.parameters)
         
         // verify evaluation will trigger with a default P module
         XCTAssertEqual(r.evaluate(nil, ParameterizedExample.self, nil), true)
@@ -31,6 +32,35 @@ final class ParametricRuleTests: XCTestCase {
         XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
         
         let newModules: [Module] = try r.produce(nil, p, nil, Parameters())
+        XCTAssertEqual(newModules.count, 1)
+        let param = newModules[0] as! ParameterizedExample
+        // verify that our rule was processed, returning the same module with
+        // an increased value from 10.0 -> 11.0.
+        XCTAssertEqual(param.i, 11)
+        
+    }
+    
+    func testRuleDefaultsWithSystemParameters() throws {
+        
+        let r = Rule(ParameterizedExample.self) { (ctx, p) -> [Module] in
+            guard let value = ctx.i else {
+                throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
+            }
+            guard let unwrappedP = p.something else {
+                throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
+            }
+            return [ParameterizedExample(value + unwrappedP)]
+        }
+        
+        XCTAssertNotNil(r)
+        XCTAssertNotNil(r.parameters)
+        
+        // verify evaluation will trigger with a default P module
+        XCTAssertEqual(r.evaluate(nil, ParameterizedExample.self, nil), true)
+        // And with a different parameter value
+        XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
+        
+        let newModules: [Module] = try r.produce(nil, p, nil, Parameters(["something": 1.0]))
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with
