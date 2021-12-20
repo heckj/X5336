@@ -32,7 +32,7 @@ public protocol Module: CustomStringConvertible {
 }
 
 public extension Module {
-    // MARK: - dyanmicMemberLookup default implementation
+    // MARK: - dynamicMemberLookup default implementation
 
     subscript(dynamicMember member: String) -> Double? {
         let reflection = Mirror(reflecting: self)

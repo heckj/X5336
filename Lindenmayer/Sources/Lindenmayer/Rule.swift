@@ -21,11 +21,13 @@ public struct RuntimeError<T:Module>: Error {
 }
 
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
-
 public struct Rule: CustomStringConvertible {
     
-    public typealias multiMatchProducesModuleList = (Module?, Module, Module?) throws -> [Module]
-    public typealias singleMatchProducesList = (Module) throws -> [Module]
+    public typealias multiMatchProducesModuleList = (Module?, Module, Module?, Parameters) throws -> [Module]
+    public typealias singleMatchProducesList = (Module, Parameters) throws -> [Module]
+    
+    /// The set of parameters provided by the L-system for rule evaluation and production.
+    public var parameters: Parameters = Parameters()
     
     /// The closure that provides the L-system state for the current, previous, and next nodes in the state sequence and expects an array of state elements with which to replace the current state.
     public let produce: multiMatchProducesModuleList
@@ -43,9 +45,9 @@ public struct Rule: CustomStringConvertible {
     ///   - direct: The type of the L-system state element that the rule evaluates.
     ///   - right: The type of the L-system state element following the current element that the rule evaluates.
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
-    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produces: @escaping multiMatchProducesModuleList) {
+    public init(_ left: Module.Type?, _ direct: Module.Type, _ right: Module.Type?, _ produceClosure: @escaping multiMatchProducesModuleList) {
         matchset = (left, direct, right)
-        produce = produces
+        produce = produceClosure
     }
 
     /// Creates a new rule to match the state element you provide along with a closures that results in a list of state elements.
@@ -54,8 +56,8 @@ public struct Rule: CustomStringConvertible {
     ///   - produces: A closure that produces an array of L-system state elements to use in place of the current element.
     public init(_ direct: Module.Type, _ singleModuleProduce: @escaping singleMatchProducesList) {
         matchset = (nil, direct, nil)
-        produce = { left, direct, right -> [Module] in
-            return try singleModuleProduce(direct)
+        produce = { left, direct, right, params -> [Module] in
+            return try singleModuleProduce(direct, params)
         }
     }
 

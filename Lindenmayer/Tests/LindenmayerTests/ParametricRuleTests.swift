@@ -16,7 +16,7 @@ final class ParametricRuleTests: XCTestCase {
 
     func testRuleDefaults() throws {
         
-        let r = Rule(ParameterizedExample.self) { (ctx) -> [Module] in
+        let r = Rule(ParameterizedExample.self) { (ctx, _) -> [Module] in
             guard let value = ctx.i else {
                 throw Lindenmayer.RuntimeError<ParameterizedExample>(ctx)
             }
@@ -30,7 +30,7 @@ final class ParametricRuleTests: XCTestCase {
         // And with a different parameter value
         XCTAssertEqual(r.evaluate(nil, type(of: ParameterizedExample(21)), nil), true)
         
-        let newModules: [Module] = try r.produce(nil, p, nil)
+        let newModules: [Module] = try r.produce(nil, p, nil, Parameters())
         XCTAssertEqual(newModules.count, 1)
         let param = newModules[0] as! ParameterizedExample
         // verify that our rule was processed, returning the same module with

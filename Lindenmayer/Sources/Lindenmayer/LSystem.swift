@@ -11,10 +11,10 @@ import Foundation
 ///
 /// For more information on the background of Lindenmayer systems, see [Wikipedia's L-System](https://en.wikipedia.org/wiki/L-system).
 public struct LSystem {
-    public let rules: [Rule] // consider making this 'var' and allowing rules to be added after the LSystem is instantiated...
+    public let rules: [Rule]
+    // consider making rules a 'var' and allowing rules to be added after the L-system is instantiated...
     
-    // TODO(heckj): enable global variables/parameters that get injected for consumption within the rule evaluation closures.
-    // maybe call it "constants", maybe "globals", maybe "parameters" or "evolution parameters"
+    public let parameters: Parameters
     
     var _state: [Module]
     /// The current state of the LSystem, expressed as a sequence of elements that conform to Module.
@@ -27,23 +27,27 @@ public struct LSystem {
     /// Creates a new Lindenmayer system from an initial state and rules you provide.
     /// - Parameters:
     ///   - axiom: A module that represents the initial state of the Lindenmayer system..
+    ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: Module, rules:[Rule] = []) {
+    public init(_ axiom: Module, parameters:[String:Double] = [:], rules:[Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = [axiom]
         self.rules = rules
+        self.parameters = Parameters(parameters)
     }
 
     /// Creates a new Lindenmayer system from an initial state sequence and rules you provide.
     /// - Parameters:
     ///   - axiom: A sequence of modules that represents the initial state of the Lindenmayer system..
+    ///   - parameters: A set of parameters accessible to rules for evaluation and production.
     ///   - rules: A collection of rules that the Lindenmayer system applies when you call the evolve function.
-    public init(_ axiom: [Module], rules:[Rule] = []) {
+    public init(_ axiom: [Module], parameters:[String:Double] = [:], rules:[Rule] = []) {
         // Using [axiom] instead of [] ensures that we always have a state
         // environment that can be evolved based on the rules available.
         _state = axiom
         self.rules = rules
+        self.parameters = Parameters(parameters)
     }
 
     /// Updates the state of the Lindenmayer system.
@@ -111,7 +115,7 @@ public struct LSystem {
                     }
                     // If a rule was found, then use it to generate the modules that
                     // replace this element in the sequence.
-                    newState.append(contentsOf: try foundRule.produce(leftInstance, strictInstance, rightInstance))
+                    newState.append(contentsOf: try foundRule.produce(leftInstance, strictInstance, rightInstance, parameters))
                 } else {
                     if debugPrint {
                         print(" - No rule matched the current elements, returning the existing element: \(strictInstance)")
