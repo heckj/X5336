@@ -7,19 +7,6 @@
 
 import Foundation
 
-public struct RuntimeError<T:Module>: Error {
-    let message: String
-
-    public init(_ t: Module) {
-        self.message = "Downcasting failure on module \(t.description)"
-    }
-
-    public var localizedDescription: String {
-        return message
-    }
-    
-}
-
 /// A rule represents a potential re-writing match to elements within the L-systems state and the closure that provides the elements to be used for the new state elements.
 public struct Rule: CustomStringConvertible {
     

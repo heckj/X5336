@@ -8,21 +8,25 @@ import Foundation
 
 // MARK: - RENDERING/REPRESENTATION -
 
+/// The direction to turn when defining a new rendering direction.
 public enum TurnDirection: String {
     case right = "-"
     case left = "+"
 }
 
+/// The direction to roll in 3D space when determining a new rendering direction.
 public enum RollDirection: String {
     case left = "\\"
     case right = "/"
 }
 
+/// The vertical direction to bend when determining a new rendering direction.
 public enum BendDirection: String {
     case up = "^"
     case down = "&"
 }
 
+/// A struct that represents a color using red, green, blue, and alpha values.
 public struct ColorRepresentation: Equatable {
     let red: Double
     let green: Double
@@ -49,6 +53,7 @@ public struct ColorRepresentation: Equatable {
         }
     }
 }
+
 // NOTE(heckj): extensions can't be extended by external developers, so
 // if we find we want that, these should instead be set up as static variables
 // on a struct, and then we do slightly different case mechanisms.
@@ -68,6 +73,7 @@ public enum ThreeDRenderCommand : Equatable {
     case roll(RollDirection, Double = 30)
     case move(Double = 1.0) // "f"
     case cylinder(Double = 1.0, Double = 0.1) // "F" -> cylinder: length, radius
+    case cone(Double = 1.0, Double = 0.1, Double = 0.1) // "F" -> frustrum/cone setup with length, topradius, bottomradius
     case sphere(Double = 0.1) // "o" sphere: radius
     case turn(TurnDirection, Double = 90)
     case saveState // "["
