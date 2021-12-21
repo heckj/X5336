@@ -35,4 +35,24 @@ final class HasherPRNGTests: XCTestCase {
         XCTAssertNotEqual(firstResults, secondResults)
     }
 
+    func testPosition_HasherPRNG() throws {
+        let seed: UInt32 = 34634
+        var firstResults: [UInt64] = []
+        let subject1 = HasherPRNG(seed: seed)
+        for _ in 0...10 {
+            firstResults.append(subject1.next())
+        }
+        
+        XCTAssertEqual(subject1.position, 11)
+        var secondResults: [UInt64] = []
+        let subject2 = HasherPRNG(seed: seed)
+        for _ in 0...10 {
+            secondResults.append(subject2.next())
+        }
+        XCTAssertEqual(subject2.position, 11)
+        
+        XCTAssertEqual(firstResults, secondResults)
+    }
+
+
 }
