@@ -10,13 +10,36 @@ import CoreGraphics
 import SceneKit
 
 struct GrowthState {
-    var position: SIMD3<Float> // The node’s position, expressed as x, y, and z translations.
-    var eulerAngles: SIMD3<Float> // The node’s orientation, expressed as pitch, yaw, and roll angles in radians.
+    var material: SCNMaterial?
+    var transform: simd_float4x4
 
-    init() {
-        position = .init()
-        eulerAngles = .init()
+    init(material: SCNMaterial?, transform: simd_float4x4) {
+        self.material = material
+        self.transform = transform
     }
+    
+    /// A convenience initializer that locates the growth state at the origin, and without a defined material.
+    init() {
+        self.init(material: nil,
+                  transform: matrix_identity_float4x4)
+    }
+    
+    func applyingTransform(_ transform: simd_float4x4) -> GrowthState {
+        let newTransform = matrix_multiply(self.transform, transform)
+        return GrowthState(material: self.material, transform: newTransform)
+    }
+
+//    func rotateZAxis(_ angle: Float) -> GrowthState {
+//        let rows = [
+//                simd_float3(cos(angle), -sin(angle), 0),
+//                simd_float3(sin(angle), cos(angle), 0),
+//                simd_float3(0,          0,          1)
+//            ]
+//
+//        let rotationTransform = simd_float3x3(rows: rows)
+//        let updatedTransform = matrix_multiply(self.transform, rotationTransform)
+//        return GrowthState(material: self.material, transform: updatedTransform)
+//    }
 }
 
 extension ColorRepresentation {
@@ -54,13 +77,72 @@ public struct SceneKitRenderer {
             let node = SCNNode(geometry: SCNCapsule())
             scene.rootNode.addChildNode(node)
 
-    //        var state: [GrowthState] = []
-    //        var currentState = GrowthState()
+            var stateStack: [GrowthState] = []
+            var currentState = GrowthState()
 
             for module in lsystem.state {
                 
                 // process the 'module.render3D'
                 let cmd = module.render3D
+                switch cmd {
+                case let .bend(direction, angle):
+                    print(direction)
+                    print(angle)
+                case let .roll(direction, angle):
+                    print(direction)
+                    print(angle)
+                case let .move(distance):
+//                    print(distance)
+                    // use a new SCNNode to calculate the updated transform after
+                    // rotation and/or translation in sequence.
+                    let calcNode = SCNNode()
+                    calcNode.position = SCNVector3(0, distance, 0)
+                    currentState = currentState.applyingTransform(calcNode.simdTransform)
+                case let .cylinder(length, radius):
+                    let node = SCNNode(geometry: SCNCylinder(radius: radius, height: length))
+                    node.simdTransform = currentState.transform
+//                    print(length)
+//                    print(radius)
+
+                    // use a new SCNNode to calculate the updated transform after
+                    // rotation and/or translation in sequence.
+                    let calcNode = SCNNode()
+                    calcNode.position = SCNVector3(0, length, 0)
+                    currentState = currentState.applyingTransform(calcNode.simdTransform)
+                case let .cone(length, topRadius, bottomRadius):
+//                    print(length)
+//                    print(topRadius)
+//                    print(bottomRadius)
+                    let node = SCNNode(geometry: SCNCone(topRadius: topRadius, bottomRadius: bottomRadius, height: length))
+                    node.simdTransform = currentState.transform
+                    
+                    // use a new SCNNode to calculate the updated transform after
+                    // rotation and/or translation in sequence.
+                    let calcNode = SCNNode()
+                    calcNode.position = SCNVector3(0, length, 0)
+                    currentState = currentState.applyingTransform(calcNode.simdTransform)
+                case let .sphere(radius):
+//                    print(radius)
+                    let node = SCNNode(geometry: SCNSphere(radius: radius))
+                    node.simdTransform = currentState.transform
+                    
+                    // use a new SCNNode to calculate the updated transform after
+                    // rotation and/or translation in sequence.
+                    let calcNode = SCNNode()
+                    calcNode.position = SCNVector3(0, radius, 0)
+                    currentState = currentState.applyingTransform(calcNode.simdTransform)
+                case let .turn(direction, angle):
+                    print(direction)
+                    print(angle)
+                case .saveState:
+                    stateStack.append(currentState)
+                case .restoreState:
+                    currentState = stateStack.removeLast()
+                case .materialColor(let colorRep):
+                    currentState.material = colorRep.material
+                case .ignore:
+                    break
+                }
     //                switch cmd {
     //                case .move(let distance):
     //                    currentState = updatedStateByMoving(currentState, distance: 1 * distance)
@@ -93,7 +175,7 @@ public struct SceneKitRenderer {
         }
     }
 
-    // MARK: - Private
+    // MARK: - Internal
 
     func degreesToRadians(_ value: Double) -> Double {
         return value * .pi / 180.0
