@@ -72,13 +72,12 @@ public enum ThreeDRenderCommand : Equatable {
     case bend(BendDirection, Double = 30)
     case roll(RollDirection, Double = 30)
     case move(Double = 1.0) // "f"
-    case cylinder(Double = 1.0, Double = 0.1) // "F" -> cylinder: length, radius
-    case cone(Double = 1.0, Double = 0.1, Double = 0.1) // "F" -> frustrum/cone setup with length, topradius, bottomradius
-    case sphere(Double = 0.1) // "o" sphere: radius
+    case cylinder(Double = 1.0, Double = 0.1, ColorRepresentation?) // "F" -> cylinder: length, radius
+    case cone(Double = 1.0, Double = 0.1, Double = 0.1, ColorRepresentation?) // "F" -> frustrum/cone setup with length, topradius, bottomradius
+    case sphere(Double = 0.1, ColorRepresentation?) // "o" sphere: radius
     case turn(TurnDirection, Double = 90)
     case saveState // "["
     case restoreState // "]"
-    case materialColor(ColorRepresentation = ColorRepresentation(r: 0.0, g: 0.0, b: 0.0)) // -> material
     case ignore
 }
 

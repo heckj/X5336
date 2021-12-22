@@ -18,7 +18,7 @@ struct X5336App: App {
 //    }    
     var body: some Scene {
         WindowGroup {
-            Lsystem3DView(system: Lindenmayer.Examples2D.fractalTree.lsystem)
+            Lsystem3DView(system: Lindenmayer.Examples3D.algae3D.evolved(iterations: 4))
 //            DynamicLSystemView()
         }
     }

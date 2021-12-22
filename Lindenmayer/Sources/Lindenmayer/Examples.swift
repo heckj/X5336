@@ -53,13 +53,16 @@ public enum Examples3D: String, CaseIterable, Identifiable {
     
     /// A tree branching L-system based on L-system 6 in the model provided in Algorithmic Beauty of Plants.
     case hondaTreeBranchingModel
+    case algae3D
     public var id: String { self.rawValue }
     /// The example seed L-system
     public var lsystem: LSystem {
         get {
             switch self {
-                case .hondaTreeBranchingModel:
-                    return DetailedExamples.hondaTree
+            case .hondaTreeBranchingModel:
+                return DetailedExamples.hondaTree
+            case .algae3D:
+                return DetailedExamples.algae3D
             }
         }
     }
@@ -191,19 +194,39 @@ struct DetailedExamples {
         ]
     )
 
+    // - MARK: Super simple test tree
+    
+    struct Cyl: Module {
+        public var name = "C"
+        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 1, ColorRepresentation(red: 1.0, green: 0.1, blue: 0.1, alpha: 1.0)) // length, radius
+    }
+    struct S: Module {
+        public var name = "S"
+        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(5, 2, ColorRepresentation(red: 0.1, green: 1.0, blue: 0.1, alpha: 1.0))
+    }
+    static var algae3D = LSystem(Cyl(), rules: [
+        Rule(Cyl.self, { _, _ in
+            [Cyl(),S()]
+        }),
+        Rule(S.self, { _, _ in
+            [Cyl()]
+        })
+    ])
+
+
     // - MARK: Honda's model for trees
 
     struct Trunk: Module {
         public var name = "A"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(1, 10) // length, radius
+        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 5, nil) // length, radius
     }
     struct BranchB: Module {
         public var name = "B"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(1, 10) // length, radius
+        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 4, nil) // length, radius
     }
     struct BranchC: Module {
         public var name = "C"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(1, 10) // length, radius
+        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 2, nil) // length, radius
     }
     
     static let defines: [String:Double] = [
