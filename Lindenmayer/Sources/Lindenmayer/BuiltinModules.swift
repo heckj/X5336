@@ -19,8 +19,8 @@ public extension Modules {
         public var render2D: [TwoDRenderCommand] = [.draw(10)] // draws a line 10 units long
     }
     static var internode = Internode()
-    
-    // MARK: - BUILT-IN 2D FOCUSED MODULES -
+
+    // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
 
     struct Branch: Module {
         public var name = "["
@@ -34,6 +34,44 @@ public extension Modules {
     }
     static var endbranch = EndBranch()
 
+    // MARK: - BUILT-IN 3D FOCUSED MODULES -
+
+    struct PitchDown: Module {
+        public var name = "&"
+        var angle: Double
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.pitch(.down, self.angle)
+            }
+        }
+        
+        /// Angle to turn (2D) or yaw (3D) in a left direction.
+        /// - Parameter angle: angle, in degrees, to turn.
+        init(_ angle: Double = 90) {
+            self.angle = angle
+        }
+    }
+    static var pitchDown = PitchDown()
+
+    struct PitchUp: Module {
+        public var name = "^"
+        var angle: Double
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.pitch(.up, self.angle)
+            }
+        }
+
+        /// Angle to turn (2D) or yaw (3D) in a left direction.
+        /// - Parameter angle: angle, in degrees, to turn.
+        init(_ angle: Double = 90) {
+            self.angle = angle
+        }
+    }
+    static var pitchUp = PitchUp()
+
+    // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
+
     struct TurnLeft: Module {
         public var name = "-"
         var angle: Double
@@ -42,7 +80,14 @@ public extension Modules {
                 [.turn(.left, self.angle)]
             }
         }
-        
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.yaw(.left, self.angle)
+            }
+        }
+
+        /// Angle to turn (2D) or yaw (3D) in a left direction.
+        /// - Parameter angle: angle, in degrees, to turn.
         init(_ angle: Double = 90) {
             self.angle = angle
         }
@@ -57,7 +102,15 @@ public extension Modules {
                 [.turn(.right, self.angle)]
             }
         }
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.yaw(.right, self.angle)
+            }
+        }
+
         
+        /// Angle to turn (2D) or yaw (3D) in a right direction.
+        /// - Parameter angle: angle, in degrees, to turn.
         init(_ angle: Double = 90) {
             self.angle = angle
         }

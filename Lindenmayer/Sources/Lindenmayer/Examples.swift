@@ -79,7 +79,7 @@ public enum Examples3D: String, CaseIterable, Identifiable {
 }
 
 struct DetailedExamples {
-        
+    
     // - MARK: Algae example
     
     struct A: Module {
@@ -90,7 +90,7 @@ struct DetailedExamples {
         public var name = "B"
     }
     static var b = B()
-
+    
     static var algae = LSystem(a, rules: [
         Rule(A.self, { _, _ in
             [a,b]
@@ -118,7 +118,7 @@ struct DetailedExamples {
         public var render2D: [TwoDRenderCommand] = [.draw(10)] // would be neat to make this green...
     }
     static var stem = Stem()
-
+    
     static var fractalTree = LSystem(leaf, rules: [
         Rule(Leaf.self, { _, _ in
             [stem, Modules.branch, Modules.TurnLeft(45), leaf, Modules.endbranch, Modules.TurnRight(45), leaf]
@@ -127,7 +127,7 @@ struct DetailedExamples {
             [stem, stem]
         })
     ])
-
+    
     // - MARK: Koch curve example
     
     static var kochCurve = LSystem(Modules.Draw(10), rules: [
@@ -135,7 +135,7 @@ struct DetailedExamples {
             [Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnRight(), Modules.Draw(10), Modules.TurnLeft(), Modules.Draw(10)]
         })
     ])
-
+    
     // - MARK: Sierpinski triangle example
     
     struct F: Module {
@@ -149,7 +149,7 @@ struct DetailedExamples {
         public var render2D: [TwoDRenderCommand] = [.draw(10.0)]
     }
     static var g = G()
-
+    
     static var sierpinskiTriangle = LSystem(
         [f,Modules.TurnRight(120),g,Modules.TurnRight(120),g,Modules.TurnRight(120)],
         rules: [
@@ -163,20 +163,20 @@ struct DetailedExamples {
     )
     
     // - MARK: dragon curve example
-
+    
     static var dragonCurve = LSystem(f,
-        rules: [
-            Rule(F.self, { _, _ in
-                [f,Modules.TurnLeft(90),g]
-            }),
-            Rule(G.self, { _, _ in
-                [f,Modules.TurnRight(90),g]
-            })
-        ]
+                                     rules: [
+                                        Rule(F.self, { _, _ in
+                                            [f,Modules.TurnLeft(90),g]
+                                        }),
+                                        Rule(G.self, { _, _ in
+                                            [f,Modules.TurnRight(90),g]
+                                        })
+                                     ]
     )
-
+    
     // - MARK: Barnsley fern example
-
+    
     struct X: Module {
         public var name = "X"
         public var render2D: [TwoDRenderCommand] = [.ignore]
@@ -184,16 +184,16 @@ struct DetailedExamples {
     static var x = X()
     
     static var barnsleyFern = LSystem(x,
-        rules: [
-            Rule(X.self, { _, _ in
-                [f,Modules.TurnLeft(25),Modules.branch,Modules.branch,x,Modules.endbranch,Modules.TurnRight(25),x,Modules.endbranch,Modules.TurnRight(25),f,Modules.branch,Modules.TurnRight(25),f,x,Modules.endbranch,Modules.TurnLeft(25),x]
-            }),
-            Rule(F.self, { _, _ in
-                [f,f]
-            })
-        ]
+                                      rules: [
+                                        Rule(X.self, { _, _ in
+                                            [f,Modules.TurnLeft(25),Modules.branch,Modules.branch,x,Modules.endbranch,Modules.TurnRight(25),x,Modules.endbranch,Modules.TurnRight(25),f,Modules.branch,Modules.TurnRight(25),f,x,Modules.endbranch,Modules.TurnLeft(25),x]
+                                        }),
+                                        Rule(F.self, { _, _ in
+                                            [f,f]
+                                        })
+                                      ]
     )
-
+    
     // - MARK: Super simple test tree
     
     struct Cyl: Module {
@@ -212,17 +212,30 @@ struct DetailedExamples {
             [Cyl()]
         })
     ])
-
-
+    
+    
     // - MARK: Honda's model for trees
-
+    
     struct Trunk: Module {
         public var name = "A"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 5, nil) // length, radius
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder( // length, radius
+                self.growthDistance,
+                self.diameter/2,
+                ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.9)
+            )
+        }
+        
+        let growthDistance: Double // start at 1
+        let diameter: Double // start at 10
     }
     struct BranchB: Module {
         public var name = "B"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 4, nil) // length, radius
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder(self.growthDistance, self.diameter/2, ColorRepresentation(red: 0.3, green: 0.9, blue: 0.1, alpha: 0.9)) // length, radius
+        }
+        let growthDistance: Double
+        let diameter: Double
     }
     struct BranchC: Module {
         public var name = "C"
@@ -238,10 +251,44 @@ struct DetailedExamples {
         "wr": 0.707  /* Width contraction ratio */
     ]
     
-    static var hondaTree = LSystem(Trunk(), parameters: defines,
+    static var hondaTree = LSystem(
+        Trunk(growthDistance: 10, diameter: 5),
+        parameters: defines,
         rules: [
-            Rule(Trunk.self, { _, _ in
-                []
+            Rule(Trunk.self, { trunk, params in
+                guard let currentDiameter = trunk.diameter,
+                      let currentGrowthDistance = trunk.growthDistance,
+                      let widthContraction = params.wr,
+                      let contractionRatioForTrunk = params.r1,
+                      let contractionRatioForBranch = params.r2,
+                      let branchAngle = params.a0,
+                      let divergence = params.d
+                else {
+                    throw RuntimeError<Trunk>(trunk)
+                }
+                // original: !(w) F(s) [ &(a0) B(s * r2, w * wr) ] /(d) A(s * r1, w * wr)
+                // Conversion:
+                // s -> trunk.growthDistance, w -> trunk.diameter
+                // !(w) F(s) => reduce width of pen, then draw the line forward a distance of 's'
+                //   this is covered by the 3D rendering command in Trunk
+                // [ &(a0) B(s * r2, w * wr) ] /(d)
+                //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
+                //      then end the branch, and yaw around by d°
+                
+                
+                return [
+                    Trunk(growthDistance: currentGrowthDistance,
+                          diameter: currentDiameter),
+                    Modules.branch,
+                    Modules.PitchDown(branchAngle),
+                    BranchB(growthDistance: currentGrowthDistance * contractionRatioForBranch,
+                            diameter: currentDiameter * widthContraction),
+                    Modules.endbranch,
+                    Modules.TurnLeft(divergence),
+                    Trunk(growthDistance: currentGrowthDistance * contractionRatioForTrunk,
+                          diameter: currentDiameter * widthContraction)
+                    
+                ]
             }),
             Rule(BranchB.self, { _, _ in
                 []
@@ -303,10 +350,10 @@ struct DetailedExamples {
      pg 41:
      
      @ - special purpose interpretation
-       @C - draw circle with radius equal to current linewidth
-       @S - draw sphere with radius equal to current linewidth
-       @LF - decrease line length attribute by a constant factor
-       @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive
-    */
-
+     @C - draw circle with radius equal to current linewidth
+     @S - draw sphere with radius equal to current linewidth
+     @LF - decrease line length attribute by a constant factor
+     @V rotates the turtle around it's heading vector so that the left vector is horizontal and the y component of the up vector is positive
+     */
+    
 }
