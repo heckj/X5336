@@ -21,7 +21,7 @@ public enum RollDirection: String {
 }
 
 /// The vertical direction to bend when determining a new rendering direction.
-public enum BendDirection: String {
+public enum PitchDirection: String {
     case up = "^"
     case down = "&"
 }
@@ -69,13 +69,13 @@ public enum TwoDRenderCommand : Equatable {
 }
 
 public enum ThreeDRenderCommand : Equatable {
-    case bend(BendDirection, Double = 30)
-    case roll(RollDirection, Double = 30)
+    case pitch(PitchDirection, Double = 30) // rotation around X axis - positive values pitch up
+    case roll(RollDirection, Double = 30) // rotation around Z axis - positive values roll to the left
     case move(Double = 1.0) // "f"
     case cylinder(Double = 1.0, Double = 0.1, ColorRepresentation?) // "F" -> cylinder: length, radius
     case cone(Double = 1.0, Double = 0.1, Double = 0.1, ColorRepresentation?) // "F" -> frustrum/cone setup with length, topradius, bottomradius
     case sphere(Double = 0.1, ColorRepresentation?) // "o" sphere: radius
-    case turn(TurnDirection, Double = 90)
+    case yaw(TurnDirection, Double = 90) // rotation around Y axis - positive values turn to the left
     case saveState // "["
     case restoreState // "]"
     case ignore

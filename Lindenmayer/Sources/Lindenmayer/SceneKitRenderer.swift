@@ -57,7 +57,7 @@ public struct SceneKitRenderer {
             
             // place the camera
             cameraNode.position = SCNVector3(x: 0, y: 0, z: 20)
-            cameraNode.simdLook(at: simd_float3(x: 0, y: 0, z: 30))
+            cameraNode.simdLook(at: simd_float3(x: 0, y: 5, z: 0))
                         
             var currentState = GrowthState(node: scene.rootNode)
             var stateStack: [GrowthState] = []
@@ -66,14 +66,51 @@ public struct SceneKitRenderer {
                 // process the 'module.render3D'
                 let cmd = module.render3D
                 switch cmd {
-                case let .bend(direction, angle):
-                    print(direction)
-                    print(angle)
-                    // TO BE IMPLEMENTED
+                case let .pitch(direction, angle):
+                    let directionAngleInRadians: Float
+                    switch direction {
+                    case .down:
+                        // negative values pitch nose down
+                        directionAngleInRadians = -1.0 * degreesToRadians(angle)
+                    case .up:
+                        // positive values pitch nose up
+                        directionAngleInRadians = degreesToRadians(angle)
+                    }
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    
+                    print("Pitch (rotate around +X Axis) by \(angle)° -> \(String(describing: currentState.transform))")
+
                 case let .roll(direction, angle):
-                    print(direction)
-                    print(angle)
-                    // TO BE IMPLEMENTED
+                    let directionAngleInRadians: Float
+                    switch direction {
+                    case .right:
+                        // negative values roll to the right
+                        directionAngleInRadians = -1.0 * degreesToRadians(angle)
+                    case .left:
+                        // positive values roll to the left
+                        directionAngleInRadians = degreesToRadians(angle)
+                    }
+                    let yawTransform = rotationAroundZAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    
+                    print("Roll (rotate around +Z Axis) by \(angle)° -> \(String(describing: currentState.transform))")
+
+                case let .yaw(direction, angle):
+                    let directionAngleInRadians: Float
+                    switch direction {
+                    case .right:
+                        // negative values turn to the right
+                        directionAngleInRadians = -1.0 * degreesToRadians(angle)
+                    case .left:
+                        // positive values turn to the left
+                        directionAngleInRadians = degreesToRadians(angle)
+                    }
+                    let yawTransform = rotationAroundYAxisTransform(angle: directionAngleInRadians)
+                    currentState = currentState.applyingTransform(yawTransform)
+                    
+                    print("Yaw (rotate around +Y Axis) by \(angle)° -> \(String(describing: currentState.transform))")
+
                 case let .move(distance):
                     let moveTransform = translationTransform(x: 0, y: Float(distance), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
@@ -138,10 +175,6 @@ public struct SceneKitRenderer {
                     print("Added sphere (r=\(radius)) at \(String(describing: node.simdTransform))")
                     print("Moving +y by \(radius) -> \(String(describing: currentState.transform))")
 
-                case let .turn(direction, angle):
-                    print(direction)
-                    print(angle)
-                    // TO BE IMPLEMENTED
                 case .saveState:
                     stateStack.append(currentState)
                     print("Saving state: \(String(describing: currentState.transform))")
@@ -159,7 +192,7 @@ public struct SceneKitRenderer {
     
     // MARK: - Internal
     
-    func degreesToRadians(_ value: Double) -> Double {
-        return value * .pi / 180.0
+    func degreesToRadians(_ value: Double) -> Float {
+        return Float(value * .pi / 180.0)
     }
 }
