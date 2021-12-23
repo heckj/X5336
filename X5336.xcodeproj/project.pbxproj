@@ -19,14 +19,8 @@
 		1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A506E5425EAB9E300E51CE2 /* ContentView.swift */; };
 		1A506E8225EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
 		1A506E8325EAB9E400E51CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A506E5525EAB9E400E51CE2 /* Assets.xcassets */; };
-		1A75F7FC276E8197005FC999 /* Lsystem3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A75F7FB276E8197005FC999 /* Lsystem3DView.swift */; };
-		1A75F7FD276E8197005FC999 /* Lsystem3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A75F7FB276E8197005FC999 /* Lsystem3DView.swift */; };
-		1A82367B276BDA0200482CC1 /* LSystemMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82367A276BDA0200482CC1 /* LSystemMetrics.swift */; };
-		1A82367C276BDA0200482CC1 /* LSystemMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A82367A276BDA0200482CC1 /* LSystemMetrics.swift */; };
-		1AD04C21276AD948007EA5DB /* DynamicLSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */; };
-		1AD04C22276AD948007EA5DB /* DynamicLSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */; };
-		1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
-		1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADA96A72766A4F50085162B /* Lsystem2DView.swift */; };
+		1A94D73027751092001E8A4B /* LindenmayerViews in Frameworks */ = {isa = PBXBuildFile; productRef = 1A94D72F27751092001E8A4B /* LindenmayerViews */; };
+		1A94D7322775109F001E8A4B /* LindenmayerViews in Frameworks */ = {isa = PBXBuildFile; productRef = 1A94D7312775109F001E8A4B /* LindenmayerViews */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,13 +58,9 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A75F7FB276E8197005FC999 /* Lsystem3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem3DView.swift; sourceTree = "<group>"; };
-		1A82367A276BDA0200482CC1 /* LSystemMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSystemMetrics.swift; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
-		1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLSystemView.swift; sourceTree = "<group>"; };
 		1ADA96A22766A45B0085162B /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindenmayer; sourceTree = "<group>"; };
-		1ADA96A72766A4F50085162B /* Lsystem2DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lsystem2DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A94D7322775109F001E8A4B /* LindenmayerViews in Frameworks */,
 				1A3BCF072766A6D8003ADD4A /* Lindenmayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A94D73027751092001E8A4B /* LindenmayerViews in Frameworks */,
 				1A3BCF052766A6D3003ADD4A /* Lindenmayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,12 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
-				1AD04C20276AD948007EA5DB /* DynamicLSystemView.swift */,
-				1A82367A276BDA0200482CC1 /* LSystemMetrics.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
-				1ADA96A72766A4F50085162B /* Lsystem2DView.swift */,
-				1A75F7FB276E8197005FC999 /* Lsystem3DView.swift */,
 				1A506E5525EAB9E400E51CE2 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -220,6 +208,7 @@
 			name = "X5336 (iOS)";
 			packageProductDependencies = (
 				1A3BCF062766A6D8003ADD4A /* Lindenmayer */,
+				1A94D7312775109F001E8A4B /* LindenmayerViews */,
 			);
 			productName = "X5336 (iOS)";
 			productReference = 1A506E5A25EAB9E400E51CE2 /* X5336.app */;
@@ -241,6 +230,7 @@
 			name = "X5336 (macOS)";
 			packageProductDependencies = (
 				1A3BCF042766A6D3003ADD4A /* Lindenmayer */,
+				1A94D72F27751092001E8A4B /* LindenmayerViews */,
 			);
 			productName = "X5336 (macOS)";
 			productReference = 1A506E6225EAB9E400E51CE2 /* X5336.app */;
@@ -374,13 +364,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADA96A82766A4F50085162B /* Lsystem2DView.swift in Sources */,
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1A82367B276BDA0200482CC1 /* LSystemMetrics.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
-				1A75F7FC276E8197005FC999 /* Lsystem3DView.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
-				1AD04C21276AD948007EA5DB /* DynamicLSystemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,13 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADA96A92766A4F50085162B /* Lsystem2DView.swift in Sources */,
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1A82367C276BDA0200482CC1 /* LSystemMetrics.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
-				1A75F7FD276E8197005FC999 /* Lsystem3DView.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
-				1AD04C22276AD948007EA5DB /* DynamicLSystemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +787,14 @@
 		1A3BCF062766A6D8003ADD4A /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lindenmayer;
+		};
+		1A94D72F27751092001E8A4B /* LindenmayerViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LindenmayerViews;
+		};
+		1A94D7312775109F001E8A4B /* LindenmayerViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LindenmayerViews;
 		};
 		1ADA969B2766A05D0085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -15,6 +15,7 @@ let package = Package(
             name: "Lindenmayer",
             targets: ["Lindenmayer"]
         ),
+        .library(name: "LindenmayerViews", targets: ["LindenmayerViews"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,6 +27,10 @@ let package = Package(
         .target(
             name: "Lindenmayer",
             dependencies: []
+        ),
+        .target(
+            name: "LindenmayerViews",
+            dependencies: ["Lindenmayer"]
         ),
         .testTarget(
             name: "LindenmayerTests",

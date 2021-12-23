@@ -8,9 +8,9 @@
 import SwiftUI
 import Lindenmayer
 
-struct LSystemMetrics: View {
+public struct LSystemMetrics: View {
     let system: LSystem
-    var body: some View {
+    public var body: some View {
         VStack {
             Text("# Rules: \(system.rules.count), State size: \(system.state.count)")
             Text("\(String(describing: system.state))")
@@ -19,6 +19,10 @@ struct LSystemMetrics: View {
                 .padding(.horizontal)
         }
     }
+    public init(system: LSystem) {
+        self.system = system
+    }
+
 }
 
 struct LSystemMetrics_Previews: PreviewProvider {

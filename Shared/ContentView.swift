@@ -6,6 +6,7 @@
 //
 
 import Lindenmayer
+import LindenmayerViews
 import SwiftUI
 
 struct ContentView: View {

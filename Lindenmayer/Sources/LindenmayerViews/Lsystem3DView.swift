@@ -9,7 +9,7 @@ import SwiftUI
 import SceneKit
 import Lindenmayer
 
-struct Lsystem3DView: View {
+public struct Lsystem3DView: View {
     let system: LSystem
     func generateScene() -> SCNScene {
         let x = SceneKitRenderer(self.system)
@@ -57,6 +57,11 @@ struct Lsystem3DView: View {
             //    scnView.backgroundColor = .white
         }
     }
+    
+    public init(system: LSystem) {
+        self.system = system
+    }
+
 
 }
 

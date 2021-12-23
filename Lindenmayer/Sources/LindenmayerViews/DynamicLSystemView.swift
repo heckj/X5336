@@ -8,10 +8,10 @@
 import SwiftUI
 import Lindenmayer
 
-struct DynamicLSystemView: View {
+public struct DynamicLSystemView: View {
     @State private var evolutions: Double = 0
     @State private var selectedSystem = Lindenmayer.Examples2D.fractalTree
-    var body: some View {
+    public var body: some View {
         VStack {
             Picker("L-System", selection: $selectedSystem) {
                 Text("Fractal Tree").tag(Lindenmayer.Examples2D.fractalTree)

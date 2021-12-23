@@ -19,6 +19,10 @@ public struct Lsystem2DView: View {
             }
         }
     }
+    
+    public init(system: LSystem) {
+        self.system = system
+    }
 }
 
 struct Lsystem2DView_Previews: PreviewProvider {
