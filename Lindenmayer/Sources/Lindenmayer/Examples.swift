@@ -336,7 +336,8 @@ struct DetailedExamples {
                     Modules.branch,
                     
                     Modules.RollLeft(branchAngle),
-                    Modules.TurnLeft(divergence),
+//                    Modules.TurnLeft(branchAngle),
+//                    Modules.LevelOut(),
                     SecondaryBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
                             diameter: currentDiameter * widthContraction),
 
@@ -364,6 +365,9 @@ struct DetailedExamples {
                     Modules.branch,
                     
                     Modules.RollRight(branchAngle),
+//                    Modules.TurnRight(branchAngle),
+//                    Modules.LevelOut(),
+
                     MainBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
                             diameter: currentDiameter * widthContraction),
 

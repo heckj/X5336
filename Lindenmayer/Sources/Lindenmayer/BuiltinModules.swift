@@ -106,6 +106,11 @@ public extension Modules {
     }
     static var rollright = RollRight()
     
+    struct LevelOut: Module {
+        public var name = "@V"
+        public var render3D: ThreeDRenderCommand = .levelOut
+    }
+    
     // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
 
     struct TurnLeft: Module {

@@ -72,3 +72,17 @@ public func rotationAroundYAxisTransform(angle: Float) -> simd_float4x4 {
         SIMD4<Float>(          0, 0,           0, 1)
     )
 }
+
+extension simd_float4x4 {
+    
+    /// Returns a multi-line string that represents the simd4x4 matrix for easier visual reading.
+    /// - Parameter indent: If provided, the string to use as a prefix for each line.
+    func prettyPrintString(_ indent:String="") -> String {
+        var result = ""
+        result += "\(indent)[\(self.columns.0.x), \(self.columns.0.y), \(self.columns.0.z), \(self.columns.0.w)]\n"
+        result += "\(indent)[\(self.columns.1.x), \(self.columns.1.y), \(self.columns.1.z), \(self.columns.1.w)]\n"
+        result += "\(indent)[\(self.columns.2.x), \(self.columns.2.y), \(self.columns.2.z), \(self.columns.2.w)]\n"
+        result += "\(indent)[\(self.columns.3.x), \(self.columns.3.y), \(self.columns.3.z), \(self.columns.3.w)]\n"
+        return result
+    }
+}

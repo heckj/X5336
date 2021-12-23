@@ -71,11 +71,12 @@ public enum TwoDRenderCommand : Equatable {
 public enum ThreeDRenderCommand : Equatable {
     case pitch(PitchDirection, Double = 30) // rotation around X axis - positive values pitch up
     case roll(RollDirection, Double = 30) // rotation around Z axis - positive values roll to the left
+    case yaw(TurnDirection, Double = 90) // rotation around Y axis - positive values turn to the left
+    case levelOut // "@V" - rotates the current direction so that the +Y axis aligns to vertical
     case move(Double = 1.0) // "f"
     case cylinder(Double = 1.0, Double = 0.1, ColorRepresentation?) // "F" -> cylinder: length, radius
     case cone(Double = 1.0, Double = 0.1, Double = 0.1, ColorRepresentation?) // "F" -> frustrum/cone setup with length, topradius, bottomradius
     case sphere(Double = 0.1, ColorRepresentation?) // "o" sphere: radius
-    case yaw(TurnDirection, Double = 90) // rotation around Y axis - positive values turn to the left
     case saveState // "["
     case restoreState // "]"
     case ignore

@@ -28,6 +28,21 @@ struct GrowthState {
         let newTransform = matrix_multiply(self.transform, transform)
         return GrowthState(node: self.nodeRef, transform: newTransform)
     }
+    
+    func printEulerAngles() {
+        let temp = SCNNode()
+        temp.simdTransform = self.transform
+        print(" - current Euler angles: \(temp.simdEulerAngles)")
+        print("   pitch: \(temp.simdEulerAngles.x)")
+        print("   yaw: \(temp.simdEulerAngles.y)")
+        print("   roll: \(temp.simdEulerAngles.z)")
+    }
+    
+    func simdEulerAngles() -> simd_float3 {
+        let temp = SCNNode()
+        temp.simdTransform = self.transform
+        return temp.simdEulerAngles
+    }
 }
 
 extension ColorRepresentation {
@@ -111,6 +126,25 @@ public struct SceneKitRenderer {
                     
                     print("Yaw (rotate around +Y Axis) by \(angle)° -> \(String(describing: currentState.transform))")
 
+                case .levelOut:
+                    print("Leveling out")
+                    // Since I'm clearly not getting how to reverse Euler angles into the
+                    // correct transforms, I'm using the capability embedded within SCNNode
+                    // to update the current transform so that the Euler angles are leveled
+                    // out. This leaves the yaw (rotation around the Y axis) at whatever state
+                    // it was already at.
+                    let temp = SCNNode()
+                    temp.simdTransform = currentState.transform
+                    temp.simdEulerAngles = simd_float3(x: 0, y: temp.simdEulerAngles.y, z: 0)
+                    currentState.transform = temp.simdTransform
+                    print("  -> \(String(describing: currentState.transform))")
+                    
+                    // NOTE: this isn't working as @V was described in the original literature.
+                    // It's intended to rotate the local frame such that things branch out horizontally,
+                    // but instead I've changed the whole frame of reference so that it's "growing up" next,
+                    // rather than maintaining it's previous heading.
+                    // Everything done previously with transforms was entirely from a world frame of reference.
+
                 case let .move(distance):
                     let moveTransform = translationTransform(x: 0, y: Float(distance), z: 0)
                     currentState = currentState.applyingTransform(moveTransform)
@@ -182,8 +216,10 @@ public struct SceneKitRenderer {
                 case .restoreState:
                     currentState = stateStack.removeLast()
                     print("Restored state to: \(String(describing: currentState.transform))")
+                    
                 case .ignore:
                     break
+                    
                 }
             }
             
