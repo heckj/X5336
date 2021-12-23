@@ -222,24 +222,54 @@ struct DetailedExamples {
             ThreeDRenderCommand.cylinder( // length, radius
                 self.growthDistance,
                 self.diameter/2,
-                ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.9)
+                ColorRepresentation(red: 0.7, green: 0.7, blue: 0.1, alpha: 0.9)
             )
         }
         
         let growthDistance: Double // start at 1
         let diameter: Double // start at 10
     }
-    struct BranchB: Module {
+    struct StaticTrunk: Module {
+        public var name = "A°"
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder( // length, radius
+                self.growthDistance,
+                self.diameter/2,
+                ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.95)
+            )
+        }
+        let growthDistance: Double // start at 1
+        let diameter: Double // start at 10
+    }
+
+    struct MainBranch: Module {
         public var name = "B"
         public var render3D: ThreeDRenderCommand {
-            ThreeDRenderCommand.cylinder(self.growthDistance, self.diameter/2, ColorRepresentation(red: 0.3, green: 0.9, blue: 0.1, alpha: 0.9)) // length, radius
+            ThreeDRenderCommand.cylinder(self.growthDistance, self.diameter/2,
+                                         ColorRepresentation(red: 0.3, green: 0.9, blue: 0.1, alpha: 0.9)) // length, radius
         }
         let growthDistance: Double
         let diameter: Double
     }
-    struct BranchC: Module {
+    
+    struct StaticBranch: Module {
+        public var name = "o"
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder(self.growthDistance, self.diameter/2,
+                                         ColorRepresentation(red: 0.7, green: 0.3, blue: 0.1, alpha: 0.95)) // length, radius
+        }
+        let growthDistance: Double
+        let diameter: Double
+    }
+    
+    struct SecondaryBranch: Module {
         public var name = "C"
-        public var render3D: ThreeDRenderCommand = ThreeDRenderCommand.cylinder(10, 2, nil) // length, radius
+        public var render3D: ThreeDRenderCommand {
+            ThreeDRenderCommand.cylinder(self.growthDistance, self.diameter/2,
+                                         ColorRepresentation(red: 0.3, green: 0.1, blue: 0.9, alpha: 0.9)) // length, radius
+        }
+        let growthDistance: Double
+        let diameter: Double
     }
     
     static let defines: [String:Double] = [
@@ -252,7 +282,7 @@ struct DetailedExamples {
     ]
     
     static var hondaTree = LSystem(
-        Trunk(growthDistance: 10, diameter: 5),
+        Trunk(growthDistance: 10, diameter: 2),
         parameters: defines,
         rules: [
             Rule(Trunk.self, { trunk, params in
@@ -270,18 +300,15 @@ struct DetailedExamples {
                 // Conversion:
                 // s -> trunk.growthDistance, w -> trunk.diameter
                 // !(w) F(s) => reduce width of pen, then draw the line forward a distance of 's'
-                //   this is covered by the 3D rendering command in Trunk
+                //   this is covered by returning a StaticTrunk that doesn't continue to evolve
                 // [ &(a0) B(s * r2, w * wr) ] /(d)
                 //   => branch, pitch down by a0 degrees, then grow a B branch (s = s * r2, w = w * wr)
                 //      then end the branch, and yaw around by d°
-                
-                
                 return [
-                    Trunk(growthDistance: currentGrowthDistance,
-                          diameter: currentDiameter),
+                    StaticTrunk(growthDistance: currentGrowthDistance, diameter: currentDiameter),
                     Modules.branch,
                     Modules.PitchDown(branchAngle),
-                    BranchB(growthDistance: currentGrowthDistance * contractionRatioForBranch,
+                    MainBranch(growthDistance: currentGrowthDistance,
                             diameter: currentDiameter * widthContraction),
                     Modules.endbranch,
                     Modules.TurnLeft(divergence),
@@ -290,11 +317,62 @@ struct DetailedExamples {
                     
                 ]
             }),
-            Rule(BranchB.self, { _, _ in
-                []
+            Rule(MainBranch.self, { branch, params in
+                guard let currentDiameter = branch.diameter,
+                      let currentGrowthDistance = branch.growthDistance,
+                      let widthContraction = params.wr,
+                      let contractionRatioForTrunk = params.r1,
+                      let contractionRatioForBranch = params.r2,
+                      let branchAngle = params.a2,
+                      let divergence = params.d
+                else {
+                    throw RuntimeError<MainBranch>(branch)
+                }
+                // Original P2: B(s, w) -> !(w) F(s) [ -(a2) @V C(s * r2, w * wr) ] C(s * r1, w * wr)
+                // !(w) F(s) - Static Main Branch
+
+                return [
+                    StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
+                    Modules.branch,
+                    
+                    Modules.RollLeft(branchAngle),
+                    Modules.TurnLeft(divergence),
+                    SecondaryBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
+                            diameter: currentDiameter * widthContraction),
+
+                    Modules.endbranch,
+                    
+                    SecondaryBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
+                            diameter: currentDiameter * widthContraction)
+                ]
             }),
-            Rule(BranchC.self, { _, _ in
-                []
+            Rule(SecondaryBranch.self, { branch, params in
+                guard let currentDiameter = branch.diameter,
+                      let currentGrowthDistance = branch.growthDistance,
+                      let widthContraction = params.wr,
+                      let contractionRatioForTrunk = params.r1,
+                      let contractionRatioForBranch = params.r2,
+                      let branchAngle = params.a2,
+                      let divergence = params.d
+                else {
+                    throw RuntimeError<SecondaryBranch>(branch)
+                }
+
+                // Original: P3: C(s, w) -> !(w) F(s) [ +(a2) @V B(s * r2, w * wr) ] B(s * r1, w * wr)
+                return [
+                    StaticBranch(growthDistance: currentGrowthDistance, diameter: currentDiameter),
+                    Modules.branch,
+                    
+                    Modules.RollRight(branchAngle),
+                    MainBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
+                            diameter: currentDiameter * widthContraction),
+
+                    Modules.endbranch,
+                    
+                    MainBranch(growthDistance: currentGrowthDistance*contractionRatioForBranch,
+                            diameter: currentDiameter * widthContraction)
+                ]
+
             })
         ]
     )

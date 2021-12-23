@@ -25,12 +25,14 @@ public extension Modules {
     struct Branch: Module {
         public var name = "["
         public var render2D: [TwoDRenderCommand] = [.saveState]
+        public var render3D: ThreeDRenderCommand = .saveState
     }
     static var branch = Branch()
 
     struct EndBranch: Module {
         public var name = "]"
         public var render2D: [TwoDRenderCommand] = [.restoreState]
+        public var render3D: ThreeDRenderCommand = .restoreState
     }
     static var endbranch = EndBranch()
 
@@ -70,6 +72,40 @@ public extension Modules {
     }
     static var pitchUp = PitchUp()
 
+    struct RollLeft: Module {
+        public var name = "\\"
+        var angle: Double
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.roll(.left, self.angle)
+            }
+        }
+
+        /// Angle to roll (3D) in a left direction.
+        /// - Parameter angle: angle, in degrees, to roll.
+        init(_ angle: Double = 90) {
+            self.angle = angle
+        }
+    }
+    static var rollleft = RollLeft()
+
+    struct RollRight: Module {
+        public var name = "/"
+        var angle: Double
+        public var render3D: ThreeDRenderCommand  {
+            get {
+                ThreeDRenderCommand.roll(.right, self.angle)
+            }
+        }
+
+        /// Angle to roll (3D) in a right direction.
+        /// - Parameter angle: angle, in degrees, to roll.
+        init(_ angle: Double = 90) {
+            self.angle = angle
+        }
+    }
+    static var rollright = RollRight()
+    
     // MARK: - BUILT-IN 2D & 3D FOCUSED MODULES -
 
     struct TurnLeft: Module {

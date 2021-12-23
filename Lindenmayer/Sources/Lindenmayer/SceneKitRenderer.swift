@@ -178,6 +178,7 @@ public struct SceneKitRenderer {
                 case .saveState:
                     stateStack.append(currentState)
                     print("Saving state: \(String(describing: currentState.transform))")
+                    
                 case .restoreState:
                     currentState = stateStack.removeLast()
                     print("Restored state to: \(String(describing: currentState.transform))")
