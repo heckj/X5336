@@ -245,8 +245,7 @@ public struct NodeAdjustmentView: View {
                         
                         let vertical = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
                         print("vertical quat: \(vertical) (angle: \(vertical.angle))")
-                        // interpolate to quarter-way there... (I hope)
-                        let new_rotation = simd_slerp(current, vertical, 1.0)
+                        
                         print(" - Interpolated to 0: \(simd_slerp(current, vertical, 0.0)) Θ=\(simd_slerp(current, vertical, 0.0).angle)")
                         print(" - Interpolated to 0.1: \(simd_slerp(current, vertical, 0.1)) Θ=\(simd_slerp(current, vertical, 0.1).angle)")
                         print(" - Interpolated to 0.2: \(simd_slerp(current, vertical, 0.2)) Θ=\(simd_slerp(current, vertical, 0.2).angle)")
@@ -259,6 +258,13 @@ public struct NodeAdjustmentView: View {
                         print(" - Interpolated to 0.9: \(simd_slerp(current, vertical, 0.9)) Θ=\(simd_slerp(current, vertical, 0.9).angle)")
                         print(" - Interpolated to 1.0: \(simd_slerp(current, vertical, 1.0)) Θ=\(simd_slerp(current, vertical, 1.0).angle)")
                         
+                        
+                        let diffAngleQuaternion = current.conjugate * vertical
+                        print("diffAngleQuaterion: \(diffAngleQuaternion)")
+                        print("The Φ angle between vertical and current: \(diffAngleQuaternion.angle) with axis: \(diffAngleQuaternion.axis)")
+                        let interpolation_percentage = .pi/2.0 / diffAngleQuaternion.angle
+                        print("Interpolation percentage to get horizon: \(interpolation_percentage)")
+                        let new_rotation = simd_slerp(current, vertical, interpolation_percentage)
                         print("final quaternion: \(new_rotation), Θ=\(new_rotation.angle)")
                         node.simdRotation = new_rotation.vector
                     
