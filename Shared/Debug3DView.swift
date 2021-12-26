@@ -184,6 +184,26 @@ public struct NodeAdjustmentView: View {
                         }
                     }
                     if let node = node {
+
+                        let (col1,col2,col3,_) = node.simdTransform.columns
+                        let rotationTransform: matrix_float3x3 = matrix_float3x3(
+                            simd_float3(x: col1.x, y: col1.y, z: col1.z),
+                            simd_float3(x: col2.x, y: col2.y, z: col2.z),
+                            simd_float3(x: col3.x, y: col3.y, z: col3.z)
+                        )
+                        print("original: \(node.simdTransform)")
+                        print("extracted: \(rotationTransform)")
+                        
+                        let original_heading_vector = simd_float3(x: 0, y: 1, z: 0)
+                        print("Rotated: \(matrix_multiply(rotationTransform, original_heading_vector))")
+                        // ^^^^ Heading Vector!!!
+                        print("length original: \(simd_length(original_heading_vector))")
+                        print("length rotated: \(simd_length(matrix_multiply(rotationTransform, original_heading_vector)))")
+                        print("dot product: \(simd_dot(original_heading_vector, matrix_multiply(rotationTransform, original_heading_vector)))")
+                        
+                        let calc_angle = acos(simd_dot(original_heading_vector, matrix_multiply(rotationTransform, original_heading_vector))/(simd_length(original_heading_vector)*simd_length(matrix_multiply(rotationTransform, original_heading_vector))))
+                        print( "Calculated angle from acos(dot/mag): \(calc_angle)")
+                        
                         node.simdTransform = node.simdTransform * rotationAroundXAxisTransform(angle: moreValue)
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
@@ -243,33 +263,51 @@ public struct NodeAdjustmentView: View {
 //                        let default_rotation = simd_quatf(new_node.simdTransform)
 //                        print ("Default rotation for a new node is : \(default_rotation)")
                         
-                        let vertical = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
-                        print("vertical quat: \(vertical) (angle: \(vertical.angle))")
+                        let x = simd_quatf(angle: .pi/2, axis: simd_float3(x: sqrt(2)/2, y: 0, z: sqrt(2)/2))
+                        print("x quat: \(x) (angle: \(x.angle))")
+                        let northpole = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: 1, z: 0))
+                        let southpole = simd_quatf(angle: 0, axis: simd_float3(x: 0, y: -1, z: 0))
+                        print("northpole quat: \(northpole) (angle: \(northpole.angle))")
+                        print("southpole quat: \(southpole) (angle: \(southpole.angle))")
                         
-                        print(" - Interpolated to 0: \(simd_slerp(current, vertical, 0.0)) Θ=\(simd_slerp(current, vertical, 0.0).angle)")
-                        print(" - Interpolated to 0.1: \(simd_slerp(current, vertical, 0.1)) Θ=\(simd_slerp(current, vertical, 0.1).angle)")
-                        print(" - Interpolated to 0.2: \(simd_slerp(current, vertical, 0.2)) Θ=\(simd_slerp(current, vertical, 0.2).angle)")
-                        print(" - Interpolated to 0.3: \(simd_slerp(current, vertical, 0.3)) Θ=\(simd_slerp(current, vertical, 0.3).angle)")
-                        print(" - Interpolated to 0.4: \(simd_slerp(current, vertical, 0.4)) Θ=\(simd_slerp(current, vertical, 0.4).angle)")
-                        print(" - Interpolated to 0.5: \(simd_slerp(current, vertical, 0.5)) Θ=\(simd_slerp(current, vertical, 0.5).angle)")
-                        print(" - Interpolated to 0.6: \(simd_slerp(current, vertical, 0.6)) Θ=\(simd_slerp(current, vertical, 0.6).angle)")
-                        print(" - Interpolated to 0.7: \(simd_slerp(current, vertical, 0.7)) Θ=\(simd_slerp(current, vertical, 0.7).angle)")
-                        print(" - Interpolated to 0.8: \(simd_slerp(current, vertical, 0.8)) Θ=\(simd_slerp(current, vertical, 0.8).angle)")
-                        print(" - Interpolated to 0.9: \(simd_slerp(current, vertical, 0.9)) Θ=\(simd_slerp(current, vertical, 0.9).angle)")
-                        print(" - Interpolated to 1.0: \(simd_slerp(current, vertical, 1.0)) Θ=\(simd_slerp(current, vertical, 1.0).angle)")
+                        print(" - Interpolated to 0: \(simd_slerp(current, northpole, 0.0)) Θ=\(simd_slerp(current, northpole, 0.0).angle)")
+                        print(" - Interpolated to 0.1: \(simd_slerp(current, northpole, 0.1)) Θ=\(simd_slerp(current, northpole, 0.1).angle)")
+                        print(" - Interpolated to 0.2: \(simd_slerp(current, northpole, 0.2)) Θ=\(simd_slerp(current, northpole, 0.2).angle)")
+                        print(" - Interpolated to 0.3: \(simd_slerp(current, northpole, 0.3)) Θ=\(simd_slerp(current, northpole, 0.3).angle)")
+                        print(" - Interpolated to 0.4: \(simd_slerp(current, northpole, 0.4)) Θ=\(simd_slerp(current, northpole, 0.4).angle)")
+                        print(" - Interpolated to 0.5: \(simd_slerp(current, northpole, 0.5)) Θ=\(simd_slerp(current, northpole, 0.5).angle)")
+                        print(" - Interpolated to 0.6: \(simd_slerp(current, northpole, 0.6)) Θ=\(simd_slerp(current, northpole, 0.6).angle)")
+                        print(" - Interpolated to 0.7: \(simd_slerp(current, northpole, 0.7)) Θ=\(simd_slerp(current, northpole, 0.7).angle)")
+                        print(" - Interpolated to 0.8: \(simd_slerp(current, northpole, 0.8)) Θ=\(simd_slerp(current, northpole, 0.8).angle)")
+                        print(" - Interpolated to 0.9: \(simd_slerp(current, northpole, 0.9)) Θ=\(simd_slerp(current, northpole, 0.9).angle)")
+                        print(" - Interpolated to 1.0: \(simd_slerp(current, northpole, 1.0)) Θ=\(simd_slerp(current, northpole, 1.0).angle)")
                         
                         
-                        let diffAngleQuaternion = current.conjugate * vertical
-                        print("diffAngleQuaterion: \(diffAngleQuaternion)")
-                        print("The Φ angle between vertical and current: \(diffAngleQuaternion.angle) with axis: \(diffAngleQuaternion.axis)")
-                        let interpolation_percentage = .pi/2.0 / diffAngleQuaternion.angle
-                        print("Interpolation percentage to get horizon: \(interpolation_percentage)")
-                        let new_rotation = simd_slerp(current, vertical, interpolation_percentage)
+                        let diffAngleNorthPole = current.conjugate * northpole
+                        print("diffAngleQuaterion: \(diffAngleNorthPole)")
+                        print("The Φ angle between north pole and current: \(diffAngleNorthPole.angle) with axis: \(diffAngleNorthPole.axis)")
+
+                        let diffAngleSouthPole = current.conjugate * southpole
+                        print("diffAngleSouthPole: \(diffAngleSouthPole)")
+                        print("The Φ angle between south pole and current: \(diffAngleSouthPole.angle) with axis: \(diffAngleNorthPole.axis)")
+
+                        
+                        let interpolation_percentage = .pi/2.0 / diffAngleNorthPole.angle
+                        print("Est. interpolation percentage to get horizon: \(interpolation_percentage)")
+                        let new_rotation = simd_slerp(current, northpole, interpolation_percentage)
                         print("final quaternion: \(new_rotation), Θ=\(new_rotation.angle)")
                         node.simdRotation = new_rotation.vector
                     
                         let updated = simd_quatf(node.simdTransform)
                         print ("  updated value as quaternion: \(updated) (angle: \(updated.angle))")
+
+                        let diff2AngleNorthPole = updated.conjugate * northpole
+                        print("diff2AngleNorthPole: \(diff2AngleNorthPole)")
+                        print("The Φ angle between north pole and updated: \(diff2AngleNorthPole.angle) with axis: \(diff2AngleNorthPole.axis)")
+
+                        let diff2AngleSouthPole = updated.conjugate * southpole
+                        print("diff2AngleSouthPole: \(diff2AngleSouthPole)")
+                        print("The Φ angle between south pole and updated: \(diff2AngleSouthPole.angle) with axis: \(diff2AngleSouthPole.axis)")
 
                         var string = "updated euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
