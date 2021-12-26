@@ -19,8 +19,8 @@ struct X5336App: App {
 //    }    
     var body: some Scene {
         WindowGroup {
-            Debug3DView()
-//            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 4))
+//            Debug3DView()
+            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
 //            DynamicLSystemView()
         }
     }
