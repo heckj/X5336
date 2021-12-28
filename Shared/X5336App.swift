@@ -8,6 +8,7 @@
 import Lindenmayer
 import LindenmayerViews
 import SwiftUI
+import SceneKit
 
 @main
 struct X5336App: App {
@@ -17,10 +18,13 @@ struct X5336App: App {
 //            ContentView(document: file.$document)
 //        }
 //    }
+    let renderer = SceneKitRenderer(Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+    
     var body: some Scene {
         WindowGroup {
 //            Debug3DView()
-            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+//            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+            ContentView(scene: renderer.scene)
 //            DynamicLSystemView()
         }
     }
