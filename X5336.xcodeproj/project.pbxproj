@@ -63,10 +63,9 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A78F00B277D2E3E00D3E068 /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lindenmayer; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
-		1ABDA01F277BFCBB00C881EC /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lindenmayer; sourceTree = "<group>"; };
-		1ADA96A22766A45B0085162B /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindenmayer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,8 +192,7 @@
 		1ADA96A12766A45B0085162B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				1ADA96A22766A45B0085162B /* Lindenmayer */,
-				1ABDA01F277BFCBB00C881EC /* Lindenmayer */,
+				1A78F00B277D2E3E00D3E068 /* Lindenmayer */,
 			);
 			name = Packages;
 			sourceTree = "<group>";

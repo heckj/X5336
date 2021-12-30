@@ -18,13 +18,20 @@ struct X5336App: App {
 //            ContentView(document: file.$document)
 //        }
 //    }
-    let renderer = SceneKitRenderer(Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+    
+    let system: LSystem
+    let renderer: SceneKitRenderer
+    
+    init() {
+        self.system = Lindenmayer.Examples3D.randomBush.evolved(iterations: 3)
+        self.renderer = SceneKitRenderer()
+    }
     
     var body: some Scene {
         WindowGroup {
 //            Debug3DView()
 //            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
-            ContentView(scene: renderer.scene)
+            ContentView(system: system)
 //            DynamicLSystemView()
         }
     }
