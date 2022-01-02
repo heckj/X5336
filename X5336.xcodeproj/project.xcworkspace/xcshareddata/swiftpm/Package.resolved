@@ -27,6 +27,15 @@
           "revision": "8b3ee58a9a752c11511f9ead61ec42c4d533109a",
           "version": "0.1.1"
         }
+      },
+      {
+        "package": "Squirrel3",
+        "repositoryURL": "https://github.com/heckj/Squirrel3.git",
+        "state": {
+          "branch": null,
+          "revision": "0a90500365e1c6959fd2e9614ab4687817627404",
+          "version": "1.1.0"
+        }
       }
     ]
   },

@@ -23,7 +23,7 @@ struct X5336App: App {
     let renderer: SceneKitRenderer
     
     init() {
-        self.system = Lindenmayer.Examples3D.randomBush.evolved(iterations: 3)
+        self.system = Examples3D.randomBush.evolved(iterations: 3)
         self.renderer = SceneKitRenderer()
     }
     

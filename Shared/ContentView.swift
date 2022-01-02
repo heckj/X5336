@@ -58,7 +58,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static func generateSystem() -> LSystem {
-        return Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5)
+        return Examples3D.hondaTreeBranchingModel.evolved(iterations: 5)
     }
 
     static var previews: some View {
