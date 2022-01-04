@@ -12,39 +12,33 @@ import Model3DView
 import SceneKit
 
 struct ContentView: View {
-    let system: LSystem
     let renderer = SceneKitRenderer()
-    @State var camera1 = PerspectiveCamera()
-    @State private var evolutions: Double = 0
-//    @State var camera2 = OrthographicCamera()
+    let system: LSystem
+//    @State private var evolutions: Double = 0
 
-    func evolved(_ system: LSystem, _ iter: Int) -> LSystem {
-        do {
-            return try system.evolve(iterations: iter)
-        } catch {
-            return system
-        }
-    }
-    
+//    func evolved(_ system: LSystem, _ iter: Int) -> LSystem {
+//        do {
+//            return try system.evolve(iterations: iter)
+//        } catch {
+//            return system
+//        }
+//    }
+//
     var body: some View {
         HStack {
-            VStack {
-                Text("Evolutions:")
-                Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
-                    Text("Evolutions")
-                } minimumValueLabel: {
-                    Text("0")
-                } maximumValueLabel: {
-                    Text("10")
-                }.padding()
-                LSystemMetrics(system: system)
-            }
-            Model3DView(scene: renderer.generateScene(lsystem: evolved(system, Int(evolutions))))
-            .cameraControls(OrbitControls(
-                camera: $camera1,
-                sensitivity: 0.5,
-                friction: 0.1
-            ))
+//            VStack {
+//                Text("Evolutions:")
+//                Slider(value: $evolutions, in: 0 ... 10.0, step: 1.0) {
+//                    Text("Evolutions")
+//                } minimumValueLabel: {
+//                    Text("0")
+//                } maximumValueLabel: {
+//                    Text("10")
+//                }.padding()
+//                LSystemMetrics(system: system)
+//            }
+//            Model3DView(scene: renderer.generateScene(lsystem: evolved(system, Int(evolutions))))
+            SceneKitView(scene: renderer.generateScene(lsystem: system))
         }
     }
 }
@@ -58,7 +52,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static func generateSystem() -> LSystem {
-        return Examples3D.hondaTreeBranchingModel.evolved(iterations: 5)
+        return Examples3D.hondaTreeBranchingModel.lsystem.evolved(iterations: 5)
     }
 
     static var previews: some View {

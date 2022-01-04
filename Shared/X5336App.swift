@@ -23,14 +23,15 @@ struct X5336App: App {
     let renderer: SceneKitRenderer
     
     init() {
-        self.system = Examples3D.randomBush.evolved(iterations: 3)
+//        self.system = Examples3D.randomBush.evolved(iterations: 3)
+        self.system = Examples3D.hondaTreeBranchingModel.lsystem.evolved(iterations: 10)
         self.renderer = SceneKitRenderer()
     }
     
     var body: some Scene {
         WindowGroup {
 //            Debug3DView()
-//            Lsystem3DView(system: Lindenmayer.Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+//            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
             ContentView(system: system)
 //            DynamicLSystemView()
         }
