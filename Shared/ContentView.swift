@@ -7,9 +7,9 @@
 
 import Lindenmayer
 import LindenmayerViews
-import SwiftUI
 import Model3DView
 import SceneKit
+import SwiftUI
 
 struct ContentView: View {
     let renderer = SceneKitRenderer()
@@ -43,12 +43,12 @@ struct ContentView: View {
     }
 }
 
-//struct DocumentContentView: View {
+// struct DocumentContentView: View {
 //    @Binding var document: X5336Document
 //    var body: some View {
 //        TextEditor(text: $document.text)
 //    }
-//}
+// }
 
 struct ContentView_Previews: PreviewProvider {
     static func generateSystem() -> LSystem {

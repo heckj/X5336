@@ -25,7 +25,7 @@ class Tests_macOS: XCTestCase {
     func testNothing() throws {
         XCTAssertEqual(1, 1)
     }
-    
+
     func testExample() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()

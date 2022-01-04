@@ -5,10 +5,10 @@
 //  Created by Joseph Heck on 1/3/22.
 //
 
-import SwiftUI
+import Lindenmayer
 import Model3DView
 import SceneKit
-import Lindenmayer
+import SwiftUI
 
 struct SceneKitView: View {
     let scene: SCNScene
@@ -17,11 +17,11 @@ struct SceneKitView: View {
 
     var body: some View {
         Model3DView(scene: scene)
-        .cameraControls(OrbitControls(
-            camera: $camera1,
-            sensitivity: 0.5,
-            friction: 0.1
-        ))
+            .cameraControls(OrbitControls(
+                camera: $camera1,
+                sensitivity: 0.5,
+                friction: 0.1
+            ))
     }
 }
 
