@@ -28,7 +28,7 @@ struct SceneKitView: View {
 struct SceneKitView_Previews: PreviewProvider {
     static let renderer = SceneKitRenderer()
     static func provideSystem() -> LSystem {
-        return Examples3D.hondaTreeBranchingModel.lsystem.evolved(iterations: 5)
+        return Examples3D.monopodialTree.lsystem.evolved(iterations: 5)
     }
 
     static var previews: some View {

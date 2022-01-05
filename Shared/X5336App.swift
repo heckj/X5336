@@ -27,21 +27,35 @@ struct X5336App: App {
 
     init() {
 //        self.system = Examples3D.randomBush.evolved(iterations: 3)
-        var tree = Detailed3DExamples.hondaTree
-        tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_6A)
+//        var tree = Detailed3DExamples.monopodialTree
+//        tree = tree.reset()
+//        tree.setParameters(params: Detailed3DExamples.figure2_6A)
+//        system1 = tree.evolved(iterations: 10)
+//
+//        tree = tree.reset()
+//        tree.setParameters(params: Detailed3DExamples.figure2_6B)
+//        system2 = tree.evolved(iterations: 10)
+//
+//        tree = tree.reset()
+//        tree.setParameters(params: Detailed3DExamples.figure2_6C)
+//        system3 = tree.evolved(iterations: 10)
+//
+//        tree = tree.reset()
+//        tree.setParameters(params: Detailed3DExamples.figure2_6D)
+//        system4 = tree.evolved(iterations: 10)
+        var tree = Detailed3DExamples.sympodialTree
         system1 = tree.evolved(iterations: 10)
 
         tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_6B)
+        tree.setParameters(params: Detailed3DExamples.figure2_7B)
         system2 = tree.evolved(iterations: 10)
 
         tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_6C)
+        tree.setParameters(params: Detailed3DExamples.figure2_7C)
         system3 = tree.evolved(iterations: 10)
 
         tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_6D)
+        tree.setParameters(params: Detailed3DExamples.figure2_7D)
         system4 = tree.evolved(iterations: 10)
 
         renderer = SceneKitRenderer()
