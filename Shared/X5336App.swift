@@ -8,6 +8,7 @@
 import Lindenmayer
 import LindenmayerViews
 import SceneKit
+import SceneKitDebugTools
 import SwiftUI
 
 @main
@@ -19,66 +20,27 @@ struct X5336App: App {
 //        }
 //    }
 
-    let system1: LSystem
-    let system2: LSystem
-    let system3: LSystem
-    let system4: LSystem
-    let renderer: SceneKitRenderer
-
-    init() {
-//        self.system = Examples3D.randomBush.evolved(iterations: 3)
-
-//        var tree = Detailed3DExamples.monopodialTree
-//        tree = tree.reset()
-//        tree.setParameters(params: Detailed3DExamples.figure2_6A)
-//        system1 = tree.evolved(iterations: 10)
-//
-//        tree = tree.reset()
-//        tree.setParameters(params: Detailed3DExamples.figure2_6B)
-//        system2 = tree.evolved(iterations: 10)
-//
-//        tree = tree.reset()
-//        tree.setParameters(params: Detailed3DExamples.figure2_6C)
-//        system3 = tree.evolved(iterations: 10)
-//
-//        tree = tree.reset()
-//        tree.setParameters(params: Detailed3DExamples.figure2_6D)
-//        system4 = tree.evolved(iterations: 10)
-
-        var tree = Detailed3DExamples.sympodialTree
-        system1 = tree.evolved(iterations: 10)
-
-        tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_7B)
-        system2 = tree.evolved(iterations: 10)
-
-        tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_7C)
-        system3 = tree.evolved(iterations: 10)
-
-        tree = tree.reset()
-        tree.setParameters(params: Detailed3DExamples.figure2_7D)
-        system4 = tree.evolved(iterations: 10)
-
-        renderer = SceneKitRenderer()
-    }
+    let model = LSystemModel()
 
     var body: some Scene {
         WindowGroup {
+            VStack {
+                LSystemMetrics(system: model.system)
+                DebugSceneView(scene: model.scene)
+            }
 //            Debug3DView()
 //            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
 //            ContentView(system: system1)
-            VStack {
-                HStack {
-                    ContentView(system: system1)
-                    ContentView(system: system2)
-                }
-                HStack {
-                    ContentView(system: system3)
-                    ContentView(system: system4)
-                }
-            }
-
+//            VStack {
+//                HStack {
+//                    ContentView(system: system1)
+//                    ContentView(system: system2)
+//                }
+//                HStack {
+//                    ContentView(system: system3)
+//                    ContentView(system: system4)
+//                }
+//            }
 //            DynamicLSystemView()
         }
     }

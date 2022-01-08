@@ -7,6 +7,7 @@
 
 import Lindenmayer
 import SceneKit
+import SceneKitDebugTools
 import SwiftUI
 
 extension simd_float4x4 {
@@ -36,66 +37,22 @@ func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SC
     return material
 }
 
-func addDebugFlooring(_ scene: SCNScene, grid: Bool = true) {
-    let flooring = SCNNode(geometry: SCNPlane(width: 10, height: 10))
-    flooring.geometry?.materials = [material(red: 0.1, green: 0.7, blue: 0.1, alpha: 0.5)]
-    flooring.simdEulerAngles = simd_float3(x: degreesToRadians(-90), y: 0, z: 0)
-
-    let axisMaterials = [material(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)]
-
-    let dot3D = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 0)
-    dot3D.materials = axisMaterials
-
-    let lowresCyl = SCNCylinder(radius: 0.01, height: 10)
-    lowresCyl.radialSegmentCount = 8
-    lowresCyl.heightSegmentCount = 1
-    lowresCyl.materials = axisMaterials
-
-    let zaxis = SCNNode(geometry: lowresCyl)
-    flooring.addChildNode(zaxis)
-    let xaxis = SCNNode(geometry: lowresCyl)
-    xaxis.simdEulerAngles = simd_float3(x: 0, y: 0, z: degreesToRadians(90))
-    flooring.addChildNode(xaxis)
-    let yaxis = SCNNode(geometry: lowresCyl)
-    yaxis.simdEulerAngles = simd_float3(x: degreesToRadians(90), y: 0, z: 0)
-    flooring.addChildNode(yaxis)
-
-    if grid {
-        let loc: [Float] = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
-        for i in loc {
-            for j in loc {
-                let dot = SCNNode(geometry: dot3D)
-                dot.simdPosition = simd_float3(x: Float(i), y: Float(j), z: 0)
-                flooring.addChildNode(dot)
-            }
-        }
-    }
-
-    scene.rootNode.addChildNode(flooring)
-}
-
 func addExampleNode(_ scene: SCNScene) {
-    // .cylinder cmd from L-system generation
-    let radius: CGFloat = 1
-    let length: CGFloat = 5
-    let node = SCNNode(geometry: SCNCone(topRadius: 0.25, bottomRadius: radius, height: length))
-    // SCNCylinder(radius: radius, height: length))
-    node.geometry?.materials = [material(red: 1.0, green: 0, blue: 0, alpha: 1)]
+    let example = headingIndicator()
+    example.name = "example"
+    scene.rootNode.addChildNode(example)
 
-    let fin = SCNNode(geometry: SCNBox(width: 0.1, height: 4, length: 1, chamferRadius: 0))
-    fin.geometry?.materials = [material(red: 1.0, green: 0, blue: 0, alpha: 1)]
-    fin.simdPosition = simd_float3(x: 0, y: 0, z: 0.5)
-    node.addChildNode(fin)
+//    let fin = SCNNode(geometry: SCNBox(width: 0.1, height: 4, length: 1, chamferRadius: 0))
+//    fin.geometry?.materials = [material(red: 1.0, green: 0, blue: 0, alpha: 1)]
+//    fin.simdPosition = simd_float3(x: 0, y: 0, z: 0.5)
+//    node.addChildNode(fin)
 
     // Nudge the cylinder "up" so that its bottom is at the "origin" of the transform.
-    let nudgeOriginTransform = translationTransform(x: 0, y: Float(length / 2.0), z: 0)
-    print(" - calc nudgeTransform: \(nudgeOriginTransform)")
-    node.simdTransform = matrix_multiply(matrix_identity_float4x4, nudgeOriginTransform)
+//    node.simdTransform = matrix_multiply(matrix_identity_float4x4, nudgeOriginTransform)
 
-    node.name = "example"
-    scene.rootNode.addChildNode(node)
-    print("Added cylinder (r=\(radius)) by \(length):")
-    print(node.simdTransform.prettyPrintString(" nudge "))
+//    node.name = "example"
+//    scene.rootNode.addChildNode(node)
+//    print(node.simdTransform.prettyPrintString(" nudge "))
 
     /*
      from honda tree at @V inflection point:
@@ -106,19 +63,19 @@ func addExampleNode(_ scene: SCNScene) {
      [-4.692004, 0.76396, -4.29943, 1.0]
      */
 
-    let exampleTransform = matrix_float4x4([
-        simd_float4(-0.5213338, -0.7071067, -0.47771442, 0.0),
-        simd_float4(-0.5213338, 0.7071067, -0.47771442, 0.0),
-        simd_float4(0.6755902, 0.0, -0.7372773, 0.0),
-        simd_float4(-4.692004, 0.76396, -4.29943, 1.0),
-        // euler angles pitch: -147.05904° yaw: 28.536234° roll: -126.40051°
-    ])
-    node.simdTransform = node.simdTransform * exampleTransform
-    print(node.simdTransform.prettyPrintString(" churn "))
-
-    print("After applying transform")
-    print(node.simdTransform.prettyPrintString("  "))
-    scene.rootNode.addChildNode(node)
+//    let exampleTransform = matrix_float4x4([
+//        simd_float4(-0.5213338, -0.7071067, -0.47771442, 0.0),
+//        simd_float4(-0.5213338, 0.7071067, -0.47771442, 0.0),
+//        simd_float4(0.6755902, 0.0, -0.7372773, 0.0),
+//        simd_float4(-4.692004, 0.76396, -4.29943, 1.0),
+//        // euler angles pitch: -147.05904° yaw: 28.536234° roll: -126.40051°
+//    ])
+//    node.simdTransform = node.simdTransform * exampleTransform
+//    print(node.simdTransform.prettyPrintString(" churn "))
+//
+//    print("After applying transform")
+//    print(node.simdTransform.prettyPrintString("  "))
+//    scene.rootNode.addChildNode(node)
 }
 
 public struct NodeInfoView: View {
@@ -337,7 +294,7 @@ public struct Debug3DView: View {
         cameraNode.simdLook(at: simd_float3(x: 0, y: 5, z: 0))
 
         // set up debug/sizing flooring
-        addDebugFlooring(scene)
+        scene.rootNode.addChildNode(debugFlooring())
 
         // add example node
         addExampleNode(scene)

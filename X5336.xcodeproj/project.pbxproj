@@ -31,6 +31,10 @@
 		1A94D7322775109F001E8A4B /* LindenmayerViews in Frameworks */ = {isa = PBXBuildFile; productRef = 1A94D7312775109F001E8A4B /* LindenmayerViews */; };
 		1A968D6B277C051400C463F3 /* Model3DView in Frameworks */ = {isa = PBXBuildFile; productRef = 1A968D6A277C051400C463F3 /* Model3DView */; };
 		1ACAE69E277BA5E300955400 /* Model3DView in Frameworks */ = {isa = PBXBuildFile; productRef = 1ACAE69D277BA5E300955400 /* Model3DView */; };
+		1AE99BF2278A314E0071B3DD /* SceneKitDebugTools in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE99BF1278A314E0071B3DD /* SceneKitDebugTools */; };
+		1AE99BF4278A31560071B3DD /* SceneKitDebugTools in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE99BF3278A31560071B3DD /* SceneKitDebugTools */; };
+		1AE99BF6278A31DA0071B3DD /* LSystemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE99BF5278A31DA0071B3DD /* LSystemModel.swift */; };
+		1AE99BF7278A31DA0071B3DD /* LSystemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE99BF5278A31DA0071B3DD /* LSystemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,8 @@
 		1A78F00B277D2E3E00D3E068 /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lindenmayer; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
+		1AE99BF0278A307C0071B3DD /* SceneKitDebugTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SceneKitDebugTools; path = ../SceneKitDebugTools; sourceTree = "<group>"; };
+		1AE99BF5278A31DA0071B3DD /* LSystemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSystemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 			files = (
 				1A968D6B277C051400C463F3 /* Model3DView in Frameworks */,
 				1A94D7322775109F001E8A4B /* LindenmayerViews in Frameworks */,
+				1AE99BF2278A314E0071B3DD /* SceneKitDebugTools in Frameworks */,
 				1A3BCF072766A6D8003ADD4A /* Lindenmayer in Frameworks */,
 				1A56FC9B2781545300D793F9 /* Squirrel3 in Frameworks */,
 			);
@@ -93,6 +100,7 @@
 			files = (
 				1ACAE69E277BA5E300955400 /* Model3DView in Frameworks */,
 				1A94D73027751092001E8A4B /* LindenmayerViews in Frameworks */,
+				1AE99BF4278A31560071B3DD /* SceneKitDebugTools in Frameworks */,
 				1A3BCF052766A6D3003ADD4A /* Lindenmayer in Frameworks */,
 				1A56FC992781544000D793F9 /* Squirrel3 in Frameworks */,
 			);
@@ -137,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1A506E5225EAB9E300E51CE2 /* X5336App.swift */,
+				1AE99BF5278A31DA0071B3DD /* LSystemModel.swift */,
 				1A2D0F752779045D0085FDB3 /* Debug3DView.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
@@ -205,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				1A78F00B277D2E3E00D3E068 /* Lindenmayer */,
+				1AE99BF0278A307C0071B3DD /* SceneKitDebugTools */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -231,6 +241,7 @@
 				1A94D7312775109F001E8A4B /* LindenmayerViews */,
 				1A968D6A277C051400C463F3 /* Model3DView */,
 				1A56FC9A2781545300D793F9 /* Squirrel3 */,
+				1AE99BF1278A314E0071B3DD /* SceneKitDebugTools */,
 			);
 			productName = "X5336 (iOS)";
 			productReference = 1A506E5A25EAB9E400E51CE2 /* X5336.app */;
@@ -255,6 +266,7 @@
 				1A94D72F27751092001E8A4B /* LindenmayerViews */,
 				1ACAE69D277BA5E300955400 /* Model3DView */,
 				1A56FC982781544000D793F9 /* Squirrel3 */,
+				1AE99BF3278A31560071B3DD /* SceneKitDebugTools */,
 			);
 			productName = "X5336 (macOS)";
 			productReference = 1A506E6225EAB9E400E51CE2 /* X5336.app */;
@@ -394,6 +406,7 @@
 			files = (
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A63005D2783DF6800607909 /* SceneView.swift in Sources */,
+				1AE99BF6278A31DA0071B3DD /* LSystemModel.swift in Sources */,
 				1A2D0F762779045D0085FDB3 /* Debug3DView.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
@@ -406,6 +419,7 @@
 			files = (
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
 				1A63005E2783DF6800607909 /* SceneView.swift in Sources */,
+				1AE99BF7278A31DA0071B3DD /* LSystemModel.swift in Sources */,
 				1A2D0F772779045D0085FDB3 /* Debug3DView.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
@@ -892,6 +906,14 @@
 		1ADA96A52766A49B0085162B /* Lindenmayer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Lindenmayer;
+		};
+		1AE99BF1278A314E0071B3DD /* SceneKitDebugTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SceneKitDebugTools;
+		};
+		1AE99BF3278A31560071B3DD /* SceneKitDebugTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SceneKitDebugTools;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
