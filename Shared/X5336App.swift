@@ -20,13 +20,12 @@ struct X5336App: App {
 //        }
 //    }
 
-    let model = LSystemModel()
+    var model = LSystemModel()
 
     var body: some Scene {
         WindowGroup {
             VStack {
-                LSystemMetrics(system: model.system)
-                DebugSceneView(scene: model.scene)
+                LSystemControlView(model: model)
             }
 //            Debug3DView()
 //            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))

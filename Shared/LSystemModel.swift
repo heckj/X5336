@@ -5,6 +5,7 @@
 //  Created by Joseph Heck on 1/8/22.
 //
 
+import Combine
 import Foundation
 import Lindenmayer
 import SceneKit
@@ -14,6 +15,8 @@ public class LSystemModel: ObservableObject {
     @Published public var system: LSystem
     let renderer = SceneKitRenderer()
     let _baseSystem = Detailed3DExamples.sympodialTree
+
+    public var objectWillChange = Combine.ObservableObjectPublisher()
 
     public var scene: SCNScene {
         renderer.generateScene(lsystem: system)
@@ -27,6 +30,7 @@ public class LSystemModel: ObservableObject {
         set {
             precondition(newValue > 0 && newValue < 20)
             _iterations = newValue
+            objectWillChange.send()
             system = _baseSystem.evolved(iterations: _iterations)
         }
     }
