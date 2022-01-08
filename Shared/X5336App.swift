@@ -27,6 +27,7 @@ struct X5336App: App {
 
     init() {
 //        self.system = Examples3D.randomBush.evolved(iterations: 3)
+
 //        var tree = Detailed3DExamples.monopodialTree
 //        tree = tree.reset()
 //        tree.setParameters(params: Detailed3DExamples.figure2_6A)
@@ -43,6 +44,7 @@ struct X5336App: App {
 //        tree = tree.reset()
 //        tree.setParameters(params: Detailed3DExamples.figure2_6D)
 //        system4 = tree.evolved(iterations: 10)
+
         var tree = Detailed3DExamples.sympodialTree
         system1 = tree.evolved(iterations: 10)
 
@@ -65,6 +67,7 @@ struct X5336App: App {
         WindowGroup {
 //            Debug3DView()
 //            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
+//            ContentView(system: system1)
             VStack {
                 HStack {
                     ContentView(system: system1)
