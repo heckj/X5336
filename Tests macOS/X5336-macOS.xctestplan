@@ -2,10 +2,23 @@
   "configurations" : [
     {
       "id" : "AB330881-6C83-4972-BAA0-53AA791D6E00",
-      "name" : "Configuration 1",
+      "name" : "ThreadSan",
       "options" : {
+        "addressSanitizer" : {
+          "enabled" : false
+        },
         "threadSanitizerEnabled" : true,
         "undefinedBehaviorSanitizerEnabled" : true
+      }
+    },
+    {
+      "id" : "1FEF0170-1A50-4FF8-998F-2B25DDFEF726",
+      "name" : "AddressSan",
+      "options" : {
+        "addressSanitizer" : {
+          "detectStackUseAfterReturn" : true,
+          "enabled" : true
+        }
       }
     }
   ],
