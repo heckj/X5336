@@ -12,6 +12,7 @@ import SwiftUI
 struct LSystemControlView: View {
     var model: LSystemModel
     @State private var iterations = 1
+    @State private var stateIndex = 0
     var body: some View {
         VStack {
             Stepper {
@@ -27,7 +28,7 @@ struct LSystemControlView: View {
                     model.iterations = iterations
                 }
             }
-            LSystemMetrics(system: model.system)
+            StateSelectorView(system: model.system, position: $stateIndex)
             DebugSceneView(scene: model.scene)
         }
     }

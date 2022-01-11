@@ -32,6 +32,6 @@ struct SceneKitView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        SceneKitView(scene: renderer.generateScene(lsystem: provideSystem()))
+        SceneKitView(scene: renderer.generateScene(lsystem: provideSystem()).0)
     }
 }

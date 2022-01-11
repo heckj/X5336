@@ -19,7 +19,11 @@ public class LSystemModel: ObservableObject {
     public var objectWillChange = Combine.ObservableObjectPublisher()
 
     public var scene: SCNScene {
-        renderer.generateScene(lsystem: system)
+        renderer.generateScene(lsystem: system).0
+    }
+
+    public var transformSequence: [matrix_float4x4] {
+        renderer.generateScene(lsystem: system).1
     }
 
     var _iterations = 1

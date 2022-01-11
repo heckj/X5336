@@ -38,7 +38,7 @@ struct ContentView: View {
 //                LSystemMetrics(system: system)
 //            }
 //            Model3DView(scene: renderer.generateScene(lsystem: evolved(system, Int(evolutions))))
-            SceneKitView(scene: renderer.generateScene(lsystem: system))
+            SceneKitView(scene: renderer.generateScene(lsystem: system).0)
         }
     }
 }
