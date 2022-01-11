@@ -18,19 +18,15 @@ public class LSystemModel: ObservableObject {
 
     var _scene: SCNScene
     var _transformSequence: [matrix_float4x4]
-    
+
     public var objectWillChange = Combine.ObservableObjectPublisher()
 
     public var scene: SCNScene {
-        get {
-            _scene
-        }
+        _scene
     }
 
     public var transformSequence: [matrix_float4x4] {
-        get {
-            _transformSequence
-        }
+        _transformSequence
     }
 
     var _iterations = 1
