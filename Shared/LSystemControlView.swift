@@ -53,7 +53,6 @@ struct LSystemControlView: View {
     var body: some View {
         VStack {
             HStack {
-                Spacer()
                 Stepper {
                     Text("Iterations: \(iterations)")
                 } onIncrement: {
@@ -71,12 +70,10 @@ struct LSystemControlView: View {
                         currentNode = nil
                     }
                 }
-                Spacer()
                 Toggle(isOn: $autoLookAt) {
                     Text("Look At")
-                }
-                Spacer()
-                Button("twiddle up") {
+                } 
+                Button("camera up") {
                     if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
                         let moveUp = translationTransform(x: 0, y: 2, z: 0)
                         SCNTransaction.begin()
@@ -85,7 +82,7 @@ struct LSystemControlView: View {
                         SCNTransaction.commit()
                     }
                 }
-                Button("twiddle down") {
+                Button("camera down") {
                     if let cameraNode = model.scene.rootNode.childNode(withName: "camera", recursively: true) {
                         let moveDown = translationTransform(x: 0, y: -2, z: 0)
                         SCNTransaction.begin()
