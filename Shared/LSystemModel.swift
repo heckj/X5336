@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import Lindenmayer
 import SceneKit
+import SceneKitDebugTools
 import SwiftUI
 
 public class LSystemModel: ObservableObject {
@@ -40,11 +41,18 @@ public class LSystemModel: ObservableObject {
             objectWillChange.send()
             system = _baseSystem.evolved(iterations: _iterations)
             (_scene, _transformSequence) = renderer.generateScene(lsystem: system)
+            let headingIndicator = headingIndicator()
+            headingIndicator.opacity = 0
+            let bigger = scalingTransform(x: 2.5, y: 2.5, z: 2.5)
+            headingIndicator.simdTransform = matrix_multiply(headingIndicator.simdTransform, bigger)
+            _scene.rootNode.addChildNode(headingIndicator)
         }
     }
 
     public init() {
         system = _baseSystem
         (_scene, _transformSequence) = renderer.generateScene(lsystem: _baseSystem)
+        let headingIndicator = headingIndicator()
+        _scene.rootNode.addChildNode(headingIndicator)
     }
 }
