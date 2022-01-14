@@ -23,10 +23,11 @@ struct X5336App: App {
     var model = LSystemModel()
 
     var body: some Scene {
-        WindowGroup {
-            VStack {
-                LSystemControlView(model: model)
-            }
+        #if os(macOS)
+            WindowGroup {
+                VStack {
+                    LSystemControlView(model: model)
+                }
 //            Debug3DView()
 //            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
 //            ContentView(system: system1)
@@ -41,6 +42,17 @@ struct X5336App: App {
 //                }
 //            }
 //            DynamicLSystemView()
-        }
+            }
+            .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
+        #else
+            WindowGroup {
+                NavigationView {
+                    VStack {
+                        LSystemControlView(model: model)
+                    }
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+            }
+        #endif
     }
 }
