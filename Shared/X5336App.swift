@@ -7,8 +7,6 @@
 
 import Lindenmayer
 import LindenmayerViews
-import SceneKit
-import SceneKitDebugTools
 import SwiftUI
 
 @main
@@ -20,13 +18,13 @@ struct X5336App: App {
 //        }
 //    }
 
-    var model = LSystemModel()
+    var model = LSystem3DModel()
 
     var body: some Scene {
         #if os(macOS)
             WindowGroup {
                 VStack {
-                    LSystemControlView(model: model)
+                    LSystem3DControlView(model: model)
                 }
 //            Debug3DView()
 //            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
@@ -48,7 +46,7 @@ struct X5336App: App {
             WindowGroup {
                 NavigationView {
                     VStack {
-                        LSystemControlView(model: model)
+                        LSystem3DControlView(model: model)
                     }
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
