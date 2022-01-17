@@ -18,36 +18,21 @@ struct X5336App: App {
 //        }
 //    }
 
-    var model = LSystem3DModel()
-
     var body: some Scene {
         #if os(macOS)
             WindowGroup {
-                VStack {
-                    LSystem3DControlView(model: model)
-                }
-//            Debug3DView()
-//            Lsystem3DView(system: Examples3D.hondaTreeBranchingModel.evolved(iterations: 5))
-//            ContentView(system: system1)
-//            VStack {
-//                HStack {
-//                    ContentView(system: system1)
-//                    ContentView(system: system2)
+//                VStack {
+//                    LSystem3DControlView(model: model)
 //                }
-//                HStack {
-//                    ContentView(system: system3)
-//                    ContentView(system: system4)
-//                }
-//            }
+//                Monopodial4Examples()
+                Sympodial4Examples()
 //            DynamicLSystemView()
             }
             .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
         #else
             WindowGroup {
                 NavigationView {
-                    VStack {
-                        LSystem3DControlView(model: model)
-                    }
+                    Monopodial4Examples()
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
             }

@@ -25,8 +25,8 @@
 		1A56FC9B2781545300D793F9 /* Squirrel3 in Frameworks */ = {isa = PBXBuildFile; productRef = 1A56FC9A2781545300D793F9 /* Squirrel3 */; };
 		1A56FC9D278154DE00D793F9 /* Squirrel3 in Frameworks */ = {isa = PBXBuildFile; productRef = 1A56FC9C278154DE00D793F9 /* Squirrel3 */; };
 		1A56FC9F278154E500D793F9 /* Squirrel3 in Frameworks */ = {isa = PBXBuildFile; productRef = 1A56FC9E278154E500D793F9 /* Squirrel3 */; };
-		1A63005D2783DF6800607909 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63005C2783DF6800607909 /* SceneView.swift */; };
-		1A63005E2783DF6800607909 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63005C2783DF6800607909 /* SceneView.swift */; };
+		1A63005D2783DF6800607909 /* SceneKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63005C2783DF6800607909 /* SceneKitView.swift */; };
+		1A63005E2783DF6800607909 /* SceneKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A63005C2783DF6800607909 /* SceneKitView.swift */; };
 		1A94D73027751092001E8A4B /* LindenmayerViews in Frameworks */ = {isa = PBXBuildFile; productRef = 1A94D72F27751092001E8A4B /* LindenmayerViews */; };
 		1A94D7322775109F001E8A4B /* LindenmayerViews in Frameworks */ = {isa = PBXBuildFile; productRef = 1A94D7312775109F001E8A4B /* LindenmayerViews */; };
 		1A968D6B277C051400C463F3 /* Model3DView in Frameworks */ = {isa = PBXBuildFile; productRef = 1A968D6A277C051400C463F3 /* Model3DView */; };
@@ -71,7 +71,7 @@
 		1A506E7525EAB9E400E51CE2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A506E7925EAB9E400E51CE2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1A506E7B25EAB9E400E51CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A63005C2783DF6800607909 /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		1A63005C2783DF6800607909 /* SceneKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitView.swift; sourceTree = "<group>"; };
 		1A78F00B277D2E3E00D3E068 /* Lindenmayer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Lindenmayer; sourceTree = "<group>"; };
 		1A8CAC5B25EAF5F80011B6B4 /* X5336-macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-macOS.xctestplan"; sourceTree = "<group>"; };
 		1A8CAC6125EAF60F0011B6B4 /* X5336-iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "X5336-iOS.xctestplan"; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				1A2D0F752779045D0085FDB3 /* Debug3DView.swift */,
 				1A506E5325EAB9E300E51CE2 /* X5336Document.swift */,
 				1A506E5425EAB9E300E51CE2 /* ContentView.swift */,
-				1A63005C2783DF6800607909 /* SceneView.swift */,
+				1A63005C2783DF6800607909 /* SceneKitView.swift */,
 				1A506E5525EAB9E400E51CE2 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -401,7 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A506E7E25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1A63005D2783DF6800607909 /* SceneView.swift in Sources */,
+				1A63005D2783DF6800607909 /* SceneKitView.swift in Sources */,
 				1A2D0F762779045D0085FDB3 /* Debug3DView.swift in Sources */,
 				1A506E7C25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8025EAB9E400E51CE2 /* ContentView.swift in Sources */,
@@ -413,7 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A506E7F25EAB9E400E51CE2 /* X5336Document.swift in Sources */,
-				1A63005E2783DF6800607909 /* SceneView.swift in Sources */,
+				1A63005E2783DF6800607909 /* SceneKitView.swift in Sources */,
 				1A2D0F772779045D0085FDB3 /* Debug3DView.swift in Sources */,
 				1A506E7D25EAB9E400E51CE2 /* X5336App.swift in Sources */,
 				1A506E8125EAB9E400E51CE2 /* ContentView.swift in Sources */,
