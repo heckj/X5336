@@ -160,7 +160,7 @@ public struct NodeAdjustmentView: View {
                         let calc_angle = acos(simd_dot(original_heading_vector, matrix_multiply(rotationTransform, original_heading_vector)) / (simd_length(original_heading_vector) * simd_length(matrix_multiply(rotationTransform, original_heading_vector))))
                         print("Calculated angle from acos(dot/mag): \(calc_angle)")
 
-                        node.simdTransform = node.simdTransform * rotationAroundXAxisTransform(angle: moreValue)
+                        node.simdTransform = node.simdTransform * SceneKitRenderer.rotationAroundXAxisTransform(angle: moreValue)
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
                         string += "\nyaw: \(degrees(radians: node.simdEulerAngles.y))° (\(node.simdEulerAngles.y) rad)"
@@ -177,7 +177,7 @@ public struct NodeAdjustmentView: View {
                         }
                     }
                     if let node = node {
-                        node.simdTransform = node.simdTransform * rotationAroundYAxisTransform(angle: moreValue)
+                        node.simdTransform = node.simdTransform * SceneKitRenderer.rotationAroundYAxisTransform(angle: moreValue)
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
                         string += "\nyaw: \(degrees(radians: node.simdEulerAngles.y))° (\(node.simdEulerAngles.y) rad)"
@@ -194,7 +194,7 @@ public struct NodeAdjustmentView: View {
                         }
                     }
                     if let node = node {
-                        node.simdTransform = node.simdTransform * rotationAroundZAxisTransform(angle: moreValue)
+                        node.simdTransform = node.simdTransform * SceneKitRenderer.rotationAroundZAxisTransform(angle: moreValue)
 
                         var string = "euler angles:"
                         string += "\npitch: \(degrees(radians: node.simdEulerAngles.x))° (\(node.simdEulerAngles.x) rad)"
