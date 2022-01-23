@@ -13,7 +13,7 @@ import SwiftUI
 
 struct ContentView: View {
     let renderer = SceneKitRenderer()
-    let system: LSystem
+    let system: LindenmayerSystem
 //    @State private var evolutions: Double = 0
 
 //    func evolved(_ system: LSystem, _ iter: Int) -> LSystem {
@@ -51,8 +51,9 @@ struct ContentView: View {
 // }
 
 struct ContentView_Previews: PreviewProvider {
-    static func generateSystem() -> LSystem {
-        return Examples3D.monopodialTree.lsystem.evolved(iterations: 5)
+    static func generateSystem() -> LindenmayerSystem {
+        let evolved: LindenmayerSystem = Examples3D.monopodialTree.evolved(iterations: 5)
+        return evolved
     }
 
     static var previews: some View {

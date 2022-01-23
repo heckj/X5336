@@ -126,7 +126,7 @@ public struct NodeInfoView: View {
 
 public struct NodeAdjustmentView: View {
     let node: SCNNode?
-    @State private var moreValue: Float = 0
+    @State private var moreValue: Angle = Angle()
     @State private var textField: String = ""
     @State private var anglesString: String = ""
 
@@ -136,8 +136,8 @@ public struct NodeAdjustmentView: View {
             HStack {
                 Button("add pitch") {
                     if !textField.isEmpty {
-                        if let value = Float(textField) {
-                            moreValue = value
+                        if let value = Double(textField) {
+                            moreValue = Angle(radians: value)
                         }
                     }
                     if let node = node {
@@ -172,8 +172,8 @@ public struct NodeAdjustmentView: View {
                 }
                 Button("add yaw") {
                     if !textField.isEmpty {
-                        if let value = Float(textField) {
-                            moreValue = value
+                        if let value = Double(textField) {
+                            moreValue = Angle(radians: value)
                         }
                     }
                     if let node = node {
@@ -189,8 +189,8 @@ public struct NodeAdjustmentView: View {
                 }
                 Button("add roll") {
                     if !textField.isEmpty {
-                        if let value = Float(textField) {
-                            moreValue = value
+                        if let value = Double(textField) {
+                            moreValue = Angle(radians: value)
                         }
                     }
                     if let node = node {
@@ -270,7 +270,7 @@ public struct NodeAdjustmentView: View {
                     }
                 }
             }
-            Text("Added \(moreValue)")
+            Text("Added \(String(describing: moreValue))")
             Text(anglesString)
         }
     }
