@@ -38,7 +38,7 @@ func material(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> SC
 }
 
 func addExampleNode(_ scene: SCNScene) {
-    let example = headingIndicator()
+    let example = DebugNodes.headingIndicator()
     example.name = "example"
     scene.rootNode.addChildNode(example)
 
@@ -294,7 +294,7 @@ public struct Debug3DView: View {
         cameraNode.simdLook(at: simd_float3(x: 0, y: 5, z: 0))
 
         // set up debug/sizing flooring
-        scene.rootNode.addChildNode(debugFlooring())
+        scene.rootNode.addChildNode(DebugNodes.debugFlooring())
 
         // add example node
         addExampleNode(scene)
