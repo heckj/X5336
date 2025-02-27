@@ -126,7 +126,7 @@ public struct NodeInfoView: View {
 
 public struct NodeAdjustmentView: View {
     let node: SCNNode?
-    @State private var moreValue: Angle = Angle()
+    @State private var moreValue: Angle = .init()
     @State private var textField: String = ""
     @State private var anglesString: String = ""
 

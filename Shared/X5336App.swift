@@ -11,19 +11,12 @@ import SwiftUI
 
 @main
 struct X5336App: App {
-    //  --> used for a Document based app
-//    var body: some Scene {
-//        DocumentGroup(newDocument: X5336Document()) { file in
-//            ContentView(document: file.$document)
-//        }
-//    }
 
     var body: some Scene {
         #if os(macOS)
             WindowGroup {
-                
 //                RollToVerticalTestView()
-                
+
 //                LSystem3DControlView(
 //                    model: LSystem3DModel(
 //                        system: Detailed3DExamples.sympodialTree
@@ -31,7 +24,7 @@ struct X5336App: App {
 
 //                                Monopodial4Examples()
 //                                Sympodial4Examples()
-                            Dynamic2DLSystemViews()
+                Dynamic2DLSystemViews()
             }
             .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
         #else
